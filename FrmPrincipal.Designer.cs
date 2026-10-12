@@ -28,19 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnProbarConexion = new Button();
             SuspendLayout();
+            // 
+            // btnProbarConexion
+            // 
+            btnProbarConexion.Location = new Point(12, 429);
+            btnProbarConexion.Name = "btnProbarConexion";
+            btnProbarConexion.Size = new Size(189, 23);
+            btnProbarConexion.TabIndex = 0;
+            btnProbarConexion.Text = "Probar conexión con SQL Server";
+            btnProbarConexion.UseVisualStyleBackColor = true;
+            btnProbarConexion.Click += btnProbarConexion_Click;
             // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(825, 464);
+            Controls.Add(btnProbarConexion);
             Name = "FrmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Sistema de Gestión de Productos";
+            Text = "Sistema de Gestión de Productos TechStore";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btnProbarConexion;
     }
 }

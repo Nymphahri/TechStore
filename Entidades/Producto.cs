@@ -6,7 +6,7 @@ namespace TechStore.Entidades
     {
         public int IdProducto { get; set; }
 
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = string.Empty;
 
         public decimal Precio { get; set; }
 
