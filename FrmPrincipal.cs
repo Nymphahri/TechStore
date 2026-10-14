@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using TechStore.Datos;
+using TechStore.Presentacion;
 
 namespace TechStore
 {
@@ -34,6 +28,7 @@ namespace TechStore
                         MessageBoxIcon.Information);
                 }
             }
+
             catch (SqlException)
             {
                 MessageBox.Show(
@@ -43,6 +38,12 @@ namespace TechStore
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void btnCategorias_Click(object sender, EventArgs e)
+        {
+            FrmCategorias formularioCategorias = new FrmCategorias();
+            formularioCategorias.ShowDialog();
         }
     }
 }

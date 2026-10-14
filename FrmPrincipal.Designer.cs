@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             btnProbarConexion = new Button();
+            btnCategorias = new Button();
             SuspendLayout();
             // 
             // btnProbarConexion
@@ -41,11 +42,22 @@
             btnProbarConexion.UseVisualStyleBackColor = true;
             btnProbarConexion.Click += btnProbarConexion_Click;
             // 
+            // btnCategorias
+            // 
+            btnCategorias.Location = new Point(270, 39);
+            btnCategorias.Name = "btnCategorias";
+            btnCategorias.Size = new Size(187, 23);
+            btnCategorias.TabIndex = 1;
+            btnCategorias.Text = "Gestionar categorías";
+            btnCategorias.UseVisualStyleBackColor = true;
+            btnCategorias.Click += btnCategorias_Click;
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(825, 464);
+            Controls.Add(btnCategorias);
             Controls.Add(btnProbarConexion);
             Name = "FrmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
@@ -56,5 +68,6 @@
         #endregion
 
         private Button btnProbarConexion;
+        private Button btnCategorias;
     }
 }

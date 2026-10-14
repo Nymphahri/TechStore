@@ -147,6 +147,7 @@
             Name = "FrmCategorias";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestión de Categorías";
+            Load += FrmCategorias_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCategorias).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderCategorias).EndInit();
             ResumeLayout(false);
