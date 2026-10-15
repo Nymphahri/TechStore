@@ -17,7 +17,13 @@ namespace TechStore.Logica
         {
             if (string.IsNullOrWhiteSpace(categoria.Nombre))
             {
-                mensajeError = "El nombre en la categoría es obligatorio.";
+                mensajeError = "El nombre de la categoría es obligatorio.";
+                return false;
+            }
+
+            if (decimal.TryParse(categoria.Nombre, out _))
+            {
+                mensajeError = "El nombre de la categoría no puede ser únicamente numérico.";
                 return false;
             }
 
@@ -39,6 +45,11 @@ namespace TechStore.Logica
         public void ActualizarCategoria(Categoria categoria)
         {
             categoriaDatos.ActualizarDatos(categoria);
+        }
+
+        public void EliminarCategoria(int idCategoria)
+        {
+            categoriaDatos.Eliminar(idCategoria);
         }
     }
 }

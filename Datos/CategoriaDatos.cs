@@ -72,5 +72,22 @@ namespace TechStore.Datos
                 comando.ExecuteNonQuery();
             }
         }
+
+        public void Eliminar(int idCategoria)
+        {
+            const string consulta =
+                @"DELETE FROM Categorias
+                WHERE IdCategoria = @IdCategoria;";
+
+            using (SqlConnection conexion = conexionSql.CrearConexion())
+            using (SqlCommand comando = new SqlCommand(consulta, conexion))
+            {
+                comando.Parameters.Add("@IdCategoria", SqlDbType.Int)
+                    .Value = idCategoria;
+
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+        }
     }
 }

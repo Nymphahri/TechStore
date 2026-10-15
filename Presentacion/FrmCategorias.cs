@@ -6,35 +6,24 @@ namespace TechStore.Presentacion
 {
     public partial class FrmCategorias : Form
     {
-        private void FrmCategorias_Load(object sender, EventArgs e)
-        {
-            CargarCategorias();
-        }
+        private readonly CategoriaLogica categoriaLogica = new CategoriaLogica();
 
         private int idCategoriaSeleccionada = 0;
-
-        private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0)
-            {
-                return;
-            }
-
-            DataGridViewRow fila = dgvCategorias.Rows[e.RowIndex];
-
-            idCategoriaSeleccionada =
-                Convert.ToInt32(fila.Cells["IdCategoria"].Value);
-
-            txtNombre.Text = fila.Cells["Nombre"].Value?.ToString();
-            txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();
-        }
 
         public FrmCategorias()
         {
             InitializeComponent();
         }
 
-        private readonly CategoriaLogica categoriaLogica = new CategoriaLogica();
+        private void LimpiarCampos()
+        {
+            txtNombre.Clear();
+            txtDescripcion.Clear();
+            errorProviderCategorias.Clear();
+            idCategoriaSeleccionada = 0;
+            dgvCategorias.ClearSelection();
+            txtNombre.Focus();
+        }
 
         private void CargarCategorias()
         {
@@ -54,25 +43,26 @@ namespace TechStore.Presentacion
             }
         }
 
-        private void LimpiarCampos()
+        private void FrmCategorias_Load(object sender, EventArgs e)
         {
-            txtNombre.Clear();
-            txtDescripcion.Clear();
-            errorProviderCategorias.Clear();
-            idCategoriaSeleccionada = 0;
-            dgvCategorias.ClearSelection();
-            txtNombre.Focus();
+            CargarCategorias();
         }
 
         private bool ValidarCategoriaFormulario(Categoria categoria)
         {
-            errorProviderCategorias.Clear();
+            bool categoriaEsValida =
+                categoriaLogica.ValidarCategoria(categoria, out string mensajeError);
 
-            if (!categoriaLogica.ValidarCategoria(categoria, out string mensajeError))
+            if (categoriaEsValida == false)
             {
-                bool errorEnNombre =
-                    string.IsNullOrWhiteSpace(categoria.Nombre) ||
+                bool nombreEstaVacio =
+                    string.IsNullOrWhiteSpace(categoria.Nombre);
+
+                bool nombreEsNumerico =
                     decimal.TryParse(categoria.Nombre, out _);
+
+                bool errorEnNombre =
+                    nombreEstaVacio || nombreEsNumerico;
 
                 if (errorEnNombre)
                 {
@@ -91,8 +81,6 @@ namespace TechStore.Presentacion
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            errorProviderCategorias.Clear();
-
             Categoria categoria = new Categoria
             {
                 Nombre = txtNombre.Text.Trim(),
@@ -177,6 +165,82 @@ namespace TechStore.Presentacion
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (idCategoriaSeleccionada == 0)
+            {
+                MessageBox.Show(
+                    "Seleccione una categoría antes de eliminar.",
+                    "La categoría no ha sido seleccionada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            string nombreCategoria = txtNombre.Text;
+
+            DialogResult respuesta = MessageBox.Show(
+                $"¿Desea eliminar la categoría \"{nombreCategoria}\"?",
+                "Confirmar la eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.No)
+            {
+                return;
+            }
+
+            try
+            {
+                categoriaLogica.EliminarCategoria(idCategoriaSeleccionada);
+
+                MessageBox.Show(
+                    "La categoría se eliminó correctamente.",
+                    "Operación exitosa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                CargarCategorias();
+                LimpiarCampos();
+            }
+            catch (SqlException errorBaseDatos)
+            {
+                if (errorBaseDatos.Number == 547)
+                {
+                    MessageBox.Show(
+                        "No es posible eliminar esta categoría porque tiene productos asociados.",
+                        "La operación no puede ser permitida",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "No fue posible eliminar la categoría.",
+                        "Error de base de datos",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            DataGridViewRow fila = dgvCategorias.Rows[e.RowIndex];
+
+            idCategoriaSeleccionada =
+                Convert.ToInt32(fila.Cells["IdCategoria"].Value);
+
+            txtNombre.Text = fila.Cells["Nombre"].Value?.ToString();
+            txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();
         }
     }
 }

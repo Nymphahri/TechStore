@@ -73,7 +73,7 @@
             txtDescripcion.Location = new Point(138, 291);
             txtDescripcion.Multiline = true;
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(142, 25);
+            txtDescripcion.Size = new Size(142, 79);
             txtDescripcion.TabIndex = 3;
             // 
             // btnGuardar
@@ -104,6 +104,7 @@
             btnEliminar.TabIndex = 6;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnLimpiar
             // 
@@ -127,6 +128,7 @@
             dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCategorias.Size = new Size(517, 126);
             dgvCategorias.TabIndex = 8;
+            dgvCategorias.CellClick += dgvCategorias_CellClick;
             // 
             // errorProviderCategorias
             // 
