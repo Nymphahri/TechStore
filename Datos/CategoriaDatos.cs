@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
+using TechStore.Entidades;
 
 namespace TechStore.Datos
 {
@@ -12,11 +13,9 @@ namespace TechStore.Datos
             DataTable tablaCategorias = new DataTable();
 
             const string consulta =
-                @"SELECT IdCategoria,
-                         Nombre,
-                         Descripcion
-                  FROM Categorias
-                  ORDER BY Nombre;";
+                @"SELECT IdCategoria, Nombre, Descripcion
+                FROM Categorias
+                ORDER BY Nombre;";
 
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
@@ -27,6 +26,26 @@ namespace TechStore.Datos
             }
 
             return tablaCategorias;
+        }
+
+        public void Guardar(Categoria categoria)
+        {
+            const string consulta =
+                @"INSERT INTO Categorias (Nombre, Descripcion)
+                VALUES (@Nombre, @Descripcion);";
+
+            using (SqlConnection conexion = conexionSql.CrearConexion())
+            using (SqlCommand comando = new SqlCommand(consulta, conexion))
+            {
+                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100)
+                    .Value = categoria.Nombre;
+
+                comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 250)
+                    .Value = categoria.Descripcion;
+
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace TechStore
             {
                 MessageBox.Show(
                     "No fue posible conectar con la base de datos. " +
-                    "Verifica que SQL Server esté activo.",
+                    "Verifique que el SQL Server esté activo.",
                     "Error de conexión",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            lblLabel = new Label();
+            lblNombre = new Label();
             lblDescripcion = new Label();
             txtNombre = new TextBox();
             txtDescripcion = new TextBox();
@@ -43,19 +43,19 @@
             ((System.ComponentModel.ISupportInitialize)errorProviderCategorias).BeginInit();
             SuspendLayout();
             // 
-            // lblLabel
+            // lblNombre
             // 
-            lblLabel.AutoSize = true;
-            lblLabel.Location = new Point(388, 20);
-            lblLabel.Name = "lblLabel";
-            lblLabel.Size = new Size(54, 15);
-            lblLabel.TabIndex = 0;
-            lblLabel.Text = "Nombre:";
+            lblNombre.AutoSize = true;
+            lblNombre.Location = new Point(35, 244);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(54, 15);
+            lblNombre.TabIndex = 0;
+            lblNombre.Text = "Nombre:";
             // 
             // lblDescripcion
             // 
             lblDescripcion.AutoSize = true;
-            lblDescripcion.Location = new Point(379, 95);
+            lblDescripcion.Location = new Point(35, 301);
             lblDescripcion.Name = "lblDescripcion";
             lblDescripcion.Size = new Size(72, 15);
             lblDescripcion.TabIndex = 1;
@@ -63,31 +63,32 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(363, 38);
+            txtNombre.Location = new Point(138, 236);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(100, 23);
+            txtNombre.Size = new Size(142, 23);
             txtNombre.TabIndex = 2;
             // 
             // txtDescripcion
             // 
-            txtDescripcion.Location = new Point(342, 113);
+            txtDescripcion.Location = new Point(138, 291);
             txtDescripcion.Multiline = true;
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new Size(142, 74);
+            txtDescripcion.Size = new Size(142, 25);
             txtDescripcion.TabIndex = 3;
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(210, 225);
+            btnGuardar.Location = new Point(35, 437);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(75, 23);
             btnGuardar.TabIndex = 4;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(322, 225);
+            btnModificar.Location = new Point(183, 437);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 23);
             btnModificar.TabIndex = 5;
@@ -96,7 +97,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(436, 225);
+            btnEliminar.Location = new Point(338, 437);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 23);
             btnEliminar.TabIndex = 6;
@@ -105,7 +106,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(544, 225);
+            btnLimpiar.Location = new Point(477, 437);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(75, 23);
             btnLimpiar.TabIndex = 7;
@@ -118,12 +119,12 @@
             dgvCategorias.AllowUserToDeleteRows = false;
             dgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCategorias.Location = new Point(301, 294);
+            dgvCategorias.Location = new Point(35, 28);
             dgvCategorias.MultiSelect = false;
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.ReadOnly = true;
             dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCategorias.Size = new Size(240, 150);
+            dgvCategorias.Size = new Size(517, 160);
             dgvCategorias.TabIndex = 8;
             // 
             // errorProviderCategorias
@@ -134,7 +135,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(884, 501);
+            ClientSize = new Size(581, 475);
             Controls.Add(dgvCategorias);
             Controls.Add(btnLimpiar);
             Controls.Add(btnEliminar);
@@ -143,7 +144,7 @@
             Controls.Add(txtDescripcion);
             Controls.Add(txtNombre);
             Controls.Add(lblDescripcion);
-            Controls.Add(lblLabel);
+            Controls.Add(lblNombre);
             Name = "FrmCategorias";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestión de Categorías";
@@ -156,7 +157,7 @@
 
         #endregion
 
-        private Label lblLabel;
+        private Label lblNombre;
         private Label lblDescripcion;
         private TextBox txtNombre;
         private TextBox txtDescripcion;

@@ -34,7 +34,7 @@
             // 
             // btnProbarConexion
             // 
-            btnProbarConexion.Location = new Point(12, 429);
+            btnProbarConexion.Location = new Point(268, 246);
             btnProbarConexion.Name = "btnProbarConexion";
             btnProbarConexion.Size = new Size(189, 23);
             btnProbarConexion.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(825, 464);
+            ClientSize = new Size(747, 370);
             Controls.Add(btnCategorias);
             Controls.Add(btnProbarConexion);
             Name = "FrmPrincipal";
