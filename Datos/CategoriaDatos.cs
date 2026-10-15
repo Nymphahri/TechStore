@@ -28,7 +28,7 @@ namespace TechStore.Datos
             return tablaCategorias;
         }
 
-        public void Guardar(Categoria categoria)
+        public void GuardarDatos(Categoria categoria)
         {
             const string consulta =
                 @"INSERT INTO Categorias (Nombre, Descripcion)
@@ -37,6 +37,31 @@ namespace TechStore.Datos
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
             {
+                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100)
+                    .Value = categoria.Nombre;
+
+                comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 250)
+                    .Value = categoria.Descripcion;
+
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+        }
+
+        public void ActualizarDatos(Categoria categoria)
+        {
+            const string consulta =
+                @"UPDATE Categorias
+                SET Nombre = @Nombre,
+                    Descripcion = @Descripcion
+                WHERE IdCategoria = @IdCategoria;";
+
+            using (SqlConnection conexion = conexionSql.CrearConexion())
+            using (SqlCommand comando = new SqlCommand(consulta, conexion))
+            {
+                comando.Parameters.Add("@IdCategoria", SqlDbType.Int)
+                    .Value = categoria.IdCategoria;
+
                 comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100)
                     .Value = categoria.Nombre;
 

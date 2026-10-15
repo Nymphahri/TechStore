@@ -31,9 +31,14 @@ namespace TechStore.Logica
             return true;
         }
 
-        public void Guardar(Categoria categoria)
+        public void GuardarCategoria(Categoria categoria)
         {
-            categoriaDatos.Guardar(categoria);
+            categoriaDatos.GuardarDatos(categoria);
+        }
+
+        public void ActualizarCategoria(Categoria categoria)
+        {
+            categoriaDatos.ActualizarDatos(categoria);
         }
     }
 }

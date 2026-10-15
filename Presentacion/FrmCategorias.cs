@@ -6,6 +6,29 @@ namespace TechStore.Presentacion
 {
     public partial class FrmCategorias : Form
     {
+        private void FrmCategorias_Load(object sender, EventArgs e)
+        {
+            CargarCategorias();
+        }
+
+        private int idCategoriaSeleccionada = 0;
+
+        private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            DataGridViewRow fila = dgvCategorias.Rows[e.RowIndex];
+
+            idCategoriaSeleccionada =
+                Convert.ToInt32(fila.Cells["IdCategoria"].Value);
+
+            txtNombre.Text = fila.Cells["Nombre"].Value?.ToString();
+            txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();
+        }
+
         public FrmCategorias()
         {
             InitializeComponent();
@@ -31,17 +54,39 @@ namespace TechStore.Presentacion
             }
         }
 
-        private void FrmCategorias_Load(object sender, EventArgs e)
-        {
-            CargarCategorias();
-        }
-
         private void LimpiarCampos()
         {
             txtNombre.Clear();
             txtDescripcion.Clear();
             errorProviderCategorias.Clear();
+            idCategoriaSeleccionada = 0;
+            dgvCategorias.ClearSelection();
             txtNombre.Focus();
+        }
+
+        private bool ValidarCategoriaFormulario(Categoria categoria)
+        {
+            errorProviderCategorias.Clear();
+
+            if (!categoriaLogica.ValidarCategoria(categoria, out string mensajeError))
+            {
+                bool errorEnNombre =
+                    string.IsNullOrWhiteSpace(categoria.Nombre) ||
+                    decimal.TryParse(categoria.Nombre, out _);
+
+                if (errorEnNombre)
+                {
+                    errorProviderCategorias.SetError(txtNombre, mensajeError);
+                }
+                else
+                {
+                    errorProviderCategorias.SetError(txtDescripcion, mensajeError);
+                }
+
+                return false;
+            }
+
+            return true;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -54,24 +99,16 @@ namespace TechStore.Presentacion
                 Descripcion = txtDescripcion.Text.Trim()
             };
 
-            if (!categoriaLogica.ValidarCategoria(categoria, out string mensajeError))
-            {
-                if (string.IsNullOrWhiteSpace(categoria.Nombre) ||
-                    decimal.TryParse(categoria.Nombre, out _))
-                {
-                    errorProviderCategorias.SetError(txtNombre, mensajeError);
-                }
-                else
-                {
-                    errorProviderCategorias.SetError(txtDescripcion, mensajeError);
-                }
+            bool categoriaValida = ValidarCategoriaFormulario(categoria);
 
+            if (categoriaValida == false)
+            {
                 return;
             }
 
             try
             {
-                categoriaLogica.Guardar(categoria);
+                categoriaLogica.GuardarCategoria(categoria);
 
                 MessageBox.Show(
                     "La categoría se registró correctamente.",
@@ -89,6 +126,56 @@ namespace TechStore.Presentacion
                     "Error en la base de datos",
                     MessageBoxButtons.OK,
                       MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (idCategoriaSeleccionada == 0)
+            {
+                MessageBox.Show(
+                    "Seleccione una categoría antes de modificar.",
+                    "Categoría no ha sido seleccionada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            Categoria categoria = new Categoria
+            {
+                IdCategoria = idCategoriaSeleccionada,
+                Nombre = txtNombre.Text.Trim(),
+                Descripcion = txtDescripcion.Text.Trim()
+            };
+
+            bool categoriaValida = ValidarCategoriaFormulario(categoria);
+
+            if (categoriaValida == false)
+            {
+                return;
+            }
+
+            try
+            {
+                categoriaLogica.ActualizarCategoria(categoria);
+
+                MessageBox.Show(
+                    "La categoría se ha modificado correctamente.",
+                    "Operación exitosa",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                CargarCategorias();
+                LimpiarCampos();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show(
+                    "No fue posible modificar una categoría.",
+                    "Error de base de datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }
