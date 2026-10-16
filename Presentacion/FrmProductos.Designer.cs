@@ -54,7 +54,7 @@
             // lblNombreProducto
             // 
             lblNombreProducto.AutoSize = true;
-            lblNombreProducto.Location = new Point(36, 30);
+            lblNombreProducto.Location = new Point(49, 51);
             lblNombreProducto.Name = "lblNombreProducto";
             lblNombreProducto.Size = new Size(54, 15);
             lblNombreProducto.TabIndex = 0;
@@ -63,7 +63,7 @@
             // lblPrecio
             // 
             lblPrecio.AutoSize = true;
-            lblPrecio.Location = new Point(36, 77);
+            lblPrecio.Location = new Point(49, 122);
             lblPrecio.Name = "lblPrecio";
             lblPrecio.Size = new Size(43, 15);
             lblPrecio.TabIndex = 1;
@@ -72,7 +72,7 @@
             // lblStock
             // 
             lblStock.AutoSize = true;
-            lblStock.Location = new Point(36, 122);
+            lblStock.Location = new Point(49, 177);
             lblStock.Name = "lblStock";
             lblStock.Size = new Size(39, 15);
             lblStock.TabIndex = 2;
@@ -81,7 +81,7 @@
             // lblCategoria
             // 
             lblCategoria.AutoSize = true;
-            lblCategoria.Location = new Point(36, 172);
+            lblCategoria.Location = new Point(49, 227);
             lblCategoria.Name = "lblCategoria";
             lblCategoria.Size = new Size(61, 15);
             lblCategoria.TabIndex = 3;
@@ -90,16 +90,16 @@
             // lblFechaRegistro
             // 
             lblFechaRegistro.AutoSize = true;
-            lblFechaRegistro.Location = new Point(36, 213);
+            lblFechaRegistro.Location = new Point(49, 283);
             lblFechaRegistro.Name = "lblFechaRegistro";
-            lblFechaRegistro.Size = new Size(160, 15);
+            lblFechaRegistro.Size = new Size(104, 15);
             lblFechaRegistro.TabIndex = 4;
-            lblFechaRegistro.Text = "Fecha de registro automática";
+            lblFechaRegistro.Text = "Fecha: automática";
             // 
             // lblBuscarProducto
             // 
             lblBuscarProducto.AutoSize = true;
-            lblBuscarProducto.Location = new Point(36, 254);
+            lblBuscarProducto.Location = new Point(411, 51);
             lblBuscarProducto.Name = "lblBuscarProducto";
             lblBuscarProducto.Size = new Size(111, 15);
             lblBuscarProducto.TabIndex = 5;
@@ -107,21 +107,21 @@
             // 
             // txtNombreProducto
             // 
-            txtNombreProducto.Location = new Point(119, 22);
+            txtNombreProducto.Location = new Point(132, 43);
             txtNombreProducto.Name = "txtNombreProducto";
             txtNombreProducto.Size = new Size(208, 23);
             txtNombreProducto.TabIndex = 6;
             // 
             // txtPrecio
             // 
-            txtPrecio.Location = new Point(119, 69);
+            txtPrecio.Location = new Point(132, 114);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new Size(208, 23);
             txtPrecio.TabIndex = 7;
             // 
             // txtStock
             // 
-            txtStock.Location = new Point(119, 114);
+            txtStock.Location = new Point(132, 169);
             txtStock.Name = "txtStock";
             txtStock.Size = new Size(208, 23);
             txtStock.TabIndex = 8;
@@ -130,16 +130,16 @@
             // 
             cboCategorias.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCategorias.FormattingEnabled = true;
-            cboCategorias.Location = new Point(119, 164);
+            cboCategorias.Location = new Point(132, 219);
             cboCategorias.Name = "cboCategorias";
-            cboCategorias.Size = new Size(208, 23);
+            cboCategorias.Size = new Size(151, 23);
             cboCategorias.TabIndex = 9;
             // 
             // btnGuardarProducto
             // 
-            btnGuardarProducto.Location = new Point(36, 316);
+            btnGuardarProducto.Location = new Point(435, 332);
             btnGuardarProducto.Name = "btnGuardarProducto";
-            btnGuardarProducto.Size = new Size(75, 23);
+            btnGuardarProducto.Size = new Size(115, 44);
             btnGuardarProducto.TabIndex = 10;
             btnGuardarProducto.Text = "Guardar";
             btnGuardarProducto.UseVisualStyleBackColor = true;
@@ -147,43 +147,43 @@
             // 
             // btnModificarProducto
             // 
-            btnModificarProducto.Location = new Point(36, 345);
+            btnModificarProducto.Location = new Point(556, 332);
             btnModificarProducto.Name = "btnModificarProducto";
-            btnModificarProducto.Size = new Size(75, 23);
+            btnModificarProducto.Size = new Size(115, 44);
             btnModificarProducto.TabIndex = 11;
             btnModificarProducto.Text = "Modificar";
             btnModificarProducto.UseVisualStyleBackColor = true;
             // 
             // btnEliminarProducto
             // 
-            btnEliminarProducto.Location = new Point(36, 383);
+            btnEliminarProducto.Location = new Point(677, 332);
             btnEliminarProducto.Name = "btnEliminarProducto";
-            btnEliminarProducto.Size = new Size(75, 23);
+            btnEliminarProducto.Size = new Size(115, 44);
             btnEliminarProducto.TabIndex = 12;
             btnEliminarProducto.Text = "Eliminar";
             btnEliminarProducto.UseVisualStyleBackColor = true;
             // 
             // btnLimpiarProducto
             // 
-            btnLimpiarProducto.Location = new Point(36, 412);
+            btnLimpiarProducto.Location = new Point(799, 333);
             btnLimpiarProducto.Name = "btnLimpiarProducto";
-            btnLimpiarProducto.Size = new Size(75, 23);
+            btnLimpiarProducto.Size = new Size(115, 44);
             btnLimpiarProducto.TabIndex = 13;
             btnLimpiarProducto.Text = "Limpiar";
             btnLimpiarProducto.UseVisualStyleBackColor = true;
             // 
             // txtBuscarProducto
             // 
-            txtBuscarProducto.Location = new Point(153, 246);
+            txtBuscarProducto.Location = new Point(547, 43);
             txtBuscarProducto.Name = "txtBuscarProducto";
-            txtBuscarProducto.Size = new Size(134, 23);
+            txtBuscarProducto.Size = new Size(208, 23);
             txtBuscarProducto.TabIndex = 14;
             // 
             // btnBuscarProducto
             // 
-            btnBuscarProducto.Location = new Point(36, 441);
+            btnBuscarProducto.Location = new Point(787, 36);
             btnBuscarProducto.Name = "btnBuscarProducto";
-            btnBuscarProducto.Size = new Size(75, 24);
+            btnBuscarProducto.Size = new Size(115, 45);
             btnBuscarProducto.TabIndex = 15;
             btnBuscarProducto.Text = "Buscar";
             btnBuscarProducto.UseVisualStyleBackColor = true;
@@ -194,12 +194,12 @@
             dgvProductos.AllowUserToDeleteRows = false;
             dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductos.Location = new Point(169, 315);
+            dgvProductos.Location = new Point(411, 122);
             dgvProductos.MultiSelect = false;
             dgvProductos.Name = "dgvProductos";
             dgvProductos.ReadOnly = true;
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProductos.Size = new Size(538, 150);
+            dgvProductos.Size = new Size(521, 195);
             dgvProductos.TabIndex = 16;
             // 
             // errorProviderProductos
@@ -210,7 +210,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(729, 487);
+            ClientSize = new Size(944, 388);
             Controls.Add(dgvProductos);
             Controls.Add(btnBuscarProducto);
             Controls.Add(txtBuscarProducto);
