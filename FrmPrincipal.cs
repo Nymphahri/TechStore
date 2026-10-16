@@ -45,5 +45,11 @@ namespace TechStore
             FrmCategorias formularioCategorias = new FrmCategorias();
             formularioCategorias.ShowDialog();
         }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            FrmProductos formularioProductos = new FrmProductos();
+            formularioProductos.ShowDialog();
+        }
     }
 }

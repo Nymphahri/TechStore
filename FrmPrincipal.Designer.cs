@@ -30,6 +30,7 @@
         {
             btnProbarConexion = new Button();
             btnCategorias = new Button();
+            btnProductos = new Button();
             SuspendLayout();
             // 
             // btnProbarConexion
@@ -52,16 +53,27 @@
             btnCategorias.UseVisualStyleBackColor = true;
             btnCategorias.Click += btnCategorias_Click;
             // 
+            // btnProductos
+            // 
+            btnProductos.Location = new Point(270, 90);
+            btnProductos.Name = "btnProductos";
+            btnProductos.Size = new Size(187, 23);
+            btnProductos.TabIndex = 2;
+            btnProductos.Text = "Gestionar productos";
+            btnProductos.UseVisualStyleBackColor = true;
+            btnProductos.Click += btnProductos_Click;
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(747, 370);
+            Controls.Add(btnProductos);
             Controls.Add(btnCategorias);
             Controls.Add(btnProbarConexion);
             Name = "FrmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Sistema de Gestión de Productos TechStore";
+            Text = "Sistema de Gestión";
             ResumeLayout(false);
         }
 
@@ -69,5 +81,6 @@
 
         private Button btnProbarConexion;
         private Button btnCategorias;
+        private Button btnProductos;
     }
 }

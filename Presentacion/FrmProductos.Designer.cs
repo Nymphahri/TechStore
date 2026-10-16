@@ -1,0 +1,262 @@
+﻿namespace TechStore.Presentacion
+{
+    partial class FrmProductos
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            components = new System.ComponentModel.Container();
+            lblNombreProducto = new Label();
+            lblPrecio = new Label();
+            lblStock = new Label();
+            lblCategoria = new Label();
+            lblFechaRegistro = new Label();
+            lblBuscarProducto = new Label();
+            txtNombreProducto = new TextBox();
+            txtPrecio = new TextBox();
+            txtStock = new TextBox();
+            cboCategorias = new ComboBox();
+            btnGuardarProducto = new Button();
+            btnModificarProducto = new Button();
+            btnEliminarProducto = new Button();
+            btnLimpiarProducto = new Button();
+            txtBuscarProducto = new TextBox();
+            btnBuscarProducto = new Button();
+            dgvProductos = new DataGridView();
+            errorProviderProductos = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductos).BeginInit();
+            SuspendLayout();
+            // 
+            // lblNombreProducto
+            // 
+            lblNombreProducto.AutoSize = true;
+            lblNombreProducto.Location = new Point(36, 30);
+            lblNombreProducto.Name = "lblNombreProducto";
+            lblNombreProducto.Size = new Size(54, 15);
+            lblNombreProducto.TabIndex = 0;
+            lblNombreProducto.Text = "Nombre:";
+            // 
+            // lblPrecio
+            // 
+            lblPrecio.AutoSize = true;
+            lblPrecio.Location = new Point(36, 77);
+            lblPrecio.Name = "lblPrecio";
+            lblPrecio.Size = new Size(43, 15);
+            lblPrecio.TabIndex = 1;
+            lblPrecio.Text = "Precio:";
+            // 
+            // lblStock
+            // 
+            lblStock.AutoSize = true;
+            lblStock.Location = new Point(36, 122);
+            lblStock.Name = "lblStock";
+            lblStock.Size = new Size(39, 15);
+            lblStock.TabIndex = 2;
+            lblStock.Text = "Stock:";
+            // 
+            // lblCategoria
+            // 
+            lblCategoria.AutoSize = true;
+            lblCategoria.Location = new Point(36, 172);
+            lblCategoria.Name = "lblCategoria";
+            lblCategoria.Size = new Size(61, 15);
+            lblCategoria.TabIndex = 3;
+            lblCategoria.Text = "Categoría:";
+            // 
+            // lblFechaRegistro
+            // 
+            lblFechaRegistro.AutoSize = true;
+            lblFechaRegistro.Location = new Point(36, 213);
+            lblFechaRegistro.Name = "lblFechaRegistro";
+            lblFechaRegistro.Size = new Size(160, 15);
+            lblFechaRegistro.TabIndex = 4;
+            lblFechaRegistro.Text = "Fecha de registro automática";
+            // 
+            // lblBuscarProducto
+            // 
+            lblBuscarProducto.AutoSize = true;
+            lblBuscarProducto.Location = new Point(36, 254);
+            lblBuscarProducto.Name = "lblBuscarProducto";
+            lblBuscarProducto.Size = new Size(111, 15);
+            lblBuscarProducto.TabIndex = 5;
+            lblBuscarProducto.Text = "Buscar por nombre:";
+            // 
+            // txtNombreProducto
+            // 
+            txtNombreProducto.Location = new Point(119, 22);
+            txtNombreProducto.Name = "txtNombreProducto";
+            txtNombreProducto.Size = new Size(208, 23);
+            txtNombreProducto.TabIndex = 6;
+            // 
+            // txtPrecio
+            // 
+            txtPrecio.Location = new Point(119, 69);
+            txtPrecio.Name = "txtPrecio";
+            txtPrecio.Size = new Size(208, 23);
+            txtPrecio.TabIndex = 7;
+            // 
+            // txtStock
+            // 
+            txtStock.Location = new Point(119, 114);
+            txtStock.Name = "txtStock";
+            txtStock.Size = new Size(208, 23);
+            txtStock.TabIndex = 8;
+            // 
+            // cboCategorias
+            // 
+            cboCategorias.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCategorias.FormattingEnabled = true;
+            cboCategorias.Location = new Point(119, 164);
+            cboCategorias.Name = "cboCategorias";
+            cboCategorias.Size = new Size(208, 23);
+            cboCategorias.TabIndex = 9;
+            // 
+            // btnGuardarProducto
+            // 
+            btnGuardarProducto.Location = new Point(36, 316);
+            btnGuardarProducto.Name = "btnGuardarProducto";
+            btnGuardarProducto.Size = new Size(75, 23);
+            btnGuardarProducto.TabIndex = 10;
+            btnGuardarProducto.Text = "Guardar";
+            btnGuardarProducto.UseVisualStyleBackColor = true;
+            btnGuardarProducto.Click += btnGuardarProducto_Click;
+            // 
+            // btnModificarProducto
+            // 
+            btnModificarProducto.Location = new Point(36, 345);
+            btnModificarProducto.Name = "btnModificarProducto";
+            btnModificarProducto.Size = new Size(75, 23);
+            btnModificarProducto.TabIndex = 11;
+            btnModificarProducto.Text = "Modificar";
+            btnModificarProducto.UseVisualStyleBackColor = true;
+            // 
+            // btnEliminarProducto
+            // 
+            btnEliminarProducto.Location = new Point(36, 383);
+            btnEliminarProducto.Name = "btnEliminarProducto";
+            btnEliminarProducto.Size = new Size(75, 23);
+            btnEliminarProducto.TabIndex = 12;
+            btnEliminarProducto.Text = "Eliminar";
+            btnEliminarProducto.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiarProducto
+            // 
+            btnLimpiarProducto.Location = new Point(36, 412);
+            btnLimpiarProducto.Name = "btnLimpiarProducto";
+            btnLimpiarProducto.Size = new Size(75, 23);
+            btnLimpiarProducto.TabIndex = 13;
+            btnLimpiarProducto.Text = "Limpiar";
+            btnLimpiarProducto.UseVisualStyleBackColor = true;
+            // 
+            // txtBuscarProducto
+            // 
+            txtBuscarProducto.Location = new Point(153, 246);
+            txtBuscarProducto.Name = "txtBuscarProducto";
+            txtBuscarProducto.Size = new Size(134, 23);
+            txtBuscarProducto.TabIndex = 14;
+            // 
+            // btnBuscarProducto
+            // 
+            btnBuscarProducto.Location = new Point(36, 441);
+            btnBuscarProducto.Name = "btnBuscarProducto";
+            btnBuscarProducto.Size = new Size(75, 24);
+            btnBuscarProducto.TabIndex = 15;
+            btnBuscarProducto.Text = "Buscar";
+            btnBuscarProducto.UseVisualStyleBackColor = true;
+            // 
+            // dgvProductos
+            // 
+            dgvProductos.AllowUserToAddRows = false;
+            dgvProductos.AllowUserToDeleteRows = false;
+            dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvProductos.Location = new Point(169, 315);
+            dgvProductos.MultiSelect = false;
+            dgvProductos.Name = "dgvProductos";
+            dgvProductos.ReadOnly = true;
+            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProductos.Size = new Size(538, 150);
+            dgvProductos.TabIndex = 16;
+            // 
+            // errorProviderProductos
+            // 
+            errorProviderProductos.ContainerControl = this;
+            // 
+            // FrmProductos
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(729, 487);
+            Controls.Add(dgvProductos);
+            Controls.Add(btnBuscarProducto);
+            Controls.Add(txtBuscarProducto);
+            Controls.Add(btnLimpiarProducto);
+            Controls.Add(btnEliminarProducto);
+            Controls.Add(btnModificarProducto);
+            Controls.Add(btnGuardarProducto);
+            Controls.Add(cboCategorias);
+            Controls.Add(txtStock);
+            Controls.Add(txtPrecio);
+            Controls.Add(txtNombreProducto);
+            Controls.Add(lblBuscarProducto);
+            Controls.Add(lblFechaRegistro);
+            Controls.Add(lblCategoria);
+            Controls.Add(lblStock);
+            Controls.Add(lblPrecio);
+            Controls.Add(lblNombreProducto);
+            Name = "FrmProductos";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Gestión de Productos";
+            Load += FrmProductos_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderProductos).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Label lblNombreProducto;
+        private Label lblPrecio;
+        private Label lblStock;
+        private Label lblCategoria;
+        private Label lblFechaRegistro;
+        private Label lblBuscarProducto;
+        private TextBox txtNombreProducto;
+        private TextBox txtPrecio;
+        private TextBox txtStock;
+        private ComboBox cboCategorias;
+        private Button btnGuardarProducto;
+        private Button btnModificarProducto;
+        private Button btnEliminarProducto;
+        private Button btnLimpiarProducto;
+        private TextBox txtBuscarProducto;
+        private Button btnBuscarProducto;
+        private DataGridView dgvProductos;
+        private ErrorProvider errorProviderProductos;
+    }
+}

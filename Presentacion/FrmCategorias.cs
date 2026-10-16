@@ -242,5 +242,10 @@ namespace TechStore.Presentacion
             txtNombre.Text = fila.Cells["Nombre"].Value?.ToString();
             txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
     }
 }
