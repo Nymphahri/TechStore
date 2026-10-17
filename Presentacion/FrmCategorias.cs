@@ -30,6 +30,10 @@ namespace TechStore.Presentacion
             try
             {
                 dgvCategorias.DataSource = categoriaLogica.ObtenerCategorias();
+
+                dgvCategorias.Columns["IdCategoria"].Visible = false;
+                dgvCategorias.Columns["Descripcion"].HeaderText = "Descripción";
+
                 dgvCategorias.ClearSelection();
             }
 
@@ -233,22 +237,6 @@ namespace TechStore.Presentacion
         }
 
         private void dgvCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0)
-            {
-                return;
-            }
-
-            DataGridViewRow fila = dgvCategorias.Rows[e.RowIndex];
-
-            idCategoriaSeleccionada =
-                Convert.ToInt32(fila.Cells["IdCategoria"].Value);
-
-            txtNombre.Text = fila.Cells["Nombre"].Value?.ToString();
-            txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();
-        }
-
-        private void dgvCategorias_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
             {

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProductos));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -38,6 +37,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProductos));
             lblNombreProducto = new Label();
             lblPrecio = new Label();
             lblStock = new Label();
@@ -56,7 +56,6 @@
             btnBuscarProducto = new Button();
             dgvProductos = new DataGridView();
             errorProviderProductos = new ErrorProvider(components);
-            lblUISIL = new Label();
             pnlDerecho = new Panel();
             label1 = new Label();
             pnlIzquierdo = new Panel();
@@ -233,17 +232,6 @@
             // 
             errorProviderProductos.ContainerControl = this;
             // 
-            // lblUISIL
-            // 
-            lblUISIL.AutoSize = true;
-            lblUISIL.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUISIL.ForeColor = Color.FromArgb(17, 9, 64);
-            lblUISIL.Location = new Point(12, 9);
-            lblUISIL.Name = "lblUISIL";
-            lblUISIL.Size = new Size(65, 30);
-            lblUISIL.TabIndex = 23;
-            lblUISIL.Text = "UISIL";
-            // 
             // pnlDerecho
             // 
             pnlDerecho.BackColor = Color.FromArgb(243, 245, 249);
@@ -263,7 +251,6 @@
             label1.BackColor = Color.FromArgb(226, 230, 234);
             label1.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(44, 62, 80);
-            label1.Image = (Image)resources.GetObject("label1.Image");
             label1.ImageAlign = ContentAlignment.MiddleLeft;
             label1.Location = new Point(-2, 0);
             label1.Name = "label1";
@@ -312,7 +299,6 @@
             btnLimpiar.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnLimpiar.ForeColor = Color.Black;
             btnLimpiar.HoverState.FillColor = Color.FromArgb(210, 230, 247);
-            btnLimpiar.Image = (Image)resources.GetObject("btnLimpiar.Image");
             btnLimpiar.ImageAlign = HorizontalAlignment.Left;
             btnLimpiar.Location = new Point(153, 306);
             btnLimpiar.Name = "btnLimpiar";
@@ -339,7 +325,6 @@
             btnEliminar.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnEliminar.ForeColor = Color.Black;
             btnEliminar.HoverState.FillColor = Color.FromArgb(210, 230, 247);
-            btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
             btnEliminar.ImageAlign = HorizontalAlignment.Left;
             btnEliminar.Location = new Point(25, 306);
             btnEliminar.Name = "btnEliminar";
@@ -366,7 +351,6 @@
             btnGuardar.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnGuardar.ForeColor = Color.White;
             btnGuardar.HoverState.FillColor = Color.FromArgb(210, 230, 247);
-            btnGuardar.Image = (Image)resources.GetObject("btnGuardar.Image");
             btnGuardar.ImageAlign = HorizontalAlignment.Left;
             btnGuardar.Location = new Point(25, 255);
             btnGuardar.Name = "btnGuardar";
@@ -393,7 +377,6 @@
             btnModificar.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnModificar.ForeColor = Color.Black;
             btnModificar.HoverState.FillColor = Color.FromArgb(210, 230, 247);
-            btnModificar.Image = (Image)resources.GetObject("btnModificar.Image");
             btnModificar.ImageAlign = HorizontalAlignment.Left;
             btnModificar.Location = new Point(153, 255);
             btnModificar.Name = "btnModificar";
@@ -423,7 +406,6 @@
             lblDetalleCategorias.BackColor = Color.FromArgb(226, 230, 234);
             lblDetalleCategorias.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
             lblDetalleCategorias.ForeColor = Color.FromArgb(44, 62, 80);
-            lblDetalleCategorias.Image = (Image)resources.GetObject("lblDetalleCategorias.Image");
             lblDetalleCategorias.ImageAlign = ContentAlignment.MiddleLeft;
             lblDetalleCategorias.Location = new Point(-2, 0);
             lblDetalleCategorias.Name = "lblDetalleCategorias";
@@ -438,7 +420,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
             ClientSize = new Size(944, 680);
-            Controls.Add(lblUISIL);
             Controls.Add(lblFechaRegistro);
             Controls.Add(pnlDerecho);
             Controls.Add(pnlIzquierdo);
@@ -478,7 +459,6 @@
         private Button btnBuscarProducto;
         private DataGridView dgvProductos;
         private ErrorProvider errorProviderProductos;
-        private Label lblUISIL;
         private Panel pnlDerecho;
         private Label label1;
         private Panel pnlIzquierdo;
