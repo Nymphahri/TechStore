@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategorias));
             lblNombre = new Label();
             lblDescripcion = new Label();
             txtNombre = new TextBox();
@@ -46,7 +47,7 @@
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(176, 37);
+            lblNombre.Location = new Point(42, 74);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(54, 15);
             lblNombre.TabIndex = 0;
@@ -55,7 +56,7 @@
             // lblDescripcion
             // 
             lblDescripcion.AutoSize = true;
-            lblDescripcion.Location = new Point(176, 94);
+            lblDescripcion.Location = new Point(42, 126);
             lblDescripcion.Name = "lblDescripcion";
             lblDescripcion.Size = new Size(72, 15);
             lblDescripcion.TabIndex = 1;
@@ -63,14 +64,14 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(279, 29);
+            txtNombre.Location = new Point(139, 66);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(231, 23);
             txtNombre.TabIndex = 2;
             // 
             // txtDescripcion
             // 
-            txtDescripcion.Location = new Point(279, 84);
+            txtDescripcion.Location = new Point(139, 126);
             txtDescripcion.Multiline = true;
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.Size = new Size(231, 79);
@@ -78,7 +79,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(176, 193);
+            btnGuardar.Location = new Point(192, 340);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(75, 30);
             btnGuardar.TabIndex = 4;
@@ -88,7 +89,7 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(279, 193);
+            btnModificar.Location = new Point(295, 340);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 30);
             btnModificar.TabIndex = 5;
@@ -98,7 +99,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(386, 193);
+            btnEliminar.Location = new Point(402, 340);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 30);
             btnEliminar.TabIndex = 6;
@@ -108,7 +109,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(489, 193);
+            btnLimpiar.Location = new Point(505, 340);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(75, 30);
             btnLimpiar.TabIndex = 7;
@@ -122,12 +123,12 @@
             dgvCategorias.AllowUserToDeleteRows = false;
             dgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCategorias.Location = new Point(46, 248);
+            dgvCategorias.Location = new Point(192, 395);
             dgvCategorias.MultiSelect = false;
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.ReadOnly = true;
             dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCategorias.Size = new Size(637, 145);
+            dgvCategorias.Size = new Size(507, 145);
             dgvCategorias.TabIndex = 8;
             dgvCategorias.CellClick += dgvCategorias_CellClick;
             // 
@@ -139,7 +140,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(736, 407);
+            ClientSize = new Size(774, 625);
             Controls.Add(dgvCategorias);
             Controls.Add(btnLimpiar);
             Controls.Add(btnEliminar);
@@ -149,9 +150,10 @@
             Controls.Add(txtNombre);
             Controls.Add(lblDescripcion);
             Controls.Add(lblNombre);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmCategorias";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Gestión de Categorías";
+            Text = "GESTIÓN DE CATEGORÍAS";
             Load += FrmCategorias_Load;
             ((System.ComponentModel.ISupportInitialize)dgvCategorias).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderCategorias).EndInit();

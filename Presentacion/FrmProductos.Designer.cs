@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProductos));
             lblNombreProducto = new Label();
             lblPrecio = new Label();
             lblStock = new Label();
@@ -210,7 +211,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(944, 388);
+            ClientSize = new Size(944, 594);
             Controls.Add(dgvProductos);
             Controls.Add(btnBuscarProducto);
             Controls.Add(txtBuscarProducto);
@@ -228,9 +229,10 @@
             Controls.Add(lblStock);
             Controls.Add(lblPrecio);
             Controls.Add(lblNombreProducto);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmProductos";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Gestión de Productos";
+            Text = "GESTIÓN DE PRODUCTOS";
             Load += FrmProductos_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderProductos).EndInit();
