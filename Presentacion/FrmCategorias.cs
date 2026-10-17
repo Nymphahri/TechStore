@@ -227,7 +227,12 @@ namespace TechStore.Presentacion
             }
         }
 
-        private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void dgvCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
             {
@@ -243,9 +248,20 @@ namespace TechStore.Presentacion
             txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void dgvCategorias_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            LimpiarCampos();
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            DataGridViewRow fila = dgvCategorias.Rows[e.RowIndex];
+
+            idCategoriaSeleccionada =
+                Convert.ToInt32(fila.Cells["IdCategoria"].Value);
+
+            txtNombre.Text = fila.Cells["Nombre"].Value?.ToString();
+            txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();
         }
     }
 }

@@ -59,25 +59,5 @@ namespace TechStore.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TechStoreUisil2 {
-            get {
-                object obj = ResourceManager.GetObject("TechStoreUisil2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TechStoreUisil3 {
-            get {
-                object obj = ResourceManager.GetObject("TechStoreUisil3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
