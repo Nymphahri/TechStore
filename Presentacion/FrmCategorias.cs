@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
-using TechStore.Logica;
 using TechStore.Entidades;
+using TechStore.Logica;
 
 namespace TechStore.Presentacion
 {
@@ -52,26 +52,32 @@ namespace TechStore.Presentacion
             CargarCategorias();
         }
 
-        private bool ValidarCategoriaFormulario(Categoria categoria)
+        private bool ObtenerCategoriaDelFormulario(out Categoria categoria)
         {
-            bool categoriaEsValida =
-                categoriaLogica.ValidarCategoria(categoria, out string mensajeError);
+            errorProviderCategorias.Clear();
+
+            categoria = new Categoria
+            {
+                Nombre = txtNombre.Text.Trim(),
+                Descripcion = txtDescripcion.Text.Trim()
+            };
+
+            bool categoriaEsValida = categoriaLogica.ValidarCategoria(categoria, out string mensajeError);
 
             if (categoriaEsValida == false)
             {
-                bool nombreEstaVacio =
-                    string.IsNullOrWhiteSpace(categoria.Nombre);
+                bool nombreEstaVacio = string.IsNullOrWhiteSpace(categoria.Nombre);
 
                 bool nombreEsNumerico =
                     decimal.TryParse(categoria.Nombre, out _);
 
-                bool errorEnNombre =
-                    nombreEstaVacio || nombreEsNumerico;
+                bool errorEnNombre = nombreEstaVacio || nombreEsNumerico;
 
                 if (errorEnNombre)
                 {
                     errorProviderCategorias.SetError(txtNombre, mensajeError);
                 }
+
                 else
                 {
                     errorProviderCategorias.SetError(txtDescripcion, mensajeError);
@@ -85,13 +91,7 @@ namespace TechStore.Presentacion
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Categoria categoria = new Categoria
-            {
-                Nombre = txtNombre.Text.Trim(),
-                Descripcion = txtDescripcion.Text.Trim()
-            };
-
-            bool categoriaValida = ValidarCategoriaFormulario(categoria);
+            bool categoriaValida = ObtenerCategoriaDelFormulario(out Categoria categoria);
 
             if (categoriaValida == false)
             {
@@ -108,8 +108,7 @@ namespace TechStore.Presentacion
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
-                CargarCategorias();
-                LimpiarCampos();
+                ActualizarVistaCategorias();
             }
             catch (SqlException)
             {
@@ -123,30 +122,19 @@ namespace TechStore.Presentacion
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (idCategoriaSeleccionada == 0)
+            if (HayCategoriaSeleccionada("modificar") == false)
             {
-                MessageBox.Show(
-                    "Seleccione una categoría antes de modificar.",
-                    "Categoría no ha sido seleccionada",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
                 return;
             }
 
-            Categoria categoria = new Categoria
-            {
-                IdCategoria = idCategoriaSeleccionada,
-                Nombre = txtNombre.Text.Trim(),
-                Descripcion = txtDescripcion.Text.Trim()
-            };
-
-            bool categoriaValida = ValidarCategoriaFormulario(categoria);
+            bool categoriaValida = ObtenerCategoriaDelFormulario(out Categoria categoria);
 
             if (categoriaValida == false)
             {
                 return;
             }
+
+            categoria.IdCategoria = idCategoriaSeleccionada;
 
             try
             {
@@ -158,8 +146,7 @@ namespace TechStore.Presentacion
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
-                CargarCategorias();
-                LimpiarCampos();
+                ActualizarVistaCategorias();
             }
             catch (SqlException)
             {
@@ -173,14 +160,8 @@ namespace TechStore.Presentacion
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (idCategoriaSeleccionada == 0)
+            if (HayCategoriaSeleccionada("eliminar") == false)
             {
-                MessageBox.Show(
-                    "Seleccione una categoría antes de eliminar.",
-                    "La categoría no ha sido seleccionada",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
                 return;
             }
 
@@ -207,8 +188,7 @@ namespace TechStore.Presentacion
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
-                CargarCategorias();
-                LimpiarCampos();
+                ActualizarVistaCategorias();
             }
             catch (SqlException errorBaseDatos)
             {
@@ -236,6 +216,28 @@ namespace TechStore.Presentacion
             LimpiarCampos();
         }
 
+        private bool HayCategoriaSeleccionada(string accion)
+        {
+            if (idCategoriaSeleccionada != 0)
+            {
+                return true;
+            }
+
+            MessageBox.Show(
+                $"Seleccione una categoría antes de {accion}.",
+                "Categoría no seleccionada",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+
+            return false;
+        }
+
+        private void ActualizarVistaCategorias()
+        {
+            CargarCategorias();
+            LimpiarCampos();
+        }
+
         private void dgvCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -245,8 +247,7 @@ namespace TechStore.Presentacion
 
             DataGridViewRow fila = dgvCategorias.Rows[e.RowIndex];
 
-            idCategoriaSeleccionada =
-                Convert.ToInt32(fila.Cells["IdCategoria"].Value);
+            idCategoriaSeleccionada = Convert.ToInt32(fila.Cells["IdCategoria"].Value);
 
             txtNombre.Text = fila.Cells["Nombre"].Value?.ToString();
             txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();

@@ -108,10 +108,11 @@
             dgvCategorias.DefaultCellStyle = dataGridViewCellStyle3;
             dgvCategorias.GridColor = Color.FromArgb(213, 220, 230);
             dgvCategorias.Location = new Point(19, 78);
+            dgvCategorias.MultiSelect = false;
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.ReadOnly = true;
             dgvCategorias.RowHeadersVisible = false;
-            dgvCategorias.Size = new Size(600, 266);
+            dgvCategorias.Size = new Size(590, 266);
             dgvCategorias.TabIndex = 20;
             dgvCategorias.ThemeStyle.AlternatingRowsStyle.BackColor = Color.Gainsboro;
             dgvCategorias.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(232, 245, 240);
@@ -136,9 +137,9 @@
             gpbBotones.Controls.Add(btnEliminar);
             gpbBotones.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gpbBotones.ForeColor = Color.FromArgb(17, 9, 64);
-            gpbBotones.Location = new Point(25, 311);
+            gpbBotones.Location = new Point(25, 281);
             gpbBotones.Name = "gpbBotones";
-            gpbBotones.Size = new Size(256, 144);
+            gpbBotones.Size = new Size(256, 148);
             gpbBotones.TabIndex = 20;
             gpbBotones.TabStop = false;
             gpbBotones.Text = "Acciones";
@@ -299,7 +300,7 @@
             pnlUISIL.Dock = DockStyle.Top;
             pnlUISIL.Location = new Point(0, 0);
             pnlUISIL.Name = "pnlUISIL";
-            pnlUISIL.Size = new Size(1044, 65);
+            pnlUISIL.Size = new Size(1028, 56);
             pnlUISIL.TabIndex = 26;
             // 
             // lblTituloCategorias
@@ -308,7 +309,7 @@
             lblTituloCategorias.ForeColor = Color.White;
             lblTituloCategorias.Image = (Image)resources.GetObject("lblTituloCategorias.Image");
             lblTituloCategorias.ImageAlign = ContentAlignment.BottomLeft;
-            lblTituloCategorias.Location = new Point(900, 12);
+            lblTituloCategorias.Location = new Point(856, 9);
             lblTituloCategorias.Name = "lblTituloCategorias";
             lblTituloCategorias.Size = new Size(172, 41);
             lblTituloCategorias.TabIndex = 27;
@@ -329,10 +330,10 @@
             pnlIzquierdo.Controls.Add(lblDetalleCategoria);
             pnlIzquierdo.CustomizableEdges = customizableEdges15;
             pnlIzquierdo.FillColor = Color.White;
-            pnlIzquierdo.Location = new Point(25, 92);
+            pnlIzquierdo.Location = new Point(24, 77);
             pnlIzquierdo.Name = "pnlIzquierdo";
             pnlIzquierdo.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            pnlIzquierdo.Size = new Size(323, 478);
+            pnlIzquierdo.Size = new Size(321, 447);
             pnlIzquierdo.TabIndex = 28;
             // 
             // txtDescripcion
@@ -385,9 +386,9 @@
             lblDetalleCategoria.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
             lblDetalleCategoria.ForeColor = Color.FromArgb(17, 9, 64);
             lblDetalleCategoria.ImageAlign = ContentAlignment.MiddleLeft;
-            lblDetalleCategoria.Location = new Point(0, 14);
+            lblDetalleCategoria.Location = new Point(3, 14);
             lblDetalleCategoria.Name = "lblDetalleCategoria";
-            lblDetalleCategoria.Size = new Size(323, 40);
+            lblDetalleCategoria.Size = new Size(317, 40);
             lblDetalleCategoria.TabIndex = 23;
             lblDetalleCategoria.Text = "Detalles de categorías";
             lblDetalleCategoria.TextAlign = ContentAlignment.MiddleLeft;
@@ -402,10 +403,10 @@
             pnlDerecho.Controls.Add(dgvCategorias);
             pnlDerecho.CustomizableEdges = customizableEdges1;
             pnlDerecho.FillColor = Color.White;
-            pnlDerecho.Location = new Point(377, 92);
+            pnlDerecho.Location = new Point(374, 77);
             pnlDerecho.Name = "pnlDerecho";
             pnlDerecho.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            pnlDerecho.Size = new Size(642, 478);
+            pnlDerecho.Size = new Size(629, 447);
             pnlDerecho.TabIndex = 29;
             // 
             // lblDetalleListado
@@ -414,9 +415,9 @@
             lblDetalleListado.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
             lblDetalleListado.ForeColor = Color.FromArgb(17, 9, 64);
             lblDetalleListado.ImageAlign = ContentAlignment.MiddleLeft;
-            lblDetalleListado.Location = new Point(0, 14);
+            lblDetalleListado.Location = new Point(3, 14);
             lblDetalleListado.Name = "lblDetalleListado";
-            lblDetalleListado.Size = new Size(642, 40);
+            lblDetalleListado.Size = new Size(636, 40);
             lblDetalleListado.TabIndex = 23;
             lblDetalleListado.Text = "Listado";
             lblDetalleListado.TextAlign = ContentAlignment.MiddleLeft;
@@ -426,7 +427,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1044, 584);
+            ClientSize = new Size(1028, 545);
             Controls.Add(pnlDerecho);
             Controls.Add(pnlIzquierdo);
             Controls.Add(pnlUISIL);

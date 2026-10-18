@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TechStore.Entidades
+﻿namespace TechStore.Entidades
 {
     public class Producto
     {

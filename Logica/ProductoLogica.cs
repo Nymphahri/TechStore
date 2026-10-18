@@ -47,5 +47,20 @@ namespace TechStore.Logica
         {
             productoDatos.GuardarProducto(producto);
         }
+
+        public void ActualizarProducto(Producto producto)
+        {
+            productoDatos.ActualizarProducto(producto);
+        }
+
+        public void EliminarProducto(int idProducto)
+        {
+            productoDatos.EliminarProducto(idProducto);
+        }
+
+        public DataTable BuscarProductosPorNombre(string nombre)
+        {
+            return productoDatos.BuscarProductosPorNombre(nombre);
+        }
     }
 }
