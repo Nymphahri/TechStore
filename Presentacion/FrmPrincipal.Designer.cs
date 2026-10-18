@@ -80,9 +80,9 @@
             btnCategorias.ForeColor = Color.FromArgb(201, 198, 232);
             btnCategorias.Image = (Image)resources.GetObject("btnCategorias.Image");
             btnCategorias.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCategorias.Location = new Point(32, 242);
+            btnCategorias.Location = new Point(31, 240);
             btnCategorias.Name = "btnCategorias";
-            btnCategorias.Size = new Size(183, 37);
+            btnCategorias.Size = new Size(183, 50);
             btnCategorias.TabIndex = 1;
             btnCategorias.Text = "          Categorías";
             btnCategorias.TextAlign = ContentAlignment.MiddleLeft;
