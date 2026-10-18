@@ -28,6 +28,26 @@ namespace TechStore.Presentacion
             try
             {
                 dgvProductos.DataSource = productoLogica.ObtenerProductos();
+
+                // IdCategoria uso interno, no se muestra al usuario.
+                dgvProductos.Columns["IdCategoria"].Visible = false;
+
+                // Encabezados más claros para el usuario.
+                dgvProductos.Columns["FechaRegistro"].HeaderText = "Fecha de registro";
+
+                dgvProductos.Columns["ValorInventario"].HeaderText = "Valor inventario";
+
+                // Formato visual de los valores numéricos y fecha.
+                dgvProductos.Columns["Precio"].DefaultCellStyle.Format = "N2";
+
+                dgvProductos.Columns["ValorInventario"].DefaultCellStyle.Format = "N2";
+
+                dgvProductos.Columns["FechaRegistro"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
+                // Ajusta el ancho de las columnas al espacio disponible.
+                dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                // Evita que una fila quede seleccionada automáticamente.
                 dgvProductos.ClearSelection();
             }
 
@@ -315,7 +335,7 @@ namespace TechStore.Presentacion
             }
         }
 
-        private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
             {

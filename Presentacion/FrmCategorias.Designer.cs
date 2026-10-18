@@ -126,7 +126,7 @@
             dgvCategorias.ThemeStyle.RowsStyle.Height = 25;
             dgvCategorias.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(232, 245, 240);
             dgvCategorias.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(17, 9, 64);
-            dgvCategorias.CellContentClick += dgvCategorias_CellContentClick;
+            dgvCategorias.CellContentClick += dgvCategorias_CellClick;
             // 
             // gpbBotones
             // 

@@ -29,14 +29,20 @@ namespace TechStore.Presentacion
         {
             try
             {
-                dgvCategorias.DataSource = categoriaLogica.ObtenerCategorias();
+                dgvCategorias.DataSource =
+                    categoriaLogica.ObtenerCategorias();
 
+                // El ID se usa internamente para modificar o eliminar.
                 dgvCategorias.Columns["IdCategoria"].Visible = false;
+
+                dgvCategorias.Columns["Nombre"].HeaderText = "Nombre de categoría";
+
                 dgvCategorias.Columns["Descripcion"].HeaderText = "Descripción";
+
+                dgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                 dgvCategorias.ClearSelection();
             }
-
             catch (SqlException)
             {
                 MessageBox.Show(
@@ -238,7 +244,7 @@ namespace TechStore.Presentacion
             LimpiarCampos();
         }
 
-        private void dgvCategorias_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
             {

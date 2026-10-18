@@ -471,7 +471,7 @@
             dgvProductos.ThemeStyle.RowsStyle.Height = 25;
             dgvProductos.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(232, 245, 240);
             dgvProductos.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(17, 9, 64);
-            dgvProductos.CellContentClick += dgvProductos_CellContentClick;
+            dgvProductos.CellContentClick += dgvProductos_CellClick;
             // 
             // txtBuscarProducto
             // 
