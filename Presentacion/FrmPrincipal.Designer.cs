@@ -48,20 +48,20 @@
             // 
             // btnProbarConexion
             // 
-            btnProbarConexion.BackColor = Color.Transparent;
+            btnProbarConexion.BackColor = Color.FromArgb(17, 9, 64);
             btnProbarConexion.Cursor = Cursors.Help;
             btnProbarConexion.FlatAppearance.BorderColor = Color.White;
             btnProbarConexion.FlatAppearance.BorderSize = 0;
             btnProbarConexion.FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 230, 247);
             btnProbarConexion.FlatAppearance.MouseOverBackColor = Color.FromArgb(232, 244, 252);
             btnProbarConexion.FlatStyle = FlatStyle.Flat;
-            btnProbarConexion.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold);
-            btnProbarConexion.ForeColor = Color.FromArgb(17, 9, 64);
+            btnProbarConexion.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnProbarConexion.ForeColor = Color.White;
             btnProbarConexion.Image = (Image)resources.GetObject("btnProbarConexion.Image");
             btnProbarConexion.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProbarConexion.Location = new Point(15, 552);
+            btnProbarConexion.Location = new Point(-2, 528);
             btnProbarConexion.Name = "btnProbarConexion";
-            btnProbarConexion.Size = new Size(245, 49);
+            btnProbarConexion.Size = new Size(971, 49);
             btnProbarConexion.TabIndex = 0;
             btnProbarConexion.Text = "Probar conexión";
             btnProbarConexion.UseVisualStyleBackColor = false;
@@ -84,7 +84,7 @@
             btnCategorias.Name = "btnCategorias";
             btnCategorias.Size = new Size(183, 50);
             btnCategorias.TabIndex = 1;
-            btnCategorias.Text = "          Categorías";
+            btnCategorias.Text = "         Categorías";
             btnCategorias.TextAlign = ContentAlignment.MiddleLeft;
             btnCategorias.UseVisualStyleBackColor = false;
             btnCategorias.Click += btnCategorias_Click;
@@ -102,11 +102,11 @@
             btnProductos.ForeColor = Color.FromArgb(201, 198, 232);
             btnProductos.Image = (Image)resources.GetObject("btnProductos.Image");
             btnProductos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProductos.Location = new Point(29, 168);
+            btnProductos.Location = new Point(33, 168);
             btnProductos.Name = "btnProductos";
             btnProductos.Size = new Size(183, 50);
             btnProductos.TabIndex = 2;
-            btnProductos.Text = "           Productos";
+            btnProductos.Text = "         Productos";
             btnProductos.TextAlign = ContentAlignment.MiddleLeft;
             btnProductos.UseVisualStyleBackColor = false;
             btnProductos.Click += btnProductos_Click;
@@ -121,7 +121,7 @@
             pnlMenu.Controls.Add(btnCategorias);
             pnlMenu.Location = new Point(-2, -1);
             pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(236, 547);
+            pnlMenu.Size = new Size(236, 523);
             pnlMenu.TabIndex = 8;
             // 
             // btnCerrarSesion
@@ -137,12 +137,11 @@
             btnCerrarSesion.ForeColor = Color.FromArgb(201, 198, 232);
             btnCerrarSesion.Image = (Image)resources.GetObject("btnCerrarSesion.Image");
             btnCerrarSesion.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCerrarSesion.Location = new Point(28, 459);
+            btnCerrarSesion.Location = new Point(37, 459);
             btnCerrarSesion.Name = "btnCerrarSesion";
             btnCerrarSesion.Size = new Size(156, 52);
             btnCerrarSesion.TabIndex = 10;
-            btnCerrarSesion.Text = "            Cerrar sesión";
-            btnCerrarSesion.TextAlign = ContentAlignment.MiddleLeft;
+            btnCerrarSesion.Text = "   Cerrar sesión";
             btnCerrarSesion.UseVisualStyleBackColor = false;
             // 
             // btnInicioPrincipal
@@ -157,11 +156,11 @@
             btnInicioPrincipal.ForeColor = Color.FromArgb(201, 198, 232);
             btnInicioPrincipal.Image = (Image)resources.GetObject("btnInicioPrincipal.Image");
             btnInicioPrincipal.ImageAlign = ContentAlignment.TopLeft;
-            btnInicioPrincipal.Location = new Point(31, 105);
+            btnInicioPrincipal.Location = new Point(32, 105);
             btnInicioPrincipal.Name = "btnInicioPrincipal";
             btnInicioPrincipal.Size = new Size(183, 50);
             btnInicioPrincipal.TabIndex = 10;
-            btnInicioPrincipal.Text = "          Inicio";
+            btnInicioPrincipal.Text = "         Inicio";
             btnInicioPrincipal.TextAlign = ContentAlignment.MiddleLeft;
             btnInicioPrincipal.UseVisualStyleBackColor = false;
             // 
@@ -184,7 +183,7 @@
             lblUISIL.ForeColor = Color.FromArgb(17, 9, 64);
             lblUISIL.Image = (Image)resources.GetObject("lblUISIL.Image");
             lblUISIL.ImageAlign = ContentAlignment.TopLeft;
-            lblUISIL.Location = new Point(833, 29);
+            lblUISIL.Location = new Point(847, 29);
             lblUISIL.Name = "lblUISIL";
             lblUISIL.Size = new Size(106, 36);
             lblUISIL.TabIndex = 9;
@@ -223,10 +222,10 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             guna2DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             guna2DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            guna2DataGridView1.Location = new Point(264, 241);
+            guna2DataGridView1.Location = new Point(264, 167);
             guna2DataGridView1.Name = "guna2DataGridView1";
             guna2DataGridView1.RowHeadersVisible = false;
-            guna2DataGridView1.Size = new Size(675, 176);
+            guna2DataGridView1.Size = new Size(675, 355);
             guna2DataGridView1.TabIndex = 11;
             guna2DataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             guna2DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -240,7 +239,7 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
-            ClientSize = new Size(965, 603);
+            ClientSize = new Size(965, 574);
             Controls.Add(guna2DataGridView1);
             Controls.Add(lblResumenInventario);
             Controls.Add(lblUISIL);
