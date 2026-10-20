@@ -8,12 +8,14 @@ namespace TechStore.Logica
     {
         private readonly ProductoDatos productoDatos = new ProductoDatos();
 
+        public const int LimiteStockBajo = 5;
+
         public DataTable ObtenerProductos()
         {
             return productoDatos.ObtenerProductos();
         }
 
-        public bool ValidarProducto(Producto producto, out string mensajeError)
+        public bool ValidarProducto(Producto producto,out string mensajeError)
         {
             if (string.IsNullOrWhiteSpace(producto.Nombre))
             {
@@ -61,6 +63,21 @@ namespace TechStore.Logica
         public DataTable BuscarProductosPorNombre(string nombre)
         {
             return productoDatos.BuscarProductosPorNombre(nombre);
+        }
+
+        public (int TotalProductos, int ProductosStockBajo)
+            ObtenerResumenInventario()
+        {
+            return productoDatos.ObtenerResumenInventario(
+                LimiteStockBajo
+            );
+        }
+
+        public DataTable ObtenerProductosStockBajo()
+        {
+            return productoDatos.ObtenerProductosStockBajo(
+                LimiteStockBajo
+            );
         }
     }
 }

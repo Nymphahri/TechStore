@@ -30,6 +30,8 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -48,6 +50,7 @@
             picLogo2 = new PictureBox();
             btnIngresarSesion = new Guna.UI2.WinForms.Guna2Button();
             btnSalirSesion = new Guna.UI2.WinForms.Guna2Button();
+            btnProbarConexion = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)errorProviderLogin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -145,7 +148,7 @@
             lblCreadoPara.BackColor = Color.Transparent;
             lblCreadoPara.Font = new Font("Segoe UI Semibold", 7F, FontStyle.Bold);
             lblCreadoPara.ForeColor = Color.FromArgb(31, 42, 68);
-            lblCreadoPara.Location = new Point(539, 407);
+            lblCreadoPara.Location = new Point(548, 406);
             lblCreadoPara.Name = "lblCreadoPara";
             lblCreadoPara.Size = new Size(57, 12);
             lblCreadoPara.TabIndex = 11;
@@ -155,7 +158,7 @@
             // 
             picCopyRights.BackColor = Color.Transparent;
             picCopyRights.Image = (Image)resources.GetObject("picCopyRights.Image");
-            picCopyRights.Location = new Point(516, 401);
+            picCopyRights.Location = new Point(525, 400);
             picCopyRights.Name = "picCopyRights";
             picCopyRights.Size = new Size(23, 26);
             picCopyRights.TabIndex = 12;
@@ -177,7 +180,7 @@
             btnIngresarSesion.BorderRadius = 8;
             btnIngresarSesion.BorderThickness = 1;
             btnIngresarSesion.Cursor = Cursors.Hand;
-            btnIngresarSesion.CustomizableEdges = customizableEdges3;
+            btnIngresarSesion.CustomizableEdges = customizableEdges5;
             btnIngresarSesion.DisabledState.BorderColor = Color.DarkGray;
             btnIngresarSesion.DisabledState.CustomBorderColor = Color.DarkGray;
             btnIngresarSesion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -190,7 +193,8 @@
             btnIngresarSesion.Location = new Point(413, 245);
             btnIngresarSesion.Name = "btnIngresarSesion";
             btnIngresarSesion.PressedColor = Color.FromArgb(42, 32, 112);
-            btnIngresarSesion.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnIngresarSesion.ShadowDecoration.BorderRadius = 8;
+            btnIngresarSesion.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnIngresarSesion.Size = new Size(300, 45);
             btnIngresarSesion.TabIndex = 14;
             btnIngresarSesion.Text = "Ingresar";
@@ -202,7 +206,7 @@
             btnSalirSesion.BorderRadius = 8;
             btnSalirSesion.BorderThickness = 1;
             btnSalirSesion.Cursor = Cursors.Hand;
-            btnSalirSesion.CustomizableEdges = customizableEdges1;
+            btnSalirSesion.CustomizableEdges = customizableEdges3;
             btnSalirSesion.DisabledState.BorderColor = Color.DarkGray;
             btnSalirSesion.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSalirSesion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -212,14 +216,39 @@
             btnSalirSesion.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             btnSalirSesion.ForeColor = Color.FromArgb(31, 42, 68);
             btnSalirSesion.HoverState.FillColor = Color.FromArgb(210, 230, 247);
-            btnSalirSesion.Location = new Point(413, 315);
+            btnSalirSesion.Location = new Point(413, 306);
             btnSalirSesion.Name = "btnSalirSesion";
             btnSalirSesion.PressedColor = Color.FromArgb(42, 32, 112);
-            btnSalirSesion.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnSalirSesion.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnSalirSesion.Size = new Size(300, 45);
             btnSalirSesion.TabIndex = 15;
             btnSalirSesion.Text = "Salir";
             btnSalirSesion.Click += btnSalirSesion_Click;
+            // 
+            // btnProbarConexion
+            // 
+            btnProbarConexion.BorderColor = Color.Transparent;
+            btnProbarConexion.BorderRadius = 8;
+            btnProbarConexion.BorderThickness = 1;
+            btnProbarConexion.CustomizableEdges = customizableEdges1;
+            btnProbarConexion.DisabledState.BorderColor = Color.DarkGray;
+            btnProbarConexion.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnProbarConexion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnProbarConexion.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnProbarConexion.FillColor = Color.Transparent;
+            btnProbarConexion.FocusedColor = Color.FromArgb(42, 32, 112);
+            btnProbarConexion.Font = new Font("Segoe UI", 9F);
+            btnProbarConexion.ForeColor = Color.FromArgb(31, 42, 68);
+            btnProbarConexion.HoverState.FillColor = Color.FromArgb(210, 230, 247);
+            btnProbarConexion.HoverState.ForeColor = Color.FromArgb(42, 32, 112);
+            btnProbarConexion.Location = new Point(503, 357);
+            btnProbarConexion.Name = "btnProbarConexion";
+            btnProbarConexion.PressedColor = Color.FromArgb(42, 32, 112);
+            btnProbarConexion.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnProbarConexion.Size = new Size(119, 17);
+            btnProbarConexion.TabIndex = 38;
+            btnProbarConexion.Text = "Probar conexión";
+            btnProbarConexion.Click += btnProbarConexion_Click;
             // 
             // FrmLogin
             // 
@@ -227,6 +256,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
             ClientSize = new Size(1105, 436);
+            Controls.Add(btnProbarConexion);
             Controls.Add(btnSalirSesion);
             Controls.Add(btnIngresarSesion);
             Controls.Add(picLogo2);
@@ -273,5 +303,6 @@
         private PictureBox picLogo2;
         private Guna.UI2.WinForms.Guna2Button btnIngresarSesion;
         private Guna.UI2.WinForms.Guna2Button btnSalirSesion;
+        private Guna.UI2.WinForms.Guna2Button btnProbarConexion;
     }
 }
