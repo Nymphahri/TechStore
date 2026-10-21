@@ -20,52 +20,13 @@ namespace TechStore
 
         private void FrmPrincipal_Load(object? sender, EventArgs e)
         {
-            ConfigurarTabla();
+            
             CargarResumenInventario();
             CargarProductosStockBajo();
         }
 
         /* --------------------------------------------------
-         * CONFIGURACIÓN VISUAL DE LA TABLA
-         * -------------------------------------------------- */
-        private void ConfigurarTabla()
-        {
-            dgvStockBajo.AutoGenerateColumns = true;
-            dgvStockBajo.ReadOnly = true;
-            dgvStockBajo.AllowUserToAddRows = false;
-            dgvStockBajo.AllowUserToDeleteRows = false;
-            dgvStockBajo.MultiSelect = false;
-            dgvStockBajo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dgvStockBajo.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            dgvStockBajo.RowHeadersVisible = false;
-            dgvStockBajo.BackgroundColor = Color.White;
-            dgvStockBajo.BorderStyle = BorderStyle.None;
-
-            dgvStockBajo.EnableHeadersVisualStyles = false;
-
-            dgvStockBajo.ColumnHeadersDefaultCellStyle.BackColor =
-                Color.FromArgb(238, 243, 250);
-
-            dgvStockBajo.ColumnHeadersDefaultCellStyle.ForeColor =
-                Color.FromArgb(20, 25, 60);
-
-            dgvStockBajo.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Segoe UI", 9F, FontStyle.Bold);
-
-            dgvStockBajo.DefaultCellStyle.Font =
-                new Font("Segoe UI", 9F);
-
-            dgvStockBajo.DefaultCellStyle.SelectionBackColor =
-                Color.FromArgb(220, 234, 252);
-
-            dgvStockBajo.DefaultCellStyle.SelectionForeColor =
-                Color.FromArgb(20, 25, 60);
-        }
-
-        /* --------------------------------------------------
-         * RESUMEN DEL INVENTARIO
+         * Resumen del inventario
          * -------------------------------------------------- */
         private void CargarResumenInventario()
         {
@@ -92,7 +53,7 @@ namespace TechStore
         }
 
         /* --------------------------------------------------
-         * PRODUCTOS CON STOCK BAJO
+         * Productos con stock bajo
          * -------------------------------------------------- */
         private void CargarProductosStockBajo()
         {
@@ -115,7 +76,7 @@ namespace TechStore
         }
 
         /* --------------------------------------------------
-         * ABRIR LOS FORMULARIOS
+         * Abrir formularios de categorías y productos
          * -------------------------------------------------- */
         private void btnCategorias_Click(object sender, EventArgs e)
         {
@@ -138,7 +99,7 @@ namespace TechStore
         }
 
         /* --------------------------------------------------
-         * CERRAR SESIÓN
+         * Cerrar la sesión
          * -------------------------------------------------- */
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {

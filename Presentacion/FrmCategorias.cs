@@ -15,6 +15,10 @@ namespace TechStore.Presentacion
             InitializeComponent();
         }
 
+        /* --------------------------------------------------
+         * Limpia los campos del formulario y reinicia la 
+         * selección de categoría.
+         * -------------------------------------------------- */
         private void LimpiarCampos()
         {
             txtNombre.Clear();
@@ -32,7 +36,7 @@ namespace TechStore.Presentacion
                 dgvCategorias.DataSource =
                     categoriaLogica.ObtenerCategorias();
 
-                // El ID se usa internamente para modificar o eliminar.
+                // El ID se usa internamente para modificar o eliminar no se ve a simple vista.
                 dgvCategorias.Columns["IdCategoria"].Visible = false;
 
                 dgvCategorias.Columns["Nombre"].HeaderText = "Nombre de categoría";
@@ -53,6 +57,9 @@ namespace TechStore.Presentacion
             }
         }
 
+        /* --------------------------------------------------
+         * Carga las categorías al cargar el formulario.
+         * -------------------------------------------------- */
         private void FrmCategorias_Load(object sender, EventArgs e)
         {
             CargarCategorias();
@@ -95,6 +102,10 @@ namespace TechStore.Presentacion
             return true;
         }
 
+        /* --------------------------------------------------
+         * Guarda una nueva categoría en la base de datos y 
+         * actualiza.
+         * -------------------------------------------------- */
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             bool categoriaValida = ObtenerCategoriaDelFormulario(out Categoria categoria);
@@ -126,6 +137,10 @@ namespace TechStore.Presentacion
             }
         }
 
+        /* --------------------------------------------------
+         * Modifica la categoría seleccionada en la base de 
+         * datos y actualiza.
+         * -------------------------------------------------- */
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (HayCategoriaSeleccionada("modificar") == false)
@@ -164,6 +179,10 @@ namespace TechStore.Presentacion
             }
         }
 
+        /* --------------------------------------------------
+         * Elimina la categoría seleccionada de la base de 
+         * datos y actualiza.
+         * -------------------------------------------------- */
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (HayCategoriaSeleccionada("eliminar") == false)
@@ -217,6 +236,10 @@ namespace TechStore.Presentacion
             }
         }
 
+        /* --------------------------------------------------
+         * Limpia los campos del formulario y reinicia la 
+         * selección de categoría.
+         * -------------------------------------------------- */
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
@@ -244,6 +267,11 @@ namespace TechStore.Presentacion
             LimpiarCampos();
         }
 
+        /* --------------------------------------------------
+         * Cuando se hace clic en una fila del DataGridView 
+         * se selecciona la categoría correspondiente y 
+         * se muestran sus detalles en los campos de texto.
+         * -------------------------------------------------- */
         private void dgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)

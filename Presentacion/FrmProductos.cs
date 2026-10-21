@@ -23,32 +23,15 @@ namespace TechStore.Presentacion
             CargarCategorias();
         }
 
+        /* --------------------------------------------------
+         * Carga los productos desde la base de datos y los 
+         * muestra en el DataGridView
+         * -------------------------------------------------- */
         private void CargarProductos()
         {
             try
             {
-                dgvProductos.DataSource = productoLogica.ObtenerProductos();
-
-                // IdCategoria uso interno, no se muestra al usuario.
-                dgvProductos.Columns["IdCategoria"].Visible = false;
-
-                // Encabezados más claros para el usuario.
-                dgvProductos.Columns["FechaRegistro"].HeaderText = "Fecha de registro";
-
-                dgvProductos.Columns["ValorInventario"].HeaderText = "Valor inventario";
-
-                // Formato visual de los valores numéricos y fecha.
-                dgvProductos.Columns["Precio"].DefaultCellStyle.Format = "N2";
-
-                dgvProductos.Columns["ValorInventario"].DefaultCellStyle.Format = "N2";
-
-                dgvProductos.Columns["FechaRegistro"].DefaultCellStyle.Format = "dd/MM/yyyy";
-
-                // Ajusta el ancho de las columnas al espacio disponible.
-                dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                // Evita que una fila quede seleccionada automáticamente.
-                dgvProductos.ClearSelection();
+                MostrarProductosEnGrid(productoLogica.ObtenerProductos());
             }
 
             catch (SqlException)
@@ -61,6 +44,43 @@ namespace TechStore.Presentacion
             }
         }
 
+        /* --------------------------------------------------
+         * Configura el DataGridView para mostrar los 
+         * productos de manera clara y legible
+         * -------------------------------------------------- */
+        private void ConfigurarGridProductos()
+        {
+            // IdCategoria es de uso interno, no se muestra al usuario.
+            dgvProductos.Columns["IdCategoria"].Visible = false;
+
+            // Encabezados más claros para el usuario.
+            dgvProductos.Columns["FechaRegistro"].HeaderText = "Fecha de registro";
+            dgvProductos.Columns["ValorInventario"].HeaderText = "Valor inventario";
+
+            // Formato visual de los valores numéricos y la fecha.
+            dgvProductos.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            dgvProductos.Columns["ValorInventario"].DefaultCellStyle.Format = "N2";
+            dgvProductos.Columns["FechaRegistro"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
+            // Ajusta el ancho de las columnas al espacio disponible.
+            dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        /* --------------------------------------------------
+         * Mostrar productos en el DataGridView
+         * -------------------------------------------------- */
+        private void MostrarProductosEnGrid(DataTable productos)
+        {
+            dgvProductos.DataSource = productos;
+            ConfigurarGridProductos();
+
+            // Evita que una fila quede seleccionada automáticamente.
+            dgvProductos.ClearSelection();
+        }
+
+        /* --------------------------------------------------
+         * Cargar categorías en el ComboBox de categorías
+         * -------------------------------------------------- */
         private void CargarCategorias()
         {
             try
@@ -81,6 +101,9 @@ namespace TechStore.Presentacion
             }
         }
 
+        /* --------------------------------------------------
+         * Obtener producto del formulario y validarlo
+         * -------------------------------------------------- */
         private bool ObtenerProductoDelFormulario(out Producto producto)
         {
             producto = new Producto();
@@ -152,24 +175,9 @@ namespace TechStore.Presentacion
             return true;
         }
 
-
-        private void LimpiarCamposProducto()
-        {
-            txtNombreProducto.Clear();
-            txtPrecioProducto.Clear();
-            txtStock.Clear();
-            cboCategorias.SelectedIndex = -1;
-            errorProviderProductos.Clear();
-            idProductoSeleccionado = 0;
-            dgvProductos.ClearSelection();
-            txtNombreProducto.Focus();
-        }
-
-        private void btnLimpiarProducto_Click(object sender, EventArgs e)
-        {
-            LimpiarCamposProducto();
-        }
-
+        /* --------------------------------------------------
+         * Guardar producto
+         * -------------------------------------------------- */
         private void btnGuardarProducto_Click(object sender, EventArgs e)
         {
             bool productoValido = ObtenerProductoDelFormulario(out Producto producto);
@@ -205,6 +213,9 @@ namespace TechStore.Presentacion
             }
         }
 
+        /* --------------------------------------------------
+         * Modificar producto
+         * -------------------------------------------------- */
         private void btnModificarProducto_Click(object sender, EventArgs e)
         {
             if (idProductoSeleccionado == 0)
@@ -251,6 +262,9 @@ namespace TechStore.Presentacion
             }
         }
 
+        /* --------------------------------------------------
+         * Eliminar producto
+         * -------------------------------------------------- */
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             if (idProductoSeleccionado == 0)
@@ -298,7 +312,11 @@ namespace TechStore.Presentacion
                     MessageBoxIcon.Error);
             }
         }
-        private void btnBuscarProducto_Click_1(object sender, EventArgs e)
+
+        /* --------------------------------------------------
+         * Buscar producto
+         * -------------------------------------------------- */
+        private void btnBuscarProducto_Click(object sender, EventArgs e)
         {
             string nombreBuscado = txtBuscarProducto.Text.Trim();
 
@@ -312,8 +330,7 @@ namespace TechStore.Presentacion
             {
                 DataTable productosEncontrados = productoLogica.BuscarProductosPorNombre(nombreBuscado);
 
-                dgvProductos.DataSource = productosEncontrados;
-                dgvProductos.ClearSelection();
+                MostrarProductosEnGrid(productosEncontrados);
 
                 if (productosEncontrados.Rows.Count == 0)
                 {
@@ -335,6 +352,9 @@ namespace TechStore.Presentacion
             }
         }
 
+        /* --------------------------------------------------
+         * Seleccionar producto del grid
+         * -------------------------------------------------- */
         private void dgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -353,6 +373,27 @@ namespace TechStore.Presentacion
             txtStock.Text = fila.Cells["Stock"].Value?.ToString();
 
             cboCategorias.SelectedValue = Convert.ToInt32(fila.Cells["IdCategoria"].Value);
+        }
+
+        private void LimpiarCamposProducto()
+        {
+            txtNombreProducto.Clear();
+            txtPrecioProducto.Clear();
+            txtStock.Clear();
+            cboCategorias.SelectedIndex = -1;
+            errorProviderProductos.Clear();
+            idProductoSeleccionado = 0;
+            dgvProductos.ClearSelection();
+            txtNombreProducto.Focus();
+            txtBuscarProducto.Clear();
+        }
+
+        /* --------------------------------------------------
+         * Limpiar campos del formulario de productos
+         * -------------------------------------------------- */
+        private void btnLimpiarProducto_Click(object sender, EventArgs e)
+        {
+            LimpiarCamposProducto();
         }
     }
 }

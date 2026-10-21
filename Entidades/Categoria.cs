@@ -1,4 +1,8 @@
-﻿namespace TechStore.Entidades
+﻿/* --------------------------------------------------
+ * Clase Categoria
+ * -------------------------------------------------- */
+
+namespace TechStore.Entidades
 {
     public class Categoria
     {

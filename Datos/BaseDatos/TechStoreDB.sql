@@ -1,7 +1,6 @@
 /* =====================================================================
    Sistema de Gestión de Productos de TechStore
-   Script: creación de base de datos, tablas y datos de prueba
-   Microsoft SQL Server
+   Creación de base de datos, tablas y datos de prueba
    ===================================================================== */
 
 IF DB_ID('TechStoreDB') IS NULL
@@ -22,9 +21,9 @@ IF OBJECT_ID('dbo.Categorias', 'U') IS NOT NULL
     DROP TABLE dbo.Categorias;
 GO
 
-/*---------------------------------------------------------------------
-  Tabla de Categorias
-  ---------------------------------------------------------------------*/
+/* ---------------------------------------------------------------------
+   Tabla de Categorias
+   --------------------------------------------------------------------- */
 CREATE TABLE dbo.Categorias
 (
     IdCategoria  INT IDENTITY(1,1) NOT NULL,
@@ -36,10 +35,10 @@ CREATE TABLE dbo.Categorias
 );
 GO
 
-/*---------------------------------------------------------------------
-  Tabla de Productos
-  (el valor del inventario no se guarda: se calcula en la aplicación)
-  ---------------------------------------------------------------------*/
+/* ---------------------------------------------------------------------
+   Tabla de Productos
+   (el valor del inventario no se guarda: se calcula en la aplicación)
+  --------------------------------------------------------------------- */
 CREATE TABLE dbo.Productos
 (
     IdProducto     INT IDENTITY(1,1) NOT NULL,
@@ -60,9 +59,9 @@ CREATE TABLE dbo.Productos
 );
 GO
 
-/*---------------------------------------------------------------------
-  Datos de prueba
-  ---------------------------------------------------------------------*/
+/* ---------------------------------------------------------------------
+   Datos de prueba
+   --------------------------------------------------------------------- */
 INSERT INTO dbo.Categorias (Nombre, Descripcion)
 VALUES
 (N'Computación', N'Productos y accesorios informáticos'),
@@ -82,9 +81,9 @@ VALUES
 (N'Impresora multifuncional', 80000.00,  6, GETDATE(), 4);
 GO
 
-/*---------------------------------------------------------------------
-  Verificación: el valor del inventario se calcula, no se almacena
-  ---------------------------------------------------------------------*/
+/* ---------------------------------------------------------------------
+   Verificación: el valor del inventario se calcula, no se almacena
+   --------------------------------------------------------------------- */
 SELECT  p.IdProducto,
         p.Nombre,
         p.Precio,
