@@ -20,6 +20,9 @@ namespace TechStore.Presentacion
             this.AcceptButton = btnIngresarSesion;
         }
 
+        /* --------------------------------------------------
+         * Ingresar sesión
+         * -------------------------------------------------- */
         private void btnIngresarSesion_Click(object sender, EventArgs e)
         {
             errorProviderLogin.Clear();
@@ -78,7 +81,7 @@ namespace TechStore.Presentacion
         }
 
         /* --------------------------------------------------
-         * PROBAR CONEXIÓN
+         * Probar la conexión con SQL Server y mostrar un mensaje de éxito o error
          * -------------------------------------------------- */
         private void btnProbarConexion_Click(object sender, EventArgs e)
         {

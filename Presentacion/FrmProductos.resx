@@ -121,7 +121,7 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnLimpiar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnLimpiarProducto.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAAcpJREFUSEvt
         ls0rbWEYxRdiICNhbmJiphRlYOwjJX+CMkG6urcMFGGgfJWBMjBVMpeJlCSKTO7tlusaMPAxMWAg+WjV
@@ -173,7 +173,7 @@
   <data name="lblTituloCategorias.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAAQhJREFUSEvtkj1qAlEYRQWLdEraLEGwcgeZPoWQHWgKW8U0FtOZOp2QLaS1cQku
+        DAAACwwBP0AiyAAAAQhJREFUSEvtkj1qAlEYRQWLdEraLEGwcgeZPoWQHWgKW8U0FtOZOp2QLaS1cQku
         wMZSyA60UDzyyTz4vA4hzg8EnAOvuvfd84pXq1UkAG1gBLxnPHa3rbu/AkTAlvzYRqT7qQANYKMLOfgB
         HtVzBfDpLnU1/yt21+3MNL8A6ACHpLzQ/FaAebJ1BJ41PwPUgaV75VfKh7n12EZgBTyo18QvrlQWr+o1
         8URbJTBRr4njkGqWFyeONfvfYqAFjFM+0RB40n6gCLH/9cq39gOuk1k8BfZuKLADBtoPuF42cVYqsYaV

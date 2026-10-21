@@ -70,7 +70,7 @@
             lblPrecioProducto = new Label();
             txtNombreProducto = new Guna.UI2.WinForms.Guna2TextBox();
             groupBox1 = new GroupBox();
-            btnLimpiar = new Guna.UI2.WinForms.Guna2Button();
+            btnLimpiarProducto = new Guna.UI2.WinForms.Guna2Button();
             btnGuardarProducto = new Guna.UI2.WinForms.Guna2Button();
             btnModificarProducto = new Guna.UI2.WinForms.Guna2Button();
             btnEliminar = new Guna.UI2.WinForms.Guna2Button();
@@ -278,7 +278,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
-            groupBox1.Controls.Add(btnLimpiar);
+            groupBox1.Controls.Add(btnLimpiarProducto);
             groupBox1.Controls.Add(btnGuardarProducto);
             groupBox1.Controls.Add(btnModificarProducto);
             groupBox1.Controls.Add(btnEliminar);
@@ -291,32 +291,33 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Acciones";
             // 
-            // btnLimpiar
+            // btnLimpiarProducto
             // 
-            btnLimpiar.BackColor = Color.White;
-            btnLimpiar.BorderColor = Color.FromArgb(197, 206, 219);
-            btnLimpiar.BorderRadius = 8;
-            btnLimpiar.BorderThickness = 1;
-            btnLimpiar.Cursor = Cursors.Hand;
-            btnLimpiar.CustomizableEdges = customizableEdges9;
-            btnLimpiar.DisabledState.BorderColor = Color.DarkGray;
-            btnLimpiar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnLimpiar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnLimpiar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnLimpiar.FillColor = Color.White;
-            btnLimpiar.FocusedColor = Color.FromArgb(210, 230, 247);
-            btnLimpiar.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            btnLimpiar.ForeColor = Color.FromArgb(17, 9, 64);
-            btnLimpiar.HoverState.FillColor = Color.FromArgb(42, 32, 112);
-            btnLimpiar.Image = (Image)resources.GetObject("btnLimpiar.Image");
-            btnLimpiar.ImageAlign = HorizontalAlignment.Left;
-            btnLimpiar.Location = new Point(130, 87);
-            btnLimpiar.Name = "btnLimpiar";
-            btnLimpiar.PressedColor = Color.FromArgb(210, 230, 247);
-            btnLimpiar.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnLimpiar.Size = new Size(118, 45);
-            btnLimpiar.TabIndex = 18;
-            btnLimpiar.Text = "    Limpiar";
+            btnLimpiarProducto.BackColor = Color.White;
+            btnLimpiarProducto.BorderColor = Color.FromArgb(197, 206, 219);
+            btnLimpiarProducto.BorderRadius = 8;
+            btnLimpiarProducto.BorderThickness = 1;
+            btnLimpiarProducto.Cursor = Cursors.Hand;
+            btnLimpiarProducto.CustomizableEdges = customizableEdges9;
+            btnLimpiarProducto.DisabledState.BorderColor = Color.DarkGray;
+            btnLimpiarProducto.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnLimpiarProducto.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnLimpiarProducto.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnLimpiarProducto.FillColor = Color.White;
+            btnLimpiarProducto.FocusedColor = Color.FromArgb(210, 230, 247);
+            btnLimpiarProducto.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnLimpiarProducto.ForeColor = Color.FromArgb(17, 9, 64);
+            btnLimpiarProducto.HoverState.FillColor = Color.FromArgb(42, 32, 112);
+            btnLimpiarProducto.Image = (Image)resources.GetObject("btnLimpiarProducto.Image");
+            btnLimpiarProducto.ImageAlign = HorizontalAlignment.Left;
+            btnLimpiarProducto.Location = new Point(130, 87);
+            btnLimpiarProducto.Name = "btnLimpiarProducto";
+            btnLimpiarProducto.PressedColor = Color.FromArgb(210, 230, 247);
+            btnLimpiarProducto.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnLimpiarProducto.Size = new Size(118, 45);
+            btnLimpiarProducto.TabIndex = 18;
+            btnLimpiarProducto.Text = "    Limpiar";
+            btnLimpiarProducto.Click += btnLimpiarProducto_Click;
             // 
             // btnGuardarProducto
             // 
@@ -542,7 +543,7 @@
             btnBuscarProducto.Size = new Size(87, 46);
             btnBuscarProducto.TabIndex = 26;
             btnBuscarProducto.Text = "Buscar";
-            btnBuscarProducto.Click += btnBuscarProducto_Click_1;
+            btnBuscarProducto.Click += btnBuscarProducto_Click;
             // 
             // lblBuscarProducto
             // 
@@ -623,7 +624,7 @@
         private Guna.UI2.WinForms.Guna2Panel pnlIzquierdaProductos;
         private Guna.UI2.WinForms.Guna2TextBox txtNombreProducto;
         private GroupBox groupBox1;
-        private Guna.UI2.WinForms.Guna2Button btnLimpiar;
+        private Guna.UI2.WinForms.Guna2Button btnLimpiarProducto;
         private Guna.UI2.WinForms.Guna2Button btnGuardarProducto;
         private Guna.UI2.WinForms.Guna2Button btnModificarProducto;
         private Guna.UI2.WinForms.Guna2Button btnEliminar;
