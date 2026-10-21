@@ -1,8 +1,13 @@
-﻿namespace TechStore.Presentacion
+﻿using TechStore.Datos;
+
+namespace TechStore.Presentacion
 {
     public partial class FrmLogin : Form
     {
+        private readonly ConexionSql conexionSql = new ConexionSql();
+
         private readonly string usuarioValido = "uisil";
+
         private readonly string contrasenaValida = "1234";
 
         private int intentosFallidos = 0;
@@ -10,6 +15,9 @@
         public FrmLogin()
         {
             InitializeComponent();
+
+            // Permite que la tecla Enter tambien funcione para ingresar sesión.
+            this.AcceptButton = btnIngresarSesion;
         }
 
         private void btnIngresarSesion_Click(object sender, EventArgs e)
@@ -68,5 +76,33 @@
         {
             DialogResult = DialogResult.Cancel;
         }
+
+        /* --------------------------------------------------
+         * PROBAR CONEXIÓN
+         * -------------------------------------------------- */
+        private void btnProbarConexion_Click(object sender, EventArgs e)
+        {
+            if (conexionSql.ProbarConexion())
+            {
+                MessageBox.Show(
+                    "La conexión con SQL Server fue exitosa.",
+                    "Conexión correcta",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+
+            else
+            {
+                MessageBox.Show(
+                    "No fue posible conectar con SQL Server. " +
+                    "Verifique que el servidor esté activo y que la base de datos exista.",
+                    "Error de conexión",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
     }
 }

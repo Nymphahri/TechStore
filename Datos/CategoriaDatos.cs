@@ -37,11 +37,9 @@ namespace TechStore.Datos
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
             {
-                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100)
-                    .Value = categoria.Nombre;
+                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = categoria.Nombre;
 
-                comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 250)
-                    .Value = categoria.Descripcion;
+                comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 250).Value = categoria.Descripcion;
 
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -59,14 +57,11 @@ namespace TechStore.Datos
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
             {
-                comando.Parameters.Add("@IdCategoria", SqlDbType.Int)
-                    .Value = categoria.IdCategoria;
+                comando.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = categoria.IdCategoria;
 
-                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100)
-                    .Value = categoria.Nombre;
+                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = categoria.Nombre;
 
-                comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 250)
-                    .Value = categoria.Descripcion;
+                comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 250).Value = categoria.Descripcion;
 
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -82,8 +77,7 @@ namespace TechStore.Datos
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
             {
-                comando.Parameters.Add("@IdCategoria", SqlDbType.Int)
-                    .Value = idCategoria;
+                comando.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = idCategoria;
 
                 conexion.Open();
                 comando.ExecuteNonQuery();

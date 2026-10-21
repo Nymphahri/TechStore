@@ -11,5 +11,20 @@ namespace TechStore.Datos
         {
             return new SqlConnection(cadenaConexion);
         }
+
+        public bool ProbarConexion()
+        {
+            try
+            {
+                using SqlConnection conexion = CrearConexion();
+                conexion.Open();
+                return true;
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+        }
+
     }
 }

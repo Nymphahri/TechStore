@@ -9,11 +9,30 @@ namespace TechStore
         {
             ApplicationConfiguration.Initialize();
 
-            using (FrmLogin formularioLogin = new FrmLogin())
+            bool continuarAplicacion = true;
+
+            while (continuarAplicacion)
             {
-                if (formularioLogin.ShowDialog() == DialogResult.OK)
+                using (FrmLogin formularioLogin = new FrmLogin())
                 {
-                    Application.Run(new FrmPrincipal());
+                    DialogResult resultadoLogin =
+                        formularioLogin.ShowDialog();
+
+                    if (resultadoLogin != DialogResult.OK)
+                    {
+                        continuarAplicacion = false;
+                        continue;
+                    }
+                }
+
+                using (FrmPrincipal formularioPrincipal = new FrmPrincipal())
+                {
+                    formularioPrincipal.ShowDialog();
+
+                    if (formularioPrincipal.DebeVolverAlLogin == false)
+                    {
+                        continuarAplicacion = false;
+                    }
                 }
             }
         }

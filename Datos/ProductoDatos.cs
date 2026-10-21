@@ -46,20 +46,15 @@ namespace TechStore.Datos
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
             {
-                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100)
-                    .Value = producto.Nombre;
+                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = producto.Nombre;
 
-                comando.Parameters.Add("@Precio", SqlDbType.Decimal)
-                    .Value = producto.Precio;
+                comando.Parameters.Add("@Precio", SqlDbType.Decimal).Value = producto.Precio;
 
-                comando.Parameters.Add("@Stock", SqlDbType.Int)
-                    .Value = producto.Stock;
+                comando.Parameters.Add("@Stock", SqlDbType.Int).Value = producto.Stock;
 
-                comando.Parameters.Add("@FechaRegistro", SqlDbType.DateTime)
-                    .Value = producto.FechaRegistro;
+                comando.Parameters.Add("@FechaRegistro", SqlDbType.DateTime).Value = producto.FechaRegistro;
 
-                comando.Parameters.Add("@IdCategoria", SqlDbType.Int)
-                    .Value = producto.IdCategoria;
+                comando.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = producto.IdCategoria;
 
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -79,20 +74,15 @@ namespace TechStore.Datos
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
             {
-                comando.Parameters.Add("@IdProducto", SqlDbType.Int)
-                    .Value = producto.IdProducto;
+                comando.Parameters.Add("@IdProducto", SqlDbType.Int).Value = producto.IdProducto;
 
-                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100)
-                    .Value = producto.Nombre;
+                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = producto.Nombre;
 
-                comando.Parameters.Add("@Precio", SqlDbType.Decimal)
-                    .Value = producto.Precio;
+                comando.Parameters.Add("@Precio", SqlDbType.Decimal).Value = producto.Precio;
 
-                comando.Parameters.Add("@Stock", SqlDbType.Int)
-                    .Value = producto.Stock;
+                comando.Parameters.Add("@Stock", SqlDbType.Int).Value = producto.Stock;
 
-                comando.Parameters.Add("@IdCategoria", SqlDbType.Int)
-                    .Value = producto.IdCategoria;
+                comando.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = producto.IdCategoria;
 
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -108,8 +98,7 @@ namespace TechStore.Datos
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
             {
-                comando.Parameters.Add("@IdProducto", SqlDbType.Int)
-                    .Value = idProducto;
+                comando.Parameters.Add("@IdProducto", SqlDbType.Int).Value = idProducto;
 
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -138,8 +127,70 @@ namespace TechStore.Datos
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
             using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
             {
-                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100)
-                    .Value = "%" + nombre + "%";
+                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = "%" + nombre + "%";
+
+                conexion.Open();
+                adaptador.Fill(tablaProductos);
+            }
+
+            return tablaProductos;
+        }
+
+        public (int TotalProductos, int ProductosStockBajo)ObtenerResumenInventario(int limiteStock)
+        {
+            const string consulta = @"
+                SELECT
+                    COUNT(*) AS TotalProductos,
+                    COALESCE(
+                        SUM(
+                            CASE
+                                WHEN Stock <= @LimiteStock THEN 1
+                                ELSE 0
+                            END
+                        ), 0
+                    ) AS ProductosStockBajo
+                FROM Productos;";
+
+            using SqlConnection conexion = conexionSql.CrearConexion();
+            using SqlCommand comando = new SqlCommand(consulta, conexion);
+
+            comando.Parameters.Add("@LimiteStock", SqlDbType.Int).Value = limiteStock;
+
+            conexion.Open();
+
+            using SqlDataReader lector = comando.ExecuteReader();
+
+            if (lector.Read())
+            {
+                int total = Convert.ToInt32(lector["TotalProductos"]);
+                int stockBajo = Convert.ToInt32(lector["ProductosStockBajo"]);
+
+                return (total, stockBajo);
+            }
+
+            return (0, 0);
+        }
+
+        public DataTable ObtenerProductosStockBajo(int limiteStock)
+        {
+            DataTable tablaProductos = new DataTable();
+
+            const string consulta = @"
+                SELECT
+                    p.Nombre,
+                    p.Stock,
+                    c.Nombre AS Categoria
+                FROM Productos p
+                INNER JOIN Categorias c
+                    ON p.IdCategoria = c.IdCategoria
+                WHERE p.Stock <= @LimiteStock
+                ORDER BY p.Stock ASC, p.Nombre;";
+
+            using (SqlConnection conexion = conexionSql.CrearConexion())
+            using (SqlCommand comando = new SqlCommand(consulta, conexion))
+            using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+            {
+                comando.Parameters.Add("@LimiteStock", SqlDbType.Int).Value = limiteStock;
 
                 conexion.Open();
                 adaptador.Fill(tablaProductos);
