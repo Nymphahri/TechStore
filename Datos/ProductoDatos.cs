@@ -4,9 +4,21 @@ using TechStore.Entidades;
 
 namespace TechStore.Datos
 {
+    // Clase para manejar operaciones de datos relacionadas con productos
     public class ProductoDatos
     {
+        // Instancia de la clase ConexionSql para manejar la conexión a la base de datos
         private readonly ConexionSql conexionSql = new ConexionSql();
+
+        // Método privado para crear un parámetro SQL para el precio con precisión y escala específica
+        private SqlParameter CrearParametroPrecio(decimal precio)
+        {
+            SqlParameter parametro = new SqlParameter("@Precio", SqlDbType.Decimal);
+            parametro.Precision = 10;
+            parametro.Scale = 2;
+            parametro.Value = precio;
+            return parametro;
+        }
 
         public DataTable ObtenerProductos()
         {
@@ -19,8 +31,7 @@ namespace TechStore.Datos
                     p.Stock,
                     p.FechaRegistro,
                     p.IdCategoria,
-                    c.Nombre AS Categoria,
-                    p.Precio * p.Stock AS ValorInventario
+                    c.Nombre AS Categoria
                 FROM Productos p
                 INNER JOIN Categorias c
                     ON p.IdCategoria = c.IdCategoria
@@ -48,7 +59,7 @@ namespace TechStore.Datos
             {
                 comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = producto.Nombre;
 
-                comando.Parameters.Add("@Precio", SqlDbType.Decimal).Value = producto.Precio;
+                comando.Parameters.Add(CrearParametroPrecio(producto.Precio));
 
                 comando.Parameters.Add("@Stock", SqlDbType.Int).Value = producto.Stock;
 
@@ -59,6 +70,36 @@ namespace TechStore.Datos
                 conexion.Open();
                 comando.ExecuteNonQuery();
             }
+        }
+
+        public DataTable BuscarProductosPorNombre(string nombre)
+        {
+            DataTable tablaProductos = new DataTable();
+
+            const string consulta =
+                @"SELECT p.IdProducto,
+                    p.Nombre,
+                    p.Precio,
+                    p.Stock,
+                    p.FechaRegistro,
+                    p.IdCategoria,
+                    c.Nombre AS Categoria
+                FROM Productos p
+                INNER JOIN Categorias c ON p.IdCategoria = c.IdCategoria
+                WHERE p.Nombre LIKE @Nombre
+                ORDER BY p.Nombre;";
+
+            using (SqlConnection conexion = conexionSql.CrearConexion())
+            using (SqlCommand comando = new SqlCommand(consulta, conexion))
+            using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+            {
+                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = "%" + nombre + "%";
+
+                conexion.Open();
+                adaptador.Fill(tablaProductos);
+            }
+
+            return tablaProductos;
         }
 
         public void ActualizarProducto(Producto producto)
@@ -78,7 +119,7 @@ namespace TechStore.Datos
 
                 comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = producto.Nombre;
 
-                comando.Parameters.Add("@Precio", SqlDbType.Decimal).Value = producto.Precio;
+                comando.Parameters.Add(CrearParametroPrecio(producto.Precio));
 
                 comando.Parameters.Add("@Stock", SqlDbType.Int).Value = producto.Stock;
 
@@ -103,37 +144,6 @@ namespace TechStore.Datos
                 conexion.Open();
                 comando.ExecuteNonQuery();
             }
-        }
-
-        public DataTable BuscarProductosPorNombre(string nombre)
-        {
-            DataTable tablaProductos = new DataTable();
-
-            const string consulta =
-                @"SELECT p.IdProducto,
-                    p.Nombre,
-                    p.Precio,
-                    p.Stock,
-                    p.FechaRegistro,
-                    p.IdCategoria,
-                    c.Nombre AS Categoria,
-                    p.Precio * p.Stock AS ValorInventario
-                FROM Productos p
-                INNER JOIN Categorias c ON p.IdCategoria = c.IdCategoria
-                WHERE p.Nombre LIKE @Nombre
-                ORDER BY p.Nombre;";
-
-            using (SqlConnection conexion = conexionSql.CrearConexion())
-            using (SqlCommand comando = new SqlCommand(consulta, conexion))
-            using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
-            {
-                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = "%" + nombre + "%";
-
-                conexion.Open();
-                adaptador.Fill(tablaProductos);
-            }
-
-            return tablaProductos;
         }
 
         public (int TotalProductos, int ProductosStockBajo)ObtenerResumenInventario(int limiteStock)
