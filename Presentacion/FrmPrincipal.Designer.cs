@@ -97,7 +97,7 @@
             btnCategorias.ForeColor = Color.White;
             btnCategorias.Image = (Image)resources.GetObject("btnCategorias.Image");
             btnCategorias.ImageAlign = ContentAlignment.MiddleRight;
-            btnCategorias.Location = new Point(0, 94);
+            btnCategorias.Location = new Point(0, 88);
             btnCategorias.Name = "btnCategorias";
             btnCategorias.Size = new Size(396, 38);
             btnCategorias.TabIndex = 1;
@@ -119,7 +119,7 @@
             btnProductos.ForeColor = Color.White;
             btnProductos.Image = (Image)resources.GetObject("btnProductos.Image");
             btnProductos.ImageAlign = ContentAlignment.MiddleRight;
-            btnProductos.Location = new Point(0, 93);
+            btnProductos.Location = new Point(0, 87);
             btnProductos.Name = "btnProductos";
             btnProductos.Size = new Size(396, 38);
             btnProductos.TabIndex = 2;
@@ -390,9 +390,9 @@
             // 
             dgvStockBajo.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(248, 250, 252);
-            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(30, 41, 59);
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(248, 250, 252);
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(248, 250, 252);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(30, 41, 59);
             dgvStockBajo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(17, 8, 61);
@@ -424,9 +424,9 @@
             dgvStockBajo.Size = new Size(771, 157);
             dgvStockBajo.TabIndex = 32;
             dgvStockBajo.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(248, 250, 252);
-            dgvStockBajo.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.White;
+            dgvStockBajo.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.FromArgb(30, 41, 59);
             dgvStockBajo.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.FromArgb(248, 250, 252);
-            dgvStockBajo.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.FromArgb(248, 250, 252);
+            dgvStockBajo.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.FromArgb(30, 41, 59);
             dgvStockBajo.ThemeStyle.GridColor = Color.FromArgb(226, 232, 240);
             dgvStockBajo.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(17, 8, 61);
             dgvStockBajo.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
