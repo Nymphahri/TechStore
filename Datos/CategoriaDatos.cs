@@ -4,10 +4,13 @@ using TechStore.Entidades;
 
 namespace TechStore.Datos
 {
+    // Clase para manejar las operaciones de datos relacionadas con la entidad Categoria
     public class CategoriaDatos
     {
+        // Instancia de la clase ConexionSql para manejar la conexión a la base de datos
         private readonly ConexionSql conexionSql = new ConexionSql();
 
+        // Método para obtener todas las categorías de la base de datos
         public DataTable ObtenerCategorias()
         {
             DataTable tablaCategorias = new DataTable();

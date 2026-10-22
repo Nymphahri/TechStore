@@ -2,6 +2,7 @@ using TechStore.Presentacion;
 
 namespace TechStore
 {
+    // El punto de entrada principal para la aplicación.
     internal static class Program
     {
         [STAThread]
@@ -25,6 +26,7 @@ namespace TechStore
                     }
                 }
 
+                // Si el usuario ha iniciado sesión correctamente, se muestra el formulario principal
                 using (FrmPrincipal formularioPrincipal = new FrmPrincipal())
                 {
                     formularioPrincipal.ShowDialog();
