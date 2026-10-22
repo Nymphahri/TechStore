@@ -107,7 +107,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvCategorias.DefaultCellStyle = dataGridViewCellStyle3;
             dgvCategorias.GridColor = Color.FromArgb(213, 220, 230);
-            dgvCategorias.Location = new Point(19, 78);
+            dgvCategorias.Location = new Point(19, 137);
             dgvCategorias.MultiSelect = false;
             dgvCategorias.Name = "dgvCategorias";
             dgvCategorias.ReadOnly = true;
@@ -126,7 +126,7 @@
             dgvCategorias.ThemeStyle.RowsStyle.Height = 25;
             dgvCategorias.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(232, 245, 240);
             dgvCategorias.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(17, 9, 64);
-            dgvCategorias.CellContentClick += dgvCategorias_CellClick;
+            dgvCategorias.CellClick += dgvCategorias_CellClick;
             // 
             // gpbBotones
             // 
@@ -351,6 +351,7 @@
             txtDescripcion.Font = new Font("Segoe UI", 9F);
             txtDescripcion.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtDescripcion.Location = new Point(25, 182);
+            txtDescripcion.MaxLength = 250;
             txtDescripcion.Multiline = true;
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.PlaceholderText = "Ej: Productos para redes";
@@ -375,6 +376,7 @@
             txtNombre.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNombre.IconLeft = (Image)resources.GetObject("txtNombre.IconLeft");
             txtNombre.Location = new Point(25, 102);
+            txtNombre.MaxLength = 100;
             txtNombre.Name = "txtNombre";
             txtNombre.PlaceholderText = "Redes";
             txtNombre.SelectedText = "";
@@ -384,13 +386,13 @@
             // 
             // lblDetalleCategoria
             // 
-            lblDetalleCategoria.BackColor = Color.FromArgb(226, 230, 234);
+            lblDetalleCategoria.BackColor = Color.FromArgb(17, 9, 64);
             lblDetalleCategoria.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
-            lblDetalleCategoria.ForeColor = Color.FromArgb(17, 9, 64);
+            lblDetalleCategoria.ForeColor = Color.White;
             lblDetalleCategoria.ImageAlign = ContentAlignment.MiddleLeft;
-            lblDetalleCategoria.Location = new Point(3, 8);
+            lblDetalleCategoria.Location = new Point(0, 14);
             lblDetalleCategoria.Name = "lblDetalleCategoria";
-            lblDetalleCategoria.Size = new Size(299, 40);
+            lblDetalleCategoria.Size = new Size(305, 40);
             lblDetalleCategoria.TabIndex = 23;
             lblDetalleCategoria.Text = "Detalles de categorías";
             lblDetalleCategoria.TextAlign = ContentAlignment.MiddleLeft;
@@ -413,13 +415,13 @@
             // 
             // lblDetalleListado
             // 
-            lblDetalleListado.BackColor = Color.FromArgb(226, 230, 234);
+            lblDetalleListado.BackColor = Color.FromArgb(17, 9, 64);
             lblDetalleListado.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
-            lblDetalleListado.ForeColor = Color.FromArgb(17, 9, 64);
+            lblDetalleListado.ForeColor = Color.White;
             lblDetalleListado.ImageAlign = ContentAlignment.MiddleLeft;
-            lblDetalleListado.Location = new Point(3, 8);
+            lblDetalleListado.Location = new Point(0, 14);
             lblDetalleListado.Name = "lblDetalleListado";
-            lblDetalleListado.Size = new Size(633, 40);
+            lblDetalleListado.Size = new Size(639, 40);
             lblDetalleListado.TabIndex = 23;
             lblDetalleListado.Text = "Listado";
             lblDetalleListado.TextAlign = ContentAlignment.MiddleLeft;
@@ -429,7 +431,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
-            ClientSize = new Size(1028, 545);
+            ClientSize = new Size(1028, 554);
             Controls.Add(pnlDerechoCategoria);
             Controls.Add(pnlIzquierdoCategoria);
             Controls.Add(pnlUISIL);

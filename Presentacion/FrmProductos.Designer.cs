@@ -200,6 +200,7 @@
             txtStock.Font = new Font("Segoe UI", 9F);
             txtStock.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtStock.Location = new Point(23, 211);
+            txtStock.MaxLength = 9;
             txtStock.Name = "txtStock";
             txtStock.PlaceholderText = "";
             txtStock.SelectedText = "";
@@ -234,6 +235,7 @@
             txtPrecioProducto.Font = new Font("Segoe UI", 9F);
             txtPrecioProducto.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPrecioProducto.Location = new Point(23, 148);
+            txtPrecioProducto.MaxLength = 100;
             txtPrecioProducto.Name = "txtPrecioProducto";
             txtPrecioProducto.PlaceholderText = "₡";
             txtPrecioProducto.SelectedText = "";
@@ -268,6 +270,7 @@
             txtNombreProducto.Font = new Font("Segoe UI", 9F);
             txtNombreProducto.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtNombreProducto.Location = new Point(23, 85);
+            txtNombreProducto.MaxLength = 100;
             txtNombreProducto.Name = "txtNombreProducto";
             txtNombreProducto.PlaceholderText = "";
             txtNombreProducto.SelectedText = "";
@@ -417,13 +420,13 @@
             // 
             // lblDetalleProductos
             // 
-            lblDetalleProductos.BackColor = Color.FromArgb(226, 230, 234);
+            lblDetalleProductos.BackColor = Color.FromArgb(17, 9, 64);
             lblDetalleProductos.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
-            lblDetalleProductos.ForeColor = Color.FromArgb(17, 9, 64);
+            lblDetalleProductos.ForeColor = Color.Transparent;
             lblDetalleProductos.ImageAlign = ContentAlignment.MiddleLeft;
-            lblDetalleProductos.Location = new Point(3, 8);
+            lblDetalleProductos.Location = new Point(0, 14);
             lblDetalleProductos.Name = "lblDetalleProductos";
-            lblDetalleProductos.Size = new Size(299, 40);
+            lblDetalleProductos.Size = new Size(305, 40);
             lblDetalleProductos.TabIndex = 23;
             lblDetalleProductos.Text = "Detalles de productos";
             lblDetalleProductos.TextAlign = ContentAlignment.MiddleLeft;
@@ -494,7 +497,7 @@
             dgvProductos.ThemeStyle.RowsStyle.Height = 25;
             dgvProductos.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(232, 245, 240);
             dgvProductos.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(17, 9, 64);
-            dgvProductos.CellContentClick += dgvProductos_CellClick;
+            dgvProductos.CellClick += dgvProductos_CellClick;
             // 
             // txtBuscarProducto
             // 
@@ -559,13 +562,13 @@
             // 
             // lblBusquedaProductos
             // 
-            lblBusquedaProductos.BackColor = Color.FromArgb(226, 230, 234);
+            lblBusquedaProductos.BackColor = Color.FromArgb(17, 9, 64);
             lblBusquedaProductos.Font = new Font("Segoe UI Semibold", 17F, FontStyle.Bold);
-            lblBusquedaProductos.ForeColor = Color.FromArgb(17, 9, 64);
+            lblBusquedaProductos.ForeColor = Color.Transparent;
             lblBusquedaProductos.ImageAlign = ContentAlignment.MiddleLeft;
-            lblBusquedaProductos.Location = new Point(3, 8);
+            lblBusquedaProductos.Location = new Point(0, 14);
             lblBusquedaProductos.Name = "lblBusquedaProductos";
-            lblBusquedaProductos.Size = new Size(633, 40);
+            lblBusquedaProductos.Size = new Size(639, 40);
             lblBusquedaProductos.TabIndex = 23;
             lblBusquedaProductos.Text = "Búsqueda y listado";
             lblBusquedaProductos.TextAlign = ContentAlignment.MiddleLeft;
@@ -594,7 +597,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
-            ClientSize = new Size(1028, 545);
+            ClientSize = new Size(1028, 554);
             Controls.Add(btnProbarConexion);
             Controls.Add(pnlIzquierdaProductos);
             Controls.Add(pnlUISIL);
