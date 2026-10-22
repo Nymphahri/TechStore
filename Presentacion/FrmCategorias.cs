@@ -65,6 +65,42 @@ namespace TechStore.Presentacion
             CargarCategorias();
         }
 
+        /* --------------------------------------------------
+         * Valida los datos de la categoría y devuelve un 
+         * mensaje de error si es inválida.
+         * -------------------------------------------------- */
+        public bool ValidarCategoria(Categoria categoria, out string campoConError, out string mensajeError)
+        {
+            if (string.IsNullOrWhiteSpace(categoria.Nombre))
+            {
+                campoConError = "Nombre";
+                mensajeError = "El nombre de la categoría es obligatorio.";
+                return false;
+            }
+
+            if (decimal.TryParse(categoria.Nombre, out decimal valorNumerico))
+            {
+                campoConError = "Nombre";
+                mensajeError = "El nombre de la categoría no puede ser únicamente numérico.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(categoria.Descripcion))
+            {
+                campoConError = "Descripcion";
+                mensajeError = "La descripción de la categoría es obligatoria.";
+                return false;
+            }
+
+            campoConError = string.Empty;
+            mensajeError = string.Empty;
+            return true;
+        }
+
+        /* --------------------------------------------------
+         * Captura los datos del formulario y valida la 
+         * categoría.
+         * -------------------------------------------------- */
         private bool ObtenerCategoriaDelFormulario(out Categoria categoria)
         {
             errorProviderCategorias.Clear();
@@ -75,25 +111,19 @@ namespace TechStore.Presentacion
                 Descripcion = txtDescripcion.Text.Trim()
             };
 
-            bool categoriaEsValida = categoriaLogica.ValidarCategoria(categoria, out string mensajeError);
+            bool categoriaEsValida = categoriaLogica.ValidarCategoria(categoria, out string campoConError, out string mensajeError);
 
             if (categoriaEsValida == false)
             {
-                bool nombreEstaVacio = string.IsNullOrWhiteSpace(categoria.Nombre);
-
-                bool nombreEsNumerico =
-                    decimal.TryParse(categoria.Nombre, out _);
-
-                bool errorEnNombre = nombreEstaVacio || nombreEsNumerico;
-
-                if (errorEnNombre)
+                switch (campoConError)
                 {
-                    errorProviderCategorias.SetError(txtNombre, mensajeError);
-                }
+                    case "Nombre":
+                        errorProviderCategorias.SetError(txtNombre, mensajeError);
+                        break;
 
-                else
-                {
-                    errorProviderCategorias.SetError(txtDescripcion, mensajeError);
+                    case "Descripcion":
+                        errorProviderCategorias.SetError(txtDescripcion, mensajeError);
+                        break;
                 }
 
                 return false;

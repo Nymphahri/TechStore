@@ -144,29 +144,27 @@ namespace TechStore.Presentacion
 
             producto.IdCategoria = Convert.ToInt32(cboCategorias.SelectedValue);
 
-            bool productoValido = productoLogica.ValidarProducto(producto, out string mensajeError);
+            bool productoValido = productoLogica.ValidarProducto(producto, out string campoConError, out string mensajeError);
 
             if (productoValido == false)
             {
-                if (string.IsNullOrWhiteSpace(producto.Nombre))
+                switch (campoConError)
                 {
-                    errorProviderProductos.SetError(
-                        txtNombreProducto,
-                        mensajeError);
-                }
+                    case "Nombre":
+                        errorProviderProductos.SetError(txtNombreProducto, mensajeError);
+                        break;
 
-                else if (producto.Precio <= 0)
-                {
-                    errorProviderProductos.SetError(
-                        txtPrecioProducto,
-                        mensajeError);
-                }
+                    case "Precio":
+                        errorProviderProductos.SetError(txtPrecioProducto, mensajeError);
+                        break;
 
-                else if (producto.Stock < 0)
-                {
-                    errorProviderProductos.SetError(
-                        txtStock,
-                        mensajeError);
+                    case "Stock":
+                        errorProviderProductos.SetError(txtStock, mensajeError);
+                        break;
+
+                    case "Categoria":
+                        errorProviderProductos.SetError(cboCategorias, mensajeError);
+                        break;
                 }
 
                 return false;
@@ -186,8 +184,6 @@ namespace TechStore.Presentacion
             {
                 return;
             }
-
-            producto.FechaRegistro = DateTime.Now;
 
             try
             {

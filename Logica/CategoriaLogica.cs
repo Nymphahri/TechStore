@@ -4,6 +4,7 @@ using TechStore.Entidades;
 
 namespace TechStore.Logica
 {
+    // Clase que contiene la lógica de negocio para la gestión de categorías.
     public class CategoriaLogica
     {
         private readonly CategoriaDatos categoriaDatos = new CategoriaDatos();
@@ -13,26 +14,31 @@ namespace TechStore.Logica
             return categoriaDatos.ObtenerCategorias();
         }
 
-        public bool ValidarCategoria(Categoria categoria, out string mensajeError)
+        // Método para validar los datos de una categoría antes de guardarla o actualizarla.
+        public bool ValidarCategoria(Categoria categoria, out string campoConError, out string mensajeError)
         {
             if (string.IsNullOrWhiteSpace(categoria.Nombre))
             {
+                campoConError = "Nombre";
                 mensajeError = "El nombre de la categoría es obligatorio.";
                 return false;
             }
 
-            if (decimal.TryParse(categoria.Nombre, out _))
+            if (decimal.TryParse(categoria.Nombre, out decimal valorNumerico))
             {
+                campoConError = "Nombre";
                 mensajeError = "El nombre de la categoría no puede ser únicamente numérico.";
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(categoria.Descripcion))
             {
-                mensajeError = "La descripción en la categoría es obligatoria.";
+                campoConError = "Descripcion";
+                mensajeError = "La descripción de la categoría es obligatoria.";
                 return false;
             }
 
+            campoConError = string.Empty;
             mensajeError = string.Empty;
             return true;
         }
