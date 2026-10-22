@@ -6,13 +6,30 @@ namespace TechStore.Entidades
 {
     public class Producto
     {
+        // Campos privados: solo se acceden por medio de las propiedades.
+        private string nombre = string.Empty;
+        private decimal precio;
+        private int stock;
+
         public int IdProducto { get; set; }
 
-        public string Nombre { get; set; } = string.Empty;
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value.Trim(); }
+        }
 
-        public decimal Precio { get; set; }
+        public decimal Precio
+        {
+            get { return precio; }
+            set { precio = value; }
+        }
 
-        public int Stock { get; set; }
+        public int Stock
+        {
+            get { return stock; }
+            set { stock = value; }
+        }
 
         public DateTime FechaRegistro { get; set; }
 
@@ -20,7 +37,7 @@ namespace TechStore.Entidades
 
         public decimal CalcularValorInventario()
         {
-            return Precio * Stock;
+            return precio * stock;
         }
     }
 }
