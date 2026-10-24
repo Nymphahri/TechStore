@@ -16,6 +16,19 @@ namespace TechStore
             InitializeComponent();
 
             Load += FrmPrincipal_Load;
+
+            AyudanteInterfaz.ColocarSobreFondo(
+                picBackground,
+                btnInicioPrincipal,
+                btnCerrarSesion,
+                guna2Panel1,
+                pnlGradient1,
+                pnlGradient2,
+                pnlGradient3,
+                pnlGradient4,
+                pnlStock);
+
+            dgvStockBajo.CellFormatting += dgvStockBajo_CellFormatting;
         }
 
         private void FrmPrincipal_Load(object? sender, EventArgs e)
@@ -116,6 +129,30 @@ namespace TechStore
 
             DebeVolverAlLogin = true;
             Close();
+        }
+
+        /* --------------------------------------------------
+         * Pone en rojo el texto de la columna "Estado"
+         * cuando el producto tiene stock bajo.
+         * -------------------------------------------------- */
+        private void dgvStockBajo_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return;
+            }
+
+            if (dgvStockBajo.Columns[e.ColumnIndex].Name != "Estado")
+            {
+                return;
+            }
+
+            if (e.Value?.ToString() == "Stock bajo")
+            {
+                e.CellStyle!.ForeColor = Color.FromArgb(220, 38, 38);
+                e.CellStyle.SelectionForeColor = Color.FromArgb(220, 38, 38);
+                e.CellStyle.Font = new Font(dgvStockBajo.Font, FontStyle.Bold);
+            }
         }
     }
 }

@@ -15,6 +15,34 @@ namespace TechStore.Presentacion
         public FrmProductos()
         {
             InitializeComponent();
+
+            AyudanteInterfaz.ColocarSobreFondo(
+                picBanner,
+                lblTitulo,
+                pnlGradient1,
+                pnlGradient2,
+                pnlGradient3);
+        }
+
+        /* --------------------------------------------------
+         * Limpiar campos del formulario de productos
+         * -------------------------------------------------- */
+        private void btnLimpiarProducto_Click(object sender, EventArgs e)
+        {
+            LimpiarCamposProducto();
+        }
+
+        private void LimpiarCamposProducto()
+        {
+            txtNombreProducto.Clear();
+            txtPrecioProducto.Clear();
+            txtStock.Clear();
+            cboCategorias.SelectedIndex = -1;
+            errorProviderProductos.Clear();
+            idProductoSeleccionado = 0;
+            dgvProductos.ClearSelection();
+            txtNombreProducto.Focus();
+            txtBuscarProducto.Clear();
         }
 
         private void FrmProductos_Load(object sender, EventArgs e)
@@ -369,27 +397,6 @@ namespace TechStore.Presentacion
             txtStock.Text = fila.Cells["Stock"].Value?.ToString();
 
             cboCategorias.SelectedValue = Convert.ToInt32(fila.Cells["IdCategoria"].Value);
-        }
-
-        private void LimpiarCamposProducto()
-        {
-            txtNombreProducto.Clear();
-            txtPrecioProducto.Clear();
-            txtStock.Clear();
-            cboCategorias.SelectedIndex = -1;
-            errorProviderProductos.Clear();
-            idProductoSeleccionado = 0;
-            dgvProductos.ClearSelection();
-            txtNombreProducto.Focus();
-            txtBuscarProducto.Clear();
-        }
-
-        /* --------------------------------------------------
-         * Limpiar campos del formulario de productos
-         * -------------------------------------------------- */
-        private void btnLimpiarProducto_Click(object sender, EventArgs e)
-        {
-            LimpiarCamposProducto();
         }
     }
 }

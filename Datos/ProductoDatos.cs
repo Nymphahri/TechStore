@@ -189,7 +189,11 @@ namespace TechStore.Datos
                 SELECT
                     p.Nombre,
                     p.Stock,
-                    c.Nombre AS Categoria
+                    c.Nombre AS Categoria,
+                    CASE
+                        WHEN p.Stock <= @LimiteStock THEN 'Stock bajo'
+                        ELSE 'Disponible'
+                    END AS Estado
                 FROM Productos p
                 INNER JOIN Categorias c
                     ON p.IdCategoria = c.IdCategoria

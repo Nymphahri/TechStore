@@ -86,5 +86,29 @@ namespace TechStore.Datos
                 comando.ExecuteNonQuery();
             }
         }
+
+        // Método para buscar categorías cuyo nombre contenga el texto indicado
+        public DataTable BuscarCategoriasPorNombre(string nombre)
+        {
+            DataTable tablaCategorias = new DataTable();
+
+            const string consulta =
+                @"SELECT IdCategoria, Nombre, Descripcion
+        FROM Categorias
+        WHERE Nombre LIKE @Nombre
+        ORDER BY Nombre;";
+
+            using (SqlConnection conexion = conexionSql.CrearConexion())
+            using (SqlCommand comando = new SqlCommand(consulta, conexion))
+            using (SqlDataAdapter adaptador = new SqlDataAdapter(comando))
+            {
+                comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 100).Value = "%" + nombre + "%";
+
+                conexion.Open();
+                adaptador.Fill(tablaCategorias);
+            }
+
+            return tablaCategorias;
+        }
     }
 }

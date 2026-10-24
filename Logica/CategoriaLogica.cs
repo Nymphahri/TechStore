@@ -14,6 +14,11 @@ namespace TechStore.Logica
             return categoriaDatos.ObtenerCategorias();
         }
 
+        public DataTable BuscarCategoriasPorNombre(string nombre)
+        {
+            return categoriaDatos.BuscarCategoriasPorNombre(nombre);
+        }
+
         // Método para validar los datos de una categoría antes de guardarla o actualizarla.
         public bool ValidarCategoria(Categoria categoria, out string campoConError, out string mensajeError)
         {

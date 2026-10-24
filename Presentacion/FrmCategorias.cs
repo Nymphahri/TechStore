@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using TechStore.Entidades;
 using TechStore.Logica;
+using System.Data;
 
 namespace TechStore.Presentacion
 {
@@ -13,6 +14,12 @@ namespace TechStore.Presentacion
         public FrmCategorias()
         {
             InitializeComponent();
+
+            AyudanteInterfaz.ColocarSobreFondo(
+                picBackground,
+                lblTitulo,
+                pnlGradient1,
+                pnlGradient2);
         }
 
         /* --------------------------------------------------
@@ -23,6 +30,7 @@ namespace TechStore.Presentacion
         {
             txtNombre.Clear();
             txtDescripcion.Clear();
+            txtBuscarCategoria.Clear();
             errorProviderCategorias.Clear();
             idCategoriaSeleccionada = 0;
             dgvCategorias.ClearSelection();
@@ -33,19 +41,7 @@ namespace TechStore.Presentacion
         {
             try
             {
-                dgvCategorias.DataSource =
-                    categoriaLogica.ObtenerCategorias();
-
-                // El ID se usa internamente para modificar o eliminar no se ve a simple vista.
-                dgvCategorias.Columns["IdCategoria"].Visible = false;
-
-                dgvCategorias.Columns["Nombre"].HeaderText = "Nombre de categoría";
-
-                dgvCategorias.Columns["Descripcion"].HeaderText = "Descripción";
-
-                dgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-                dgvCategorias.ClearSelection();
+                MostrarCategoriasEnGrid(categoriaLogica.ObtenerCategorias());
             }
             catch (SqlException)
             {
@@ -55,6 +51,25 @@ namespace TechStore.Presentacion
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        /* --------------------------------------------------
+         * Mostrar categorías en el DataGridView
+         * -------------------------------------------------- */
+        private void MostrarCategoriasEnGrid(DataTable categorias)
+        {
+            dgvCategorias.DataSource = categorias;
+
+            // El ID se usa internamente para modificar o eliminar no se ve a simple vista.
+            dgvCategorias.Columns["IdCategoria"].Visible = false;
+
+            dgvCategorias.Columns["Nombre"].HeaderText = "Nombre de categoría";
+
+            dgvCategorias.Columns["Descripcion"].HeaderText = "Descripción";
+
+            dgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvCategorias.ClearSelection();
         }
 
         /* --------------------------------------------------
@@ -315,6 +330,44 @@ namespace TechStore.Presentacion
 
             txtNombre.Text = fila.Cells["Nombre"].Value?.ToString();
             txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();
+        }
+
+        /* --------------------------------------------------
+         * Buscar categoría por nombre
+         * -------------------------------------------------- */
+        private void btnBuscarCategoria_Click(object sender, EventArgs e)
+        {
+            string nombreBuscado = txtBuscarCategoria.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nombreBuscado))
+            {
+                CargarCategorias();
+                return;
+            }
+
+            try
+            {
+                DataTable categoriasEncontradas = categoriaLogica.BuscarCategoriasPorNombre(nombreBuscado);
+
+                MostrarCategoriasEnGrid(categoriasEncontradas);
+
+                if (categoriasEncontradas.Rows.Count == 0)
+                {
+                    MessageBox.Show(
+                        "No se encontraron categorías con ese nombre.",
+                        "Búsqueda sin resultados",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show(
+                    "No fue posible realizar la búsqueda.",
+                    "Error en la base de datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
     }
 }
