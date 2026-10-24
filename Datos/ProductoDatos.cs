@@ -146,7 +146,8 @@ namespace TechStore.Datos
             }
         }
 
-        public (int TotalProductos, int ProductosStockBajo)ObtenerResumenInventario(int limiteStock)
+        // Coalesce: Devuelve el primer valor no nulo de una lista de expresiones. Si todas las expresiones son nulas, devuelve NULL.
+        public (int TotalProductos, int ProductosStockBajo, decimal ValorTotalInventario) ObtenerResumenInventario(int limiteStock)
         {
             const string consulta = @"
                 SELECT
@@ -158,7 +159,8 @@ namespace TechStore.Datos
                                 ELSE 0
                             END
                         ), 0
-                    ) AS ProductosStockBajo
+                    ) AS ProductosStockBajo,
+                    COALESCE(SUM(Precio * Stock), 0) AS ValorTotalInventario
                 FROM Productos;";
 
             using SqlConnection conexion = conexionSql.CrearConexion();
@@ -174,11 +176,12 @@ namespace TechStore.Datos
             {
                 int total = Convert.ToInt32(lector["TotalProductos"]);
                 int stockBajo = Convert.ToInt32(lector["ProductosStockBajo"]);
+                decimal valorTotal = Convert.ToDecimal(lector["ValorTotalInventario"]);
 
-                return (total, stockBajo);
+                return (total, stockBajo, valorTotal);
             }
 
-            return (0, 0);
+            return (0, 0, 0m);
         }
 
         public DataTable ObtenerProductosStockBajo(int limiteStock)
@@ -190,10 +193,7 @@ namespace TechStore.Datos
                     p.Nombre,
                     p.Stock,
                     c.Nombre AS Categoria,
-                    CASE
-                        WHEN p.Stock <= @LimiteStock THEN 'Stock bajo'
-                        ELSE 'Disponible'
-                    END AS Estado
+                    'Stock bajo' AS Estado
                 FROM Productos p
                 INNER JOIN Categorias c
                     ON p.IdCategoria = c.IdCategoria

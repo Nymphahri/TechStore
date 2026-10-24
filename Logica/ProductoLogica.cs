@@ -44,6 +44,13 @@ namespace TechStore.Logica
                 return false;
             }
 
+            if (producto.Precio > 99999999.99m)
+            {
+                campoConError = "Precio";
+                mensajeError = "El precio no puede superar 99 999 999,99.";
+                return false;
+            }
+
             if (producto.Stock < 0)
             {
                 campoConError = "Stock";
@@ -63,7 +70,8 @@ namespace TechStore.Logica
             return true;
         }
 
-        // Método para buscar productos por nombre, incluyendo una columna calculada para el valor del inventario.
+        // Método para buscar productos por nombre, incluyendo una columna
+        // calculada para el valor del inventario.
         public DataTable BuscarProductosPorNombre(string nombre)
         {
             DataTable tabla = productoDatos.BuscarProductosPorNombre(nombre);
@@ -71,8 +79,9 @@ namespace TechStore.Logica
             return tabla;
         }
 
-        // Método para obtener un resumen del inventario, incluyendo el total de productos y la cantidad de productos con stock bajo.
-        public (int TotalProductos, int ProductosStockBajo)
+        // Método para obtener un resumen del inventario: total de productos,
+        // productos con stock bajo y valor total del inventario.
+        public (int TotalProductos, int ProductosStockBajo, decimal ValorTotalInventario)
             ObtenerResumenInventario()
         {
             return productoDatos.ObtenerResumenInventario(

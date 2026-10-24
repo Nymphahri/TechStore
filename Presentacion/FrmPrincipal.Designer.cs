@@ -58,6 +58,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             lblTotalProductos = new Label();
             lblStockBajo = new Label();
@@ -87,6 +89,10 @@
             picBajoStock = new Guna.UI2.WinForms.Guna2PictureBox();
             pictureBox3 = new PictureBox();
             lblStock = new Label();
+            guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            label2 = new Label();
+            pictureBox4 = new PictureBox();
+            lblValorInventarios = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvStockBajo).BeginInit();
             pnlStock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBackground).BeginInit();
@@ -102,6 +108,8 @@
             pnlGradient2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picBajoStock).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            guna2CustomGradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // sqlCommand1
@@ -168,7 +176,7 @@
             dgvStockBajo.Name = "dgvStockBajo";
             dgvStockBajo.ReadOnly = true;
             dgvStockBajo.RowHeadersVisible = false;
-            dgvStockBajo.Size = new Size(869, 157);
+            dgvStockBajo.Size = new Size(641, 157);
             dgvStockBajo.TabIndex = 32;
             dgvStockBajo.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(248, 250, 252);
             dgvStockBajo.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.FromArgb(30, 41, 59);
@@ -198,7 +206,7 @@
             pnlStock.Location = new Point(24, 563);
             pnlStock.Name = "pnlStock";
             pnlStock.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            pnlStock.Size = new Size(931, 223);
+            pnlStock.Size = new Size(691, 223);
             pnlStock.TabIndex = 33;
             // 
             // lblProductosStockBajo
@@ -346,10 +354,10 @@
             pnlGradient4.FillColor2 = Color.FromArgb(17, 9, 64);
             pnlGradient4.FillColor3 = Color.FromArgb(30, 136, 229);
             pnlGradient4.FillColor4 = Color.FromArgb(26, 42, 122);
-            pnlGradient4.Location = new Point(501, 411);
+            pnlGradient4.Location = new Point(446, 411);
             pnlGradient4.Name = "pnlGradient4";
             pnlGradient4.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            pnlGradient4.Size = new Size(454, 134);
+            pnlGradient4.Size = new Size(402, 134);
             pnlGradient4.TabIndex = 42;
             // 
             // pictureBox1
@@ -404,7 +412,7 @@
             pnlGradient3.Location = new Point(24, 411);
             pnlGradient3.Name = "pnlGradient3";
             pnlGradient3.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            pnlGradient3.Size = new Size(454, 134);
+            pnlGradient3.Size = new Size(403, 134);
             pnlGradient3.TabIndex = 43;
             // 
             // pictureBox2
@@ -484,7 +492,7 @@
             pnlGradient1.Location = new Point(24, 254);
             pnlGradient1.Name = "pnlGradient1";
             pnlGradient1.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            pnlGradient1.Size = new Size(454, 134);
+            pnlGradient1.Size = new Size(402, 134);
             pnlGradient1.TabIndex = 44;
             // 
             // guna2PictureBox1
@@ -536,10 +544,10 @@
             pnlGradient2.FillColor2 = Color.FromArgb(17, 9, 64);
             pnlGradient2.FillColor3 = Color.FromArgb(30, 136, 229);
             pnlGradient2.FillColor4 = Color.FromArgb(26, 42, 122);
-            pnlGradient2.Location = new Point(501, 254);
+            pnlGradient2.Location = new Point(446, 254);
             pnlGradient2.Name = "pnlGradient2";
             pnlGradient2.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            pnlGradient2.Size = new Size(454, 134);
+            pnlGradient2.Size = new Size(402, 134);
             pnlGradient2.TabIndex = 45;
             // 
             // picBajoStock
@@ -548,7 +556,7 @@
             picBajoStock.CustomizableEdges = customizableEdges23;
             picBajoStock.Image = (Image)resources.GetObject("picBajoStock.Image");
             picBajoStock.ImageRotate = 0F;
-            picBajoStock.Location = new Point(353, 36);
+            picBajoStock.Location = new Point(334, 36);
             picBajoStock.Name = "picBajoStock";
             picBajoStock.ShadowDecoration.CustomizableEdges = customizableEdges24;
             picBajoStock.Size = new Size(68, 64);
@@ -577,12 +585,66 @@
             lblStock.TabIndex = 23;
             lblStock.Text = "Stock bajo";
             // 
+            // guna2CustomGradientPanel1
+            // 
+            guna2CustomGradientPanel1.BackColor = Color.Transparent;
+            guna2CustomGradientPanel1.BorderColor = Color.FromArgb(213, 220, 230);
+            guna2CustomGradientPanel1.BorderRadius = 8;
+            guna2CustomGradientPanel1.Controls.Add(label2);
+            guna2CustomGradientPanel1.Controls.Add(pictureBox4);
+            guna2CustomGradientPanel1.Controls.Add(lblValorInventarios);
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges27;
+            guna2CustomGradientPanel1.FillColor = Color.FromArgb(17, 9, 64);
+            guna2CustomGradientPanel1.FillColor2 = Color.FromArgb(17, 9, 64);
+            guna2CustomGradientPanel1.FillColor3 = Color.FromArgb(30, 136, 229);
+            guna2CustomGradientPanel1.FillColor4 = Color.FromArgb(26, 42, 122);
+            guna2CustomGradientPanel1.Location = new Point(737, 594);
+            guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            guna2CustomGradientPanel1.Size = new Size(300, 152);
+            guna2CustomGradientPanel1.TabIndex = 46;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI Variable Display Semib", 10F);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(101, 93);
+            label2.Name = "label2";
+            label2.Size = new Size(125, 19);
+            label2.TabIndex = 47;
+            label2.Text = "Valor de inventario";
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackColor = Color.Transparent;
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(38, 59);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(57, 53);
+            pictureBox4.TabIndex = 44;
+            pictureBox4.TabStop = false;
+            // 
+            // lblValorInventarios
+            // 
+            lblValorInventarios.BackColor = Color.Transparent;
+            lblValorInventarios.Font = new Font("Segoe UI Variable Display Semib", 10F);
+            lblValorInventarios.ForeColor = Color.White;
+            lblValorInventarios.ImageAlign = ContentAlignment.MiddleLeft;
+            lblValorInventarios.Location = new Point(101, 36);
+            lblValorInventarios.Name = "lblValorInventarios";
+            lblValorInventarios.Size = new Size(205, 44);
+            lblValorInventarios.TabIndex = 34;
+            lblValorInventarios.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
             ClientSize = new Size(1079, 808);
+            Controls.Add(guna2CustomGradientPanel1);
             Controls.Add(pnlGradient2);
             Controls.Add(pnlGradient1);
             Controls.Add(pnlGradient3);
@@ -619,6 +681,9 @@
             pnlGradient2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picBajoStock).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            guna2CustomGradientPanel1.ResumeLayout(false);
+            guna2CustomGradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
         }
 
@@ -652,5 +717,9 @@
         private Label lblStock;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2PictureBox picBajoStock;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
+        private PictureBox pictureBox4;
+        private Label lblValorInventarios;
+        private Label label2;
     }
 }

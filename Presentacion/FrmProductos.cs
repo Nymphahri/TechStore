@@ -22,6 +22,22 @@ namespace TechStore.Presentacion
                 pnlGradient1,
                 pnlGradient2,
                 pnlGradient3);
+
+            txtBuscarProducto.KeyDown += txtBuscarProducto_KeyDown;
+        }
+
+        /* --------------------------------------------------
+         * Al presionar Enter en la caja de búsqueda se activa
+         * el botón Buscar.
+         * -------------------------------------------------- */
+        private void txtBuscarProducto_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Evita el sonido de error de Windows al presionar Enter.
+                e.SuppressKeyPress = true;
+                btnBuscarProducto.PerformClick();
+            }
         }
 
         /* --------------------------------------------------
@@ -29,6 +45,7 @@ namespace TechStore.Presentacion
          * -------------------------------------------------- */
         private void btnLimpiarProducto_Click(object sender, EventArgs e)
         {
+            CargarProductos();
             LimpiarCamposProducto();
         }
 

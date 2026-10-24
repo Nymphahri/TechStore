@@ -34,10 +34,5 @@ namespace TechStore.Entidades
         public DateTime FechaRegistro { get; set; }
 
         public int IdCategoria { get; set; }
-
-        public decimal CalcularValorInventario()
-        {
-            return precio * stock;
-        }
     }
 }

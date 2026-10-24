@@ -47,11 +47,11 @@ namespace TechStore
             {
                 var resumen = productoLogica.ObtenerResumenInventario();
 
-                lblTotalProductos.Text =
-                    resumen.TotalProductos.ToString();
+                lblTotalProductos.Text = resumen.TotalProductos.ToString();
 
-                lblStockBajo.Text =
-                    resumen.ProductosStockBajo.ToString();
+                lblStockBajo.Text = resumen.ProductosStockBajo.ToString();
+
+                lblValorInventarios.Text = "₡" + resumen.ValorTotalInventario.ToString("N0");
             }
 
             catch (SqlException)

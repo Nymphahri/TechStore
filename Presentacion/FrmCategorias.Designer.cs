@@ -525,9 +525,7 @@
 
         #endregion
         private ErrorProvider errorProviderCategorias;
-        private PictureBox picTechStore;
         private Guna.UI2.WinForms.Guna2DataGridView dgvCategorias;
-        private Label lblSubtitulo;
         private Label lblNombre;
         private Label lblDescripcion;
         private Guna.UI2.WinForms.Guna2Button btnLimpiar;

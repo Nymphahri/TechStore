@@ -1,7 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Guna.UI2.WinForms;
+using Microsoft.Data.SqlClient;
+using System.Data;
 using TechStore.Entidades;
 using TechStore.Logica;
-using System.Data;
 
 namespace TechStore.Presentacion
 {
@@ -20,6 +21,17 @@ namespace TechStore.Presentacion
                 lblTitulo,
                 pnlGradient1,
                 pnlGradient2);
+
+            txtBuscarCategoria.KeyDown += txtBuscarCategoria_KeyDown;
+        }
+
+        private void txtBuscarCategoria_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnBuscarCategoria.PerformClick();
+            }
         }
 
         /* --------------------------------------------------
@@ -35,6 +47,11 @@ namespace TechStore.Presentacion
             idCategoriaSeleccionada = 0;
             dgvCategorias.ClearSelection();
             txtNombre.Focus();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            ActualizarVistaCategorias();
         }
 
         private void CargarCategorias()
@@ -78,38 +95,6 @@ namespace TechStore.Presentacion
         private void FrmCategorias_Load(object sender, EventArgs e)
         {
             CargarCategorias();
-        }
-
-        /* --------------------------------------------------
-         * Valida los datos de la categoría y devuelve un 
-         * mensaje de error si es inválida.
-         * -------------------------------------------------- */
-        public bool ValidarCategoria(Categoria categoria, out string campoConError, out string mensajeError)
-        {
-            if (string.IsNullOrWhiteSpace(categoria.Nombre))
-            {
-                campoConError = "Nombre";
-                mensajeError = "El nombre de la categoría es obligatorio.";
-                return false;
-            }
-
-            if (decimal.TryParse(categoria.Nombre, out decimal valorNumerico))
-            {
-                campoConError = "Nombre";
-                mensajeError = "El nombre de la categoría no puede ser únicamente numérico.";
-                return false;
-            }
-
-            if (string.IsNullOrWhiteSpace(categoria.Descripcion))
-            {
-                campoConError = "Descripcion";
-                mensajeError = "La descripción de la categoría es obligatoria.";
-                return false;
-            }
-
-            campoConError = string.Empty;
-            mensajeError = string.Empty;
-            return true;
         }
 
         /* --------------------------------------------------
@@ -172,13 +157,23 @@ namespace TechStore.Presentacion
 
                 ActualizarVistaCategorias();
             }
-            catch (SqlException)
+            catch (SqlException errorBaseDatos)
             {
-                MessageBox.Show(
-                    "No fue posible guardar la categoría.",
-                    "Error en la base de datos",
-                    MessageBoxButtons.OK,
-                      MessageBoxIcon.Error);
+                // Error en la base de datos: nombre repetido.
+                if (errorBaseDatos.Number == 2627)
+                {
+                    errorProviderCategorias.SetError(
+                        txtNombre,
+                        "Ya existe una categoría con ese nombre.");
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "No fue posible guardar la categoría.",
+                        "Error en la base de datos",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -214,13 +209,23 @@ namespace TechStore.Presentacion
 
                 ActualizarVistaCategorias();
             }
-            catch (SqlException)
+            catch (SqlException errorBaseDatos)
             {
-                MessageBox.Show(
-                    "No fue posible modificar una categoría.",
-                    "Error de base de datos",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                // 2627 = se violó la restricción UNIQUE (nombre repetido).
+                if (errorBaseDatos.Number == 2627)
+                {
+                    errorProviderCategorias.SetError(
+                        txtNombre,
+                        "Ya existe una categoría con ese nombre.");
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "No fue posible modificar la categoría.",
+                        "Error de base de datos",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -279,15 +284,6 @@ namespace TechStore.Presentacion
                         MessageBoxIcon.Error);
                 }
             }
-        }
-
-        /* --------------------------------------------------
-         * Limpia los campos del formulario y reinicia la 
-         * selección de categoría.
-         * -------------------------------------------------- */
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
         }
 
         private bool HayCategoriaSeleccionada(string accion)
