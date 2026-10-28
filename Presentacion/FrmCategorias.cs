@@ -97,8 +97,7 @@ namespace TechStore.Presentacion
         }
 
         /* --------------------------------------------------
-         * Captura los datos del formulario y valida la 
-         * categoría.
+         * Captura los datos del formulario y valida la categoría.
          * -------------------------------------------------- */
         private bool ObtenerCategoriaDelFormulario(out Categoria categoria)
         {
@@ -110,6 +109,34 @@ namespace TechStore.Presentacion
                 Descripcion = txtDescripcion.Text.Trim()
             };
 
+            bool formularioValido = true;
+
+            // Nombre obligatorio
+            if (string.IsNullOrWhiteSpace(categoria.Nombre))
+            {
+                errorProviderCategorias.SetError(txtNombre,
+                    "El nombre de la categoría es obligatorio.");
+
+                formularioValido = false;
+            }
+
+            // Descripción obligatoria
+            if (string.IsNullOrWhiteSpace(categoria.Descripcion))
+            {
+                errorProviderCategorias.SetError(txtDescripcion,
+                    "La descripción de la categoría es obligatoria.");
+
+                formularioValido = false;
+            }
+
+            // Si falta algún campo, ya quedaron todos marcados.
+            if (formularioValido == false)
+            {
+                return false;
+            }
+
+            // Los campos tienen contenido: la lógica revisa las reglas
+            // (por ejemplo, que el nombre no sea solo un número).
             bool categoriaEsValida = categoriaLogica.ValidarCategoria(categoria, out string campoConError, out string mensajeError);
 
             if (categoriaEsValida == false)

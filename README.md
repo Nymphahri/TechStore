@@ -22,7 +22,8 @@ escogida desde un ComboBox.
 - **Tabla de productos (DataGridView):** muestra identificador, nombre, precio, stock, fecha de registro, categoría y el valor del inventario de cada producto.
 - **Valor del inventario:** se calcula en la aplicación como `Precio × Stock`. No se guarda en la base de datos.
 - **Fecha de registro:** se asigna sola con `DateTime.Now` al registrar un producto.
-- **Validaciones:** campos obligatorios, precio mayor que cero, stock igual o mayor que cero, datos numéricos válidos y categoría obligatoria. Los errores se muestran junto al control con un `ErrorProvider`.
+- **Validaciones:** campos obligatorios, precio mayor que cero, stock igual o mayor que cero, datos numéricos válidos y 
+categoría obligatoria. Los errores se muestran junto al control con un `ErrorProvider`.
 - **Mensajes (MessageBox):** confirmación de eliminaciones, operaciones exitosas, errores y búsquedas sin resultados.
 - **Extras que agregué:** inicio de sesión, botón para probar la conexión con SQL Server, y un panel principal con el total de productos, 
 la cantidad con stock bajo (5 unidades o menos) y el valor total del inventario.
