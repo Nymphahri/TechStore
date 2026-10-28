@@ -21,11 +21,11 @@ namespace TechStore
                 picBackground,
                 btnInicioPrincipal,
                 btnCerrarSesion,
-                guna2Panel1,
-                pnlGradient1,
-                pnlGradient2,
-                pnlGradient3,
-                pnlGradient4,
+                pnlLogo2,
+                pnlGradientTotalProductos,
+                pnlGradientStockBajo,
+                pnlGradientCategorias,
+                pnlGradientProductos,
                 pnlStock);
 
             dgvStockBajo.CellFormatting += dgvStockBajo_CellFormatting;

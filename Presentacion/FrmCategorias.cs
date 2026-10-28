@@ -19,8 +19,8 @@ namespace TechStore.Presentacion
             AyudanteInterfaz.ColocarSobreFondo(
                 picBackground,
                 lblTitulo,
-                pnlGradient1,
-                pnlGradient2);
+                pnlGradientDatosCategoria,
+                pnlGradientListadoCategorias);
 
             txtBuscarCategoria.KeyDown += txtBuscarCategoria_KeyDown;
         }

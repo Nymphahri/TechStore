@@ -29,39 +29,39 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             lblUsuario = new Label();
             lblContrasena = new Label();
             errorProviderLogin = new ErrorProvider(components);
             lblSesion = new Label();
-            lblCreadoPara = new Label();
+            lblCreado = new Label();
             picCopyRights = new PictureBox();
             btnIngresarSesion = new Guna.UI2.WinForms.Guna2Button();
             btnSalirSesion = new Guna.UI2.WinForms.Guna2Button();
             btnProbarConexion = new Guna.UI2.WinForms.Guna2Button();
             picLogoUISIL = new PictureBox();
             lblAccederLogo = new Label();
-            pictureBox1 = new PictureBox();
+            picLogoTechStore = new PictureBox();
             txtUsuario = new Guna.UI2.WinForms.Guna2TextBox();
             txtContrasena = new Guna.UI2.WinForms.Guna2TextBox();
-            pictureBox2 = new PictureBox();
-            pictureBox3 = new PictureBox();
+            picPassword = new PictureBox();
+            picUsuario = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)errorProviderLogin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCopyRights).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogoUISIL).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picLogoTechStore).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picPassword).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picUsuario).BeginInit();
             SuspendLayout();
             // 
             // lblUsuario
@@ -101,17 +101,17 @@
             lblSesion.TabIndex = 8;
             lblSesion.Text = "Inicio de sesión";
             // 
-            // lblCreadoPara
+            // lblCreado
             // 
-            lblCreadoPara.AutoSize = true;
-            lblCreadoPara.BackColor = Color.Transparent;
-            lblCreadoPara.Font = new Font("Segoe UI Semibold", 7F, FontStyle.Bold);
-            lblCreadoPara.ForeColor = Color.FromArgb(7, 27, 59);
-            lblCreadoPara.Location = new Point(498, 499);
-            lblCreadoPara.Name = "lblCreadoPara";
-            lblCreadoPara.Size = new Size(209, 12);
-            lblCreadoPara.TabIndex = 11;
-            lblCreadoPara.Text = "2026 UISIL Sistema de Gestión de Productos";
+            lblCreado.AutoSize = true;
+            lblCreado.BackColor = Color.Transparent;
+            lblCreado.Font = new Font("Segoe UI Semibold", 7F, FontStyle.Bold);
+            lblCreado.ForeColor = Color.FromArgb(7, 27, 59);
+            lblCreado.Location = new Point(498, 499);
+            lblCreado.Name = "lblCreado";
+            lblCreado.Size = new Size(209, 12);
+            lblCreado.TabIndex = 11;
+            lblCreado.Text = "2026 UISIL Sistema de Gestión de Productos";
             // 
             // picCopyRights
             // 
@@ -130,7 +130,7 @@
             btnIngresarSesion.BorderRadius = 8;
             btnIngresarSesion.BorderThickness = 1;
             btnIngresarSesion.Cursor = Cursors.Hand;
-            btnIngresarSesion.CustomizableEdges = customizableEdges9;
+            btnIngresarSesion.CustomizableEdges = customizableEdges11;
             btnIngresarSesion.DisabledState.BorderColor = Color.DarkGray;
             btnIngresarSesion.DisabledState.CustomBorderColor = Color.DarkGray;
             btnIngresarSesion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -144,7 +144,7 @@
             btnIngresarSesion.Name = "btnIngresarSesion";
             btnIngresarSesion.PressedColor = Color.FromArgb(7, 89, 199);
             btnIngresarSesion.ShadowDecoration.BorderRadius = 8;
-            btnIngresarSesion.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnIngresarSesion.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnIngresarSesion.Size = new Size(316, 45);
             btnIngresarSesion.TabIndex = 14;
             btnIngresarSesion.Text = "Ingresar";
@@ -157,7 +157,7 @@
             btnSalirSesion.BorderRadius = 8;
             btnSalirSesion.BorderThickness = 1;
             btnSalirSesion.Cursor = Cursors.Hand;
-            btnSalirSesion.CustomizableEdges = customizableEdges7;
+            btnSalirSesion.CustomizableEdges = customizableEdges13;
             btnSalirSesion.DisabledState.BorderColor = Color.DarkGray;
             btnSalirSesion.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSalirSesion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -170,7 +170,7 @@
             btnSalirSesion.Location = new Point(436, 401);
             btnSalirSesion.Name = "btnSalirSesion";
             btnSalirSesion.PressedColor = Color.FromArgb(7, 89, 199);
-            btnSalirSesion.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnSalirSesion.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnSalirSesion.Size = new Size(316, 45);
             btnSalirSesion.TabIndex = 15;
             btnSalirSesion.Text = "Salir";
@@ -182,7 +182,7 @@
             btnProbarConexion.BorderRadius = 8;
             btnProbarConexion.BorderThickness = 1;
             btnProbarConexion.Cursor = Cursors.Hand;
-            btnProbarConexion.CustomizableEdges = customizableEdges5;
+            btnProbarConexion.CustomizableEdges = customizableEdges15;
             btnProbarConexion.DisabledState.BorderColor = Color.DarkGray;
             btnProbarConexion.DisabledState.CustomBorderColor = Color.DarkGray;
             btnProbarConexion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -196,7 +196,7 @@
             btnProbarConexion.Location = new Point(520, 463);
             btnProbarConexion.Name = "btnProbarConexion";
             btnProbarConexion.PressedColor = Color.FromArgb(42, 32, 112);
-            btnProbarConexion.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnProbarConexion.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnProbarConexion.Size = new Size(151, 19);
             btnProbarConexion.TabIndex = 38;
             btnProbarConexion.Text = "Probar conexión";
@@ -223,20 +223,20 @@
             lblAccederLogo.TabIndex = 40;
             lblAccederLogo.Text = "Accede a tu cuenta";
             // 
-            // pictureBox1
+            // picLogoTechStore
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, -3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(397, 535);
-            pictureBox1.TabIndex = 41;
-            pictureBox1.TabStop = false;
+            picLogoTechStore.Image = (Image)resources.GetObject("picLogoTechStore.Image");
+            picLogoTechStore.Location = new Point(0, -3);
+            picLogoTechStore.Name = "picLogoTechStore";
+            picLogoTechStore.Size = new Size(397, 535);
+            picLogoTechStore.TabIndex = 41;
+            picLogoTechStore.TabStop = false;
             // 
             // txtUsuario
             // 
             txtUsuario.BorderRadius = 8;
             txtUsuario.Cursor = Cursors.Hand;
-            txtUsuario.CustomizableEdges = customizableEdges3;
+            txtUsuario.CustomizableEdges = customizableEdges17;
             txtUsuario.DefaultText = "";
             txtUsuario.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtUsuario.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -249,7 +249,7 @@
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PlaceholderText = "Ingresa tu usuario";
             txtUsuario.SelectedText = "";
-            txtUsuario.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtUsuario.ShadowDecoration.CustomizableEdges = customizableEdges18;
             txtUsuario.Size = new Size(316, 45);
             txtUsuario.TabIndex = 42;
             // 
@@ -257,7 +257,7 @@
             // 
             txtContrasena.BorderRadius = 8;
             txtContrasena.Cursor = Cursors.Hand;
-            txtContrasena.CustomizableEdges = customizableEdges1;
+            txtContrasena.CustomizableEdges = customizableEdges19;
             txtContrasena.DefaultText = "";
             txtContrasena.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtContrasena.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -271,29 +271,29 @@
             txtContrasena.PasswordChar = '*';
             txtContrasena.PlaceholderText = "Ingresa tu contraseña";
             txtContrasena.SelectedText = "";
-            txtContrasena.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtContrasena.ShadowDecoration.CustomizableEdges = customizableEdges20;
             txtContrasena.Size = new Size(316, 45);
             txtContrasena.TabIndex = 43;
             // 
-            // pictureBox2
+            // picPassword
             // 
-            pictureBox2.BackColor = Color.White;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(720, 276);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(30, 28);
-            pictureBox2.TabIndex = 44;
-            pictureBox2.TabStop = false;
+            picPassword.BackColor = Color.White;
+            picPassword.Image = (Image)resources.GetObject("picPassword.Image");
+            picPassword.Location = new Point(720, 276);
+            picPassword.Name = "picPassword";
+            picPassword.Size = new Size(30, 28);
+            picPassword.TabIndex = 44;
+            picPassword.TabStop = false;
             // 
-            // pictureBox3
+            // picUsuario
             // 
-            pictureBox3.BackColor = Color.White;
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(719, 196);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(27, 28);
-            pictureBox3.TabIndex = 45;
-            pictureBox3.TabStop = false;
+            picUsuario.BackColor = Color.White;
+            picUsuario.Image = (Image)resources.GetObject("picUsuario.Image");
+            picUsuario.Location = new Point(719, 196);
+            picUsuario.Name = "picUsuario";
+            picUsuario.Size = new Size(27, 28);
+            picUsuario.TabIndex = 45;
+            picUsuario.TabStop = false;
             // 
             // FrmLogin
             // 
@@ -301,18 +301,18 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
             ClientSize = new Size(867, 531);
-            Controls.Add(pictureBox3);
-            Controls.Add(pictureBox2);
+            Controls.Add(picUsuario);
+            Controls.Add(picPassword);
             Controls.Add(txtContrasena);
             Controls.Add(txtUsuario);
-            Controls.Add(pictureBox1);
+            Controls.Add(picLogoTechStore);
             Controls.Add(lblAccederLogo);
             Controls.Add(picLogoUISIL);
             Controls.Add(btnProbarConexion);
             Controls.Add(btnSalirSesion);
             Controls.Add(btnIngresarSesion);
             Controls.Add(picCopyRights);
-            Controls.Add(lblCreadoPara);
+            Controls.Add(lblCreado);
             Controls.Add(lblSesion);
             Controls.Add(lblContrasena);
             Controls.Add(lblUsuario);
@@ -328,9 +328,9 @@
             ((System.ComponentModel.ISupportInitialize)errorProviderLogin).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCopyRights).EndInit();
             ((System.ComponentModel.ISupportInitialize)picLogoUISIL).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picLogoTechStore).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picPassword).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picUsuario).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -340,17 +340,17 @@
         private Label lblContrasena;
         private ErrorProvider errorProviderLogin;
         private Label lblSesion;
-        private Label lblCreadoPara;
+        private Label lblCreado;
         private PictureBox picCopyRights;
         private Guna.UI2.WinForms.Guna2Button btnIngresarSesion;
         private Guna.UI2.WinForms.Guna2Button btnSalirSesion;
         private Guna.UI2.WinForms.Guna2Button btnProbarConexion;
         private PictureBox picLogoUISIL;
         private Label lblAccederLogo;
-        private PictureBox pictureBox1;
+        private PictureBox picLogoTechStore;
         private Guna.UI2.WinForms.Guna2TextBox txtContrasena;
         private Guna.UI2.WinForms.Guna2TextBox txtUsuario;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox2;
+        private PictureBox picUsuario;
+        private PictureBox picPassword;
     }
 }

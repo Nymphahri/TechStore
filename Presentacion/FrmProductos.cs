@@ -17,11 +17,11 @@ namespace TechStore.Presentacion
             InitializeComponent();
 
             AyudanteInterfaz.ColocarSobreFondo(
-                picBanner,
+                picBannerProductos,
                 lblTitulo,
-                pnlGradient1,
-                pnlGradient2,
-                pnlGradient3);
+                pnlGradientDatos,
+                pnlGradientBusqueda,
+                pnlGradientLista);
 
             txtBuscarProducto.KeyDown += txtBuscarProducto_KeyDown;
         }
