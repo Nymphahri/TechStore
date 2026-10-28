@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             lblUsuario = new Label();
             lblContrasena = new Label();
@@ -130,7 +130,7 @@
             btnIngresarSesion.BorderRadius = 8;
             btnIngresarSesion.BorderThickness = 1;
             btnIngresarSesion.Cursor = Cursors.Hand;
-            btnIngresarSesion.CustomizableEdges = customizableEdges11;
+            btnIngresarSesion.CustomizableEdges = customizableEdges9;
             btnIngresarSesion.DisabledState.BorderColor = Color.DarkGray;
             btnIngresarSesion.DisabledState.CustomBorderColor = Color.DarkGray;
             btnIngresarSesion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -144,7 +144,7 @@
             btnIngresarSesion.Name = "btnIngresarSesion";
             btnIngresarSesion.PressedColor = Color.FromArgb(7, 89, 199);
             btnIngresarSesion.ShadowDecoration.BorderRadius = 8;
-            btnIngresarSesion.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnIngresarSesion.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnIngresarSesion.Size = new Size(316, 45);
             btnIngresarSesion.TabIndex = 14;
             btnIngresarSesion.Text = "Ingresar";
@@ -157,7 +157,7 @@
             btnSalirSesion.BorderRadius = 8;
             btnSalirSesion.BorderThickness = 1;
             btnSalirSesion.Cursor = Cursors.Hand;
-            btnSalirSesion.CustomizableEdges = customizableEdges13;
+            btnSalirSesion.CustomizableEdges = customizableEdges7;
             btnSalirSesion.DisabledState.BorderColor = Color.DarkGray;
             btnSalirSesion.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSalirSesion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -170,7 +170,7 @@
             btnSalirSesion.Location = new Point(436, 401);
             btnSalirSesion.Name = "btnSalirSesion";
             btnSalirSesion.PressedColor = Color.FromArgb(7, 89, 199);
-            btnSalirSesion.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnSalirSesion.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnSalirSesion.Size = new Size(316, 45);
             btnSalirSesion.TabIndex = 15;
             btnSalirSesion.Text = "Salir";
@@ -182,7 +182,7 @@
             btnProbarConexion.BorderRadius = 8;
             btnProbarConexion.BorderThickness = 1;
             btnProbarConexion.Cursor = Cursors.Hand;
-            btnProbarConexion.CustomizableEdges = customizableEdges15;
+            btnProbarConexion.CustomizableEdges = customizableEdges5;
             btnProbarConexion.DisabledState.BorderColor = Color.DarkGray;
             btnProbarConexion.DisabledState.CustomBorderColor = Color.DarkGray;
             btnProbarConexion.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -196,7 +196,7 @@
             btnProbarConexion.Location = new Point(520, 463);
             btnProbarConexion.Name = "btnProbarConexion";
             btnProbarConexion.PressedColor = Color.FromArgb(42, 32, 112);
-            btnProbarConexion.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            btnProbarConexion.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnProbarConexion.Size = new Size(151, 19);
             btnProbarConexion.TabIndex = 38;
             btnProbarConexion.Text = "Probar conexión";
@@ -236,7 +236,7 @@
             // 
             txtUsuario.BorderRadius = 8;
             txtUsuario.Cursor = Cursors.Hand;
-            txtUsuario.CustomizableEdges = customizableEdges17;
+            txtUsuario.CustomizableEdges = customizableEdges3;
             txtUsuario.DefaultText = "";
             txtUsuario.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtUsuario.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -249,7 +249,7 @@
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PlaceholderText = "Ingresa tu usuario";
             txtUsuario.SelectedText = "";
-            txtUsuario.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            txtUsuario.ShadowDecoration.CustomizableEdges = customizableEdges4;
             txtUsuario.Size = new Size(316, 45);
             txtUsuario.TabIndex = 42;
             // 
@@ -257,7 +257,7 @@
             // 
             txtContrasena.BorderRadius = 8;
             txtContrasena.Cursor = Cursors.Hand;
-            txtContrasena.CustomizableEdges = customizableEdges19;
+            txtContrasena.CustomizableEdges = customizableEdges1;
             txtContrasena.DefaultText = "";
             txtContrasena.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtContrasena.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -271,7 +271,7 @@
             txtContrasena.PasswordChar = '*';
             txtContrasena.PlaceholderText = "Ingresa tu contraseña";
             txtContrasena.SelectedText = "";
-            txtContrasena.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            txtContrasena.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txtContrasena.Size = new Size(316, 45);
             txtContrasena.TabIndex = 43;
             // 
@@ -323,7 +323,7 @@
             MaximizeBox = false;
             Name = "FrmLogin";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "TECHSTORE UISIL";
+            Text = "Sistema de Gestión de Productos";
             TransparencyKey = Color.FromArgb(255, 192, 192);
             ((System.ComponentModel.ISupportInitialize)errorProviderLogin).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCopyRights).EndInit();

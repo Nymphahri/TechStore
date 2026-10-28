@@ -1,79 +1,103 @@
-# TechStoreUISIL Sistema de Gestión de Inventario
+# TechStore – Sistema de Gestión de Productos
 
-Aplicación de escritorio en C# (Windows Forms) con SQL Server para administrar el inventario de una tienda de tecnología: categorías, productos, búsquedas y un panel con el estado general del inventario.
+Aplicación de escritorio hecha en C# con Windows Forms y SQL Server. Sirve para administrar los productos de una tienda de tecnología: 
+cada producto pertenece a una categoría y se pueden registrar, consultar, buscar, modificar y eliminar tanto categorías como productos.
 
-**Autora:** Grace Romero Sanabria
-**Curso:** Programación II Universidad Internacional San Isidro Labrador (UISIL)
+| | |
+|---|---|
+| **Tarea** | Tarea programada: Sistema de Gestión de Productos |
+| **Curso** | Programación II |
+| **Profesor** | Ing. Joshua Granados Loría |
+| **Universidad** | Universidad Internacional San Isidro Labrador|
+| **Estudiante** | Grace Romero Sanabria |
+| **Modalidad** | Individual |
 
 ---
 
-## Qué hace
+## Funcionalidades
 
-- **Inicio de sesión** con usuario y contraseña (máximo 3 intentos) y un botón para probar la conexión con SQL Server antes de entrar.
-- **Panel principal** con el resumen del inventario: total de productos, cantidad con stock bajo y valor total en colones (₡). Debajo muestra una tabla con los productos de stock bajo, marcados en rojo.
-- **Gestión de categorías**: registrar, modificar, eliminar y buscar por nombre.
-- **Gestión de productos**: registrar, modificar, eliminar y buscar por nombre. La tabla muestra el valor de inventario de cada producto (precio × stock) y la fecha de registro.
-- **Validaciones** en cada campo, con el mensaje de error junto al control afectado.
-- **Mensajes claros** ante situaciones frecuentes: nombre de categoría repetido o categoría con productos asociados que no se puede eliminar.
-- **Cierre de sesión** con confirmación, que devuelve al login.
+- **Categorías:** registrar, consultar, modificar, eliminar (con confirmación) y buscar por nombre.
+- **Productos:** registrar, consultar, modificar, eliminar (con confirmación) y buscar por nombre. Cada producto se asigna a una categoría 
+escogida desde un ComboBox.
+- **Tabla de productos (DataGridView):** muestra identificador, nombre, precio, stock, fecha de registro, categoría y el valor del inventario de cada producto.
+- **Valor del inventario:** se calcula en la aplicación como `Precio × Stock`. No se guarda en la base de datos.
+- **Fecha de registro:** se asigna sola con `DateTime.Now` al registrar un producto.
+- **Validaciones:** campos obligatorios, precio mayor que cero, stock igual o mayor que cero, datos numéricos válidos y categoría obligatoria. 
+- Los errores se muestran junto al control con un `ErrorProvider`.
+- **Mensajes (MessageBox):** confirmación de eliminaciones, operaciones exitosas, errores y búsquedas sin resultados.
+- **Extras que agregué:** inicio de sesión, botón para probar la conexión con SQL Server, y un panel principal con el total de productos, 
+la cantidad con stock bajo (5 unidades o menos) y el valor total del inventario.
 
 ## Capturas
 
-[Agregar aquí capturas de: login, panel principal, categorías y productos.]
+![Inicio de sesión](docs/Login.png)
+![Panel principal](docs/Principal.png)
+![Categorías](docs/Gestión Categorías.png)
+![Productos](docs/Gestión Productos.png)
 
 ## Tecnologías
 
 | Componente | Detalle |
 |---|---|
-| Lenguaje | C# [versión, por ejemplo 12] |
-| Plataforma | .NET version .10 Windows Forms |
-| Base de datos | SQL Server Express |
-| Acceso a datos | ADO.NET con `Microsoft.Data.SqlClient` (consultas parametrizadas) |
-| Interfaz | `Guna.UI2.WinForms` (paquete NuGet) |
+| Lenguaje | C# |
+| Plataforma | .NET 10, Windows Forms |
+| Entorno | Visual Studio 2026 |
+| Base de datos | Microsoft SQL Server Express, administrada con SSMS |
+| Acceso a datos | ADO.NET con `Microsoft.Data.SqlClient` 7.1.1 (consultas parametrizadas) |
+| Diseño de la interfaz | `Guna.UI2.WinForms` 2.0.4.8 (paquete NuGet) |
 
-## Arquitectura
-
-El proyecto está separado en capas para que cada clase tenga una sola responsabilidad:
+## Organización por capas
 
 ```
 TechStore
-├── Entidades      Categoria, Producto (modelos de datos)
-├── Datos          ConexionSql, CategoriaDatos, ProductoDatos (consultas SQL)
-├── Logica         CategoriaLogica, ProductoLogica (validaciones y reglas)
+├── Entidades      Categoria, Producto
+├── Datos          ConexionSql, CategoriaDatos, ProductoDatos
+│   └── BaseDatos  TechStoreDB.sql
+├── Logica         CategoriaLogica, ProductoLogica
 └── Presentacion   FrmLogin, FrmPrincipal, FrmCategorias, FrmProductos, AyudanteInterfaz
 ```
 
-Flujo típico: el formulario recibe los datos, la capa de **Lógica** los valida y, solo si son correctos, la capa de **Datos** los guarda en SQL Server. Los formularios nunca escriben SQL directamente.
+- **Presentacion:** formularios, controles, entrada de datos y presentación de la información.
+- **Logica:** validaciones y reglas del sistema (por ejemplo, que el precio sea mayor que cero).
+- **Datos:** todas las consultas SQL. Los formularios nunca escriben SQL.
+- **Entidades:** las clases `Categoria` y `Producto`, con campos privados y propiedades `get`/`set`.
+
+El camino de un dato al guardar es: formulario → lógica (valida) → datos (guarda en SQL Server).
 
 ## Base de datos
 
-Dos tablas relacionadas:
+La base se llama `TechStoreDB` y tiene dos tablas relacionadas:
 
-- **Categorias**: `IdCategoria`, `Nombre` (único), `Descripcion`.
-- **Productos**: `IdProducto`, `Nombre`, `Precio`, `Stock`, `FechaRegistro`, `IdCategoria` (llave foránea a Categorias).
+- **Categorias:** `IdCategoria` (llave primaria), `Nombre` (único), `Descripcion`.
+- **Productos:** `IdProducto` (llave primaria), `Nombre`, `Precio`, `Stock`, `FechaRegistro`, `IdCategoria` (llave foránea hacia `Categorias.IdCategoria`).
 
-Restricciones en la base de datos: `Precio > 0`, `Stock >= 0` y nombre de categoría único.
+Además hay restricciones `Precio > 0` y `Stock >= 0`. El script incluye datos de prueba (4 categorías y 6 productos).
 
-## Cómo ejecutarlo
+## Requisitos para ejecutarlo
 
-### Requisitos
+- Windows.
+- Visual Studio 2026 con la carga de trabajo de **desarrollo de escritorio con .NET** (para .NET 10).
+- SQL Server Express (o cualquier instancia de SQL Server) y SQL Server Management Studio.
 
-- Windows con Visual Studio 2022 o superior (carga de trabajo de escritorio .NET).
-- SQL Server Express (o cualquier instancia de SQL Server) y SSMS.
+## Instalación y ejecución
 
-### Pasos
+1. Clonar o descargar el repositorio y abrir `TechStore.slnx` en Visual Studio.
+2. Abrir SSMS, conectarse a su servidor y abrir el archivo `Datos/BaseDatos/TechStoreDB.sql`.
+3. Ejecutar el script completo. Crea la base `TechStoreDB`, las dos tablas, las restricciones y los datos de prueba.
+4. Revisar la cadena de conexión (ver la siguiente sección).
+5. En Visual Studio, esperar a que se restauren los paquetes NuGet y presionar **F5**.
+6. En la pantalla de inicio de sesión se puede usar **Probar conexión** para confirmar que la aplicación llega a SQL Server.
 
-1. **Clonar o descargar** el proyecto y abrir la solución en Visual Studio.
-2. **Crear la base de datos:** abrir `TechStoreDB.sql` en SSMS y ejecutarlo.
-   > Si el script falla por las rutas de los archivos `.mdf`/`.ldf` o por el nivel de compatibilidad, cambia el `CREATE DATABASE` por una versión simple (`CREATE DATABASE TechStoreDB;`) y ejecuta el resto del script.
-3. **Revisar la cadena de conexión** en `Datos/ConexionSql.cs`:
-   ```csharp
-   Server=.\SQLEXPRESS;Database=TechStoreDB;Integrated Security=True;...
-   ```
-   Si tu instancia tiene otro nombre, cámbialo aquí.
-4. **Restaurar los paquetes NuGet** (Visual Studio lo hace solo) y presionar **F5**.
-5. En el login, usar el botón **Probar conexión** para confirmar que todo está bien.
-6. La base de datos empieza vacía: **crea primero una categoría** y después podrás registrar productos.
+### Conexión a SQL Server
+
+La cadena de conexión está en `Datos/ConexionSql.cs`:
+
+```csharp
+Server=.\SQLEXPRESS;Database=TechStoreDB;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;
+```
+
+Usa autenticación de Windows y la instancia local `SQLEXPRESS`. Si su instancia se llama distinto, hay que cambiar el valor de `Server` 
+(por ejemplo `.` o `NOMBRE-PC\SQLEXPRESS`).
 
 ### Credenciales de acceso
 
@@ -81,30 +105,35 @@ Restricciones en la base de datos: `Precio > 0`, `Stock >= 0` y nombre de catego
 |---|---|
 | `uisil` | `1234` |
 
-Son credenciales de demostración definidas en `FrmLogin.cs`.
+Son credenciales de demostración que están escritas en `FrmLogin.cs`. Después de tres intentos fallidos la aplicación se cierra.
 
 ## Reglas de validación
 
 | Campo | Regla |
 |---|---|
-| Nombre de categoría | Obligatorio, único y no puede ser solo números |
+| Nombre de categoría | Obligatorio, único y no puede ser solo un número |
 | Descripción de categoría | Obligatoria |
 | Nombre de producto | Obligatorio |
-| Precio | Número mayor que 0 y máximo 99 999 999,99 |
-| Stock | Entero, no puede ser negativo |
-| Categoría del producto | Debe seleccionarse una |
-
-Un producto se considera de **stock bajo** cuando tiene 5 unidades o menos.
+| Precio | Número mayor que 0 (máximo 99 999 999,99) |
+| Stock | Número entero, igual o mayor que 0 |
+| Categoría del producto | Hay que seleccionar una |
 
 ## Limitaciones conocidas
 
-- El usuario y la contraseña están escritos en el código; no hay tabla de usuarios.
-- La cadena de conexión está definida en el código, no en un archivo de configuración.
-- El límite de stock bajo (5) es fijo.
+- El usuario y la contraseña están escritos en el código; no hay tabla de usuarios porque el enunciado limita la base a dos tablas.
+- La cadena de conexión también está en el código y no en un archivo de configuración.
+- El límite de stock bajo (5 unidades) es fijo.
 
-```
-  /\_/\
- ( ^.^ )
-  )   (
- (__ __)
- ```
+## Uso de inteligencia artificial
+
+Usé **Claude** (Anthropic) como apoyo para aprender, comprender, analizar y revisar, no para entregar el proyecto hecho. En concreto:
+
+| Propósito | Parte del proyecto |
+|---|---|
+| Explicarme conceptos (clases, propiedades, encapsulamiento, capas, `TryParse`, `ErrorProvider`) | Todo el proyecto |
+| Orientarme en el diseño de la base de datos y en la conexión con SQL Server | Script SQL, `ConexionSql`, clases de `Datos` |
+| Revisar mi código y ayudarme a entender errores | Capas de `Logica` y `Presentacion` |
+| Revisar el proyecto contra el enunciado | Revisión final |
+| Revisar la redacción de la documentación | Este README |
+
+El código lo escribí yo y puedo explicar cómo funciona cada parte.
