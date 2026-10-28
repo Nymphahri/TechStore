@@ -61,7 +61,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             errorProviderProductos = new ErrorProvider(components);
             btnLimpiarProducto = new Guna.UI2.WinForms.Guna2Button();
-            btnEliminar = new Guna.UI2.WinForms.Guna2Button();
+            btnEliminarProducto = new Guna.UI2.WinForms.Guna2Button();
             cboCategorias = new Guna.UI2.WinForms.Guna2ComboBox();
             lblCategoriaProductos = new Label();
             btnModificarProducto = new Guna.UI2.WinForms.Guna2Button();
@@ -122,32 +122,32 @@
             btnLimpiarProducto.Text = "    Limpiar";
             btnLimpiarProducto.Click += btnLimpiarProducto_Click;
             // 
-            // btnEliminar
+            // btnEliminarProducto
             // 
-            btnEliminar.BackColor = Color.Transparent;
-            btnEliminar.BorderColor = Color.Lavender;
-            btnEliminar.BorderRadius = 8;
-            btnEliminar.Cursor = Cursors.Hand;
-            btnEliminar.CustomizableEdges = customizableEdges3;
-            btnEliminar.DisabledState.BorderColor = Color.DarkGray;
-            btnEliminar.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnEliminar.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnEliminar.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnEliminar.FillColor = Color.FromArgb(242, 161, 161);
-            btnEliminar.FocusedColor = Color.FromArgb(210, 230, 247);
-            btnEliminar.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
-            btnEliminar.ForeColor = Color.FromArgb(90, 18, 18);
-            btnEliminar.HoverState.FillColor = Color.FromArgb(42, 32, 112);
-            btnEliminar.Image = (Image)resources.GetObject("btnEliminar.Image");
-            btnEliminar.ImageAlign = HorizontalAlignment.Left;
-            btnEliminar.Location = new Point(274, 355);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.PressedColor = Color.FromArgb(210, 230, 247);
-            btnEliminar.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnEliminar.Size = new Size(120, 49);
-            btnEliminar.TabIndex = 17;
-            btnEliminar.Text = "     Eliminar";
-            btnEliminar.Click += btnEliminar_Click;
+            btnEliminarProducto.BackColor = Color.Transparent;
+            btnEliminarProducto.BorderColor = Color.Lavender;
+            btnEliminarProducto.BorderRadius = 8;
+            btnEliminarProducto.Cursor = Cursors.Hand;
+            btnEliminarProducto.CustomizableEdges = customizableEdges3;
+            btnEliminarProducto.DisabledState.BorderColor = Color.DarkGray;
+            btnEliminarProducto.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnEliminarProducto.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnEliminarProducto.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnEliminarProducto.FillColor = Color.FromArgb(242, 161, 161);
+            btnEliminarProducto.FocusedColor = Color.FromArgb(210, 230, 247);
+            btnEliminarProducto.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnEliminarProducto.ForeColor = Color.FromArgb(90, 18, 18);
+            btnEliminarProducto.HoverState.FillColor = Color.FromArgb(42, 32, 112);
+            btnEliminarProducto.Image = (Image)resources.GetObject("btnEliminarProducto.Image");
+            btnEliminarProducto.ImageAlign = HorizontalAlignment.Left;
+            btnEliminarProducto.Location = new Point(274, 355);
+            btnEliminarProducto.Name = "btnEliminarProducto";
+            btnEliminarProducto.PressedColor = Color.FromArgb(210, 230, 247);
+            btnEliminarProducto.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnEliminarProducto.Size = new Size(120, 49);
+            btnEliminarProducto.TabIndex = 17;
+            btnEliminarProducto.Text = "     Eliminar";
+            btnEliminarProducto.Click += btnEliminarProducto_Click;
             // 
             // cboCategorias
             // 
@@ -488,7 +488,7 @@
             pnlGradientDatos.BorderColor = Color.FromArgb(213, 220, 230);
             pnlGradientDatos.BorderRadius = 16;
             pnlGradientDatos.Controls.Add(btnLimpiarProducto);
-            pnlGradientDatos.Controls.Add(btnEliminar);
+            pnlGradientDatos.Controls.Add(btnEliminarProducto);
             pnlGradientDatos.Controls.Add(lblDatosProducto);
             pnlGradientDatos.Controls.Add(lblNombreProducto);
             pnlGradientDatos.Controls.Add(txtPrecioProducto);
@@ -601,7 +601,7 @@
         private Guna.UI2.WinForms.Guna2Button btnLimpiarProducto;
         private Guna.UI2.WinForms.Guna2Button btnGuardarProducto;
         private Guna.UI2.WinForms.Guna2Button btnModificarProducto;
-        private Guna.UI2.WinForms.Guna2Button btnEliminar;
+        private Guna.UI2.WinForms.Guna2Button btnEliminarProducto;
         private Label lblNombreProducto;
         private Guna.UI2.WinForms.Guna2TextBox txtPrecioProducto;
         private Label lblPrecioProducto;

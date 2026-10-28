@@ -10,6 +10,20 @@ namespace TechStore.Datos
         // Instancia de la clase ConexionSql para manejar la conexión a la base de datos
         private readonly ConexionSql conexionSql = new ConexionSql();
 
+        // Consulta base: productos con el nombre de su categoría.
+        // La usan ObtenerProductos y BuscarProductosPorNombre.
+        private const string ConsultaProductosConCategoria =
+            @"SELECT p.IdProducto,
+                p.Nombre,
+                p.Precio,
+                p.Stock,
+                p.FechaRegistro,
+                p.IdCategoria,
+                c.Nombre AS Categoria
+            FROM Productos p
+            INNER JOIN Categorias c
+                ON p.IdCategoria = c.IdCategoria";
+
         // Método privado para crear un parámetro SQL para el precio con precisión y escala específica
         private SqlParameter CrearParametroPrecio(decimal precio)
         {
@@ -25,17 +39,7 @@ namespace TechStore.Datos
             DataTable tablaProductos = new DataTable();
 
             const string consulta =
-                @"SELECT p.IdProducto,
-                    p.Nombre,
-                    p.Precio,
-                    p.Stock,
-                    p.FechaRegistro,
-                    p.IdCategoria,
-                    c.Nombre AS Categoria
-                FROM Productos p
-                INNER JOIN Categorias c
-                    ON p.IdCategoria = c.IdCategoria
-                ORDER BY p.Nombre;";
+                ConsultaProductosConCategoria + " ORDER BY p.Nombre;";
 
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
@@ -77,17 +81,8 @@ namespace TechStore.Datos
             DataTable tablaProductos = new DataTable();
 
             const string consulta =
-                @"SELECT p.IdProducto,
-                    p.Nombre,
-                    p.Precio,
-                    p.Stock,
-                    p.FechaRegistro,
-                    p.IdCategoria,
-                    c.Nombre AS Categoria
-                FROM Productos p
-                INNER JOIN Categorias c ON p.IdCategoria = c.IdCategoria
-                WHERE p.Nombre LIKE @Nombre
-                ORDER BY p.Nombre;";
+                ConsultaProductosConCategoria +
+                " WHERE p.Nombre LIKE @Nombre ORDER BY p.Nombre;";
 
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))

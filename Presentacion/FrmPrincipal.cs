@@ -1,9 +1,8 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 using TechStore.Logica;
-using TechStore.Presentacion;
 
-namespace TechStore
+namespace TechStore.Presentacion
 {
     public partial class FrmPrincipal : Form
     {

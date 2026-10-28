@@ -1,5 +1,4 @@
-﻿using Guna.UI2.WinForms;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
 using TechStore.Entidades;
 using TechStore.Logica;
@@ -49,7 +48,7 @@ namespace TechStore.Presentacion
             txtNombre.Focus();
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void btnLimpiarCategoria_Click(object sender, EventArgs e)
         {
             ActualizarVistaCategorias();
         }
@@ -136,7 +135,7 @@ namespace TechStore.Presentacion
          * Guarda una nueva categoría en la base de datos y 
          * actualiza.
          * -------------------------------------------------- */
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnGuardarCategoria_Click(object sender, EventArgs e)
         {
             bool categoriaValida = ObtenerCategoriaDelFormulario(out Categoria categoria);
 
@@ -181,7 +180,7 @@ namespace TechStore.Presentacion
          * Modifica la categoría seleccionada en la base de 
          * datos y actualiza.
          * -------------------------------------------------- */
-        private void btnModificar_Click(object sender, EventArgs e)
+        private void btnModificarCategoria_Click(object sender, EventArgs e)
         {
             if (HayCategoriaSeleccionada("modificar") == false)
             {
@@ -233,7 +232,7 @@ namespace TechStore.Presentacion
          * Elimina la categoría seleccionada de la base de 
          * datos y actualiza.
          * -------------------------------------------------- */
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnEliminarCategoria_Click(object sender, EventArgs e)
         {
             if (HayCategoriaSeleccionada("eliminar") == false)
             {

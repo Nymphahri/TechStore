@@ -155,6 +155,18 @@ namespace TechStore.Presentacion
 
             errorProviderProductos.Clear();
 
+            bool formularioValido = true;
+
+            // Nombre obligatorio
+            if (string.IsNullOrWhiteSpace(txtNombreProducto.Text))
+            {
+                errorProviderProductos.SetError(txtNombreProducto,
+                    "El nombre del producto es obligatorio.");
+
+                formularioValido = false;
+            }
+
+            // Precio: debe ser un número
             bool precioEsValido = decimal.TryParse(txtPrecioProducto.Text.Trim(), out decimal precio);
 
             if (precioEsValido == false)
@@ -162,9 +174,10 @@ namespace TechStore.Presentacion
                 errorProviderProductos.SetError(txtPrecioProducto,
                     "Ingrese un precio numérico válido.");
 
-                return false;
+                formularioValido = false;
             }
 
+            // Stock: debe ser un número entero
             bool stockEsValido = int.TryParse(txtStock.Text.Trim(), out int stock);
 
             if (stockEsValido == false)
@@ -172,23 +185,31 @@ namespace TechStore.Presentacion
                 errorProviderProductos.SetError(txtStock,
                     "Ingrese un stock entero válido.");
 
-                return false;
+                formularioValido = false;
             }
 
+            // Categoría obligatoria
             if (cboCategorias.SelectedIndex == -1)
             {
                 errorProviderProductos.SetError(cboCategorias,
                     "Seleccione una categoría.");
 
+                formularioValido = false;
+            }
+
+            // Si algún campo falló, ya quedaron todos marcados.
+            if (formularioValido == false)
+            {
                 return false;
             }
 
+            // Todos los campos tienen el formato correcto: se arma el objeto.
             producto.Nombre = txtNombreProducto.Text.Trim();
             producto.Precio = precio;
             producto.Stock = stock;
-
             producto.IdCategoria = Convert.ToInt32(cboCategorias.SelectedValue);
 
+            // La lógica revisa las reglas (precio > 0, stock >= 0, etc.)
             bool productoValido = productoLogica.ValidarProducto(producto, out string campoConError, out string mensajeError);
 
             if (productoValido == false)
@@ -306,7 +327,7 @@ namespace TechStore.Presentacion
         /* --------------------------------------------------
          * Eliminar producto
          * -------------------------------------------------- */
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnEliminarProducto_Click(object sender, EventArgs e)
         {
             if (idProductoSeleccionado == 0)
             {

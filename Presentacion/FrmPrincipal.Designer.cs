@@ -1,4 +1,4 @@
-﻿namespace TechStore
+﻿namespace TechStore.Presentacion
 {
     partial class FrmPrincipal
     {

@@ -11,11 +11,24 @@ namespace TechStore.Logica
 
         public const int LimiteStockBajo = 5;
 
-        // Método para obtener todos los productos, incluyendo una columna calculada para el valor del inventario.
+        // Agrega a la tabla la columna calculada del valor del inventario (Precio × Stock).
+        // Esta columna se calcula en la aplicación y no se guarda en la base de datos.
+        private void AgregarColumnaValorInventario(DataTable tabla)
+        {
+            tabla.Columns.Add("ValorInventario", typeof(decimal), "Precio * Stock");
+        }
+
         public DataTable ObtenerProductos()
         {
             DataTable tabla = productoDatos.ObtenerProductos();
-            tabla.Columns.Add("ValorInventario", typeof(decimal), "Precio * Stock");
+            AgregarColumnaValorInventario(tabla);
+            return tabla;
+        }
+
+        public DataTable BuscarProductosPorNombre(string nombre)
+        {
+            DataTable tabla = productoDatos.BuscarProductosPorNombre(nombre);
+            AgregarColumnaValorInventario(tabla);
             return tabla;
         }
 
@@ -68,15 +81,6 @@ namespace TechStore.Logica
             campoConError = string.Empty;
             mensajeError = string.Empty;
             return true;
-        }
-
-        // Método para buscar productos por nombre, incluyendo una columna
-        // calculada para el valor del inventario.
-        public DataTable BuscarProductosPorNombre(string nombre)
-        {
-            DataTable tabla = productoDatos.BuscarProductosPorNombre(nombre);
-            tabla.Columns.Add("ValorInventario", typeof(decimal), "Precio * Stock");
-            return tabla;
         }
 
         // Método para obtener un resumen del inventario: total de productos,
