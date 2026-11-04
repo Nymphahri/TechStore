@@ -10,6 +10,7 @@ namespace TechStore.Presentacion
         private readonly CategoriaLogica categoriaLogica = new CategoriaLogica();
 
         private int idCategoriaSeleccionada = 0;
+        private string nombreCategoriaSeleccionada = string.Empty;
 
         public FrmCategorias()
         {
@@ -44,6 +45,7 @@ namespace TechStore.Presentacion
             txtBuscarCategoria.Clear();
             errorProviderCategorias.Clear();
             idCategoriaSeleccionada = 0;
+            nombreCategoriaSeleccionada = string.Empty;
             dgvCategorias.ClearSelection();
             txtNombre.Focus();
         }
@@ -85,6 +87,12 @@ namespace TechStore.Presentacion
 
             dgvCategorias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            // Al cambiar la lista, el registro anterior deja de estar seleccionado.
+            idCategoriaSeleccionada = 0;
+            nombreCategoriaSeleccionada = string.Empty;
+            txtNombre.Clear();
+            txtDescripcion.Clear();
+            errorProviderCategorias.Clear();
             dgvCategorias.ClearSelection();
         }
 
@@ -266,10 +274,8 @@ namespace TechStore.Presentacion
                 return;
             }
 
-            string nombreCategoria = txtNombre.Text;
-
             DialogResult respuesta = MessageBox.Show(
-                $"¿Desea eliminar la categoría \"{nombreCategoria}\"?",
+                $"¿Desea eliminar la categoría \"{nombreCategoriaSeleccionada}\"?",
                 "Confirmar la eliminación",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -349,8 +355,9 @@ namespace TechStore.Presentacion
             DataGridViewRow fila = dgvCategorias.Rows[e.RowIndex];
 
             idCategoriaSeleccionada = Convert.ToInt32(fila.Cells["IdCategoria"].Value);
+            nombreCategoriaSeleccionada = fila.Cells["Nombre"].Value?.ToString() ?? string.Empty;
 
-            txtNombre.Text = fila.Cells["Nombre"].Value?.ToString();
+            txtNombre.Text = nombreCategoriaSeleccionada;
             txtDescripcion.Text = fila.Cells["Descripcion"].Value?.ToString();
         }
 

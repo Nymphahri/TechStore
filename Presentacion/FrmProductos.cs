@@ -119,7 +119,13 @@ namespace TechStore.Presentacion
             dgvProductos.DataSource = productos;
             ConfigurarGridProductos();
 
-            // Evita que una fila quede seleccionada automáticamente.
+            // Al cambiar la lista, el registro anterior deja de estar seleccionado.
+            idProductoSeleccionado = 0;
+            txtNombreProducto.Clear();
+            txtPrecioProducto.Clear();
+            txtStock.Clear();
+            cboCategorias.SelectedIndex = -1;
+            errorProviderProductos.Clear();
             dgvProductos.ClearSelection();
         }
 
