@@ -64,6 +64,13 @@ namespace TechStore.Logica
                 return false;
             }
 
+            if (decimal.Round(producto.Precio, 2) != producto.Precio)
+            {
+                campoConError = "Precio";
+                mensajeError = "El precio debe tener como máximo dos decimales.";
+                return false;
+            }
+
             if (producto.Stock < 0)
             {
                 campoConError = "Stock";
