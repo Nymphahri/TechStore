@@ -153,7 +153,7 @@ namespace TechStore.Presentacion
         }
 
         /* --------------------------------------------------
-         * Obtener producto del formulario y validarlo
+         * Leer el formulario y convertir los datos numéricos
          * -------------------------------------------------- */
         private bool ObtenerProductoDelFormulario(out Producto producto)
         {
@@ -161,26 +161,13 @@ namespace TechStore.Presentacion
 
             errorProviderProductos.Clear();
 
-            bool formularioValido = true;
-
-            // Nombre obligatorio
-            if (string.IsNullOrWhiteSpace(txtNombreProducto.Text))
-            {
-                errorProviderProductos.SetError(txtNombreProducto,
-                    "El nombre del producto es obligatorio.");
-
-                formularioValido = false;
-            }
-
             // Precio: debe ser un número
             bool precioEsValido = decimal.TryParse(txtPrecioProducto.Text.Trim(), out decimal precio);
 
             if (precioEsValido == false)
             {
-                errorProviderProductos.SetError(txtPrecioProducto,
-                    "Ingrese un precio numérico válido.");
-
-                formularioValido = false;
+                MostrarErrorProducto("Precio", "Ingrese un precio numérico válido.");
+                return false;
             }
 
             // Stock: debe ser un número entero
@@ -188,24 +175,7 @@ namespace TechStore.Presentacion
 
             if (stockEsValido == false)
             {
-                errorProviderProductos.SetError(txtStock,
-                    "Ingrese un stock entero válido.");
-
-                formularioValido = false;
-            }
-
-            // Categoría obligatoria
-            if (cboCategorias.SelectedIndex == -1)
-            {
-                errorProviderProductos.SetError(cboCategorias,
-                    "Seleccione una categoría.");
-
-                formularioValido = false;
-            }
-
-            // Si algún campo falló, ya quedaron todos marcados.
-            if (formularioValido == false)
-            {
+                MostrarErrorProducto("Stock", "Ingrese un stock entero válido.");
                 return false;
             }
 
@@ -213,36 +183,41 @@ namespace TechStore.Presentacion
             producto.Nombre = txtNombreProducto.Text.Trim();
             producto.Precio = precio;
             producto.Stock = stock;
-            producto.IdCategoria = Convert.ToInt32(cboCategorias.SelectedValue);
-
-            // La lógica revisa las reglas (precio > 0, stock >= 0, etc.)
-            bool productoValido = productoLogica.ValidarProducto(producto, out string campoConError, out string mensajeError);
-
-            if (productoValido == false)
+            // Si no hay selección, el objeto conserva IdCategoria = 0.
+            // La capa de lógica decide si esa categoría es válida.
+            if (cboCategorias.SelectedIndex >= 0)
             {
-                switch (campoConError)
-                {
-                    case "Nombre":
-                        errorProviderProductos.SetError(txtNombreProducto, mensajeError);
-                        break;
-
-                    case "Precio":
-                        errorProviderProductos.SetError(txtPrecioProducto, mensajeError);
-                        break;
-
-                    case "Stock":
-                        errorProviderProductos.SetError(txtStock, mensajeError);
-                        break;
-
-                    case "Categoria":
-                        errorProviderProductos.SetError(cboCategorias, mensajeError);
-                        break;
-                }
-
-                return false;
+                producto.IdCategoria = Convert.ToInt32(cboCategorias.SelectedValue);
             }
 
             return true;
+        }
+
+        // Traduce el campo indicado por la lógica a un control del formulario.
+        private void MostrarErrorProducto(string campoConError, string mensajeError)
+        {
+            MessageBox.Show(mensajeError, "Datos incorrectos",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            switch (campoConError)
+            {
+                case "Nombre":
+                    errorProviderProductos.SetError(txtNombreProducto, mensajeError);
+                    txtNombreProducto.Focus();
+                    break;
+                case "Precio":
+                    errorProviderProductos.SetError(txtPrecioProducto, mensajeError);
+                    txtPrecioProducto.Focus();
+                    break;
+                case "Stock":
+                    errorProviderProductos.SetError(txtStock, mensajeError);
+                    txtStock.Focus();
+                    break;
+                case "Categoria":
+                    errorProviderProductos.SetError(cboCategorias, mensajeError);
+                    cboCategorias.Focus();
+                    break;
+            }
         }
 
         /* --------------------------------------------------
@@ -259,7 +234,14 @@ namespace TechStore.Presentacion
 
             try
             {
-                productoLogica.GuardarProducto(producto);
+                bool operacionValida = productoLogica.GuardarProducto(
+                    producto, out string campoConError, out string mensajeError);
+
+                if (operacionValida == false)
+                {
+                    MostrarErrorProducto(campoConError, mensajeError);
+                    return;
+                }
 
                 MessageBox.Show(
                     "El producto se registró correctamente.",
@@ -308,7 +290,14 @@ namespace TechStore.Presentacion
 
             try
             {
-                productoLogica.ActualizarProducto(producto);
+                bool operacionValida = productoLogica.ActualizarProducto(
+                    producto, out string campoConError, out string mensajeError);
+
+                if (operacionValida == false)
+                {
+                    MostrarErrorProducto(campoConError, mensajeError);
+                    return;
+                }
 
                 MessageBox.Show(
                     "El producto se modificó correctamente.",
@@ -359,7 +348,15 @@ namespace TechStore.Presentacion
 
             try
             {
-                productoLogica.EliminarProducto(idProductoSeleccionado);
+                bool operacionValida = productoLogica.EliminarProducto(
+                    idProductoSeleccionado, out string mensajeError);
+
+                if (operacionValida == false)
+                {
+                    MessageBox.Show(mensajeError, "Operación no realizada",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 MessageBox.Show(
                     "El producto se eliminó correctamente.",

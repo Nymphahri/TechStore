@@ -16,7 +16,10 @@ namespace TechStore.Datos
             DataTable tablaCategorias = new DataTable();
 
             const string consulta =
-                @"SELECT IdCategoria, Nombre, Descripcion
+                @"SELECT 
+                    IdCategoria, 
+                    Nombre, 
+                    Descripcion
                 FROM Categorias
                 ORDER BY Nombre;";
 
@@ -31,10 +34,12 @@ namespace TechStore.Datos
             return tablaCategorias;
         }
 
-        public void GuardarDatos(Categoria categoria)
+        public void GuardarCategoria(Categoria categoria)
         {
             const string consulta =
-                @"INSERT INTO Categorias (Nombre, Descripcion)
+                @"INSERT INTO Categorias (
+                    Nombre, 
+                    Descripcion)
                 VALUES (@Nombre, @Descripcion);";
 
             using (SqlConnection conexion = conexionSql.CrearConexion())
@@ -49,7 +54,7 @@ namespace TechStore.Datos
             }
         }
 
-        public void ActualizarDatos(Categoria categoria)
+        public int ActualizarCategoria(Categoria categoria)
         {
             const string consulta =
                 @"UPDATE Categorias
@@ -67,11 +72,11 @@ namespace TechStore.Datos
                 comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 250).Value = categoria.Descripcion;
 
                 conexion.Open();
-                comando.ExecuteNonQuery();
+                return comando.ExecuteNonQuery();
             }
         }
 
-        public void Eliminar(int idCategoria)
+        public int EliminarCategoria(int idCategoria)
         {
             const string consulta =
                 @"DELETE FROM Categorias
@@ -83,7 +88,7 @@ namespace TechStore.Datos
                 comando.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = idCategoria;
 
                 conexion.Open();
-                comando.ExecuteNonQuery();
+                return comando.ExecuteNonQuery();
             }
         }
 
@@ -93,10 +98,12 @@ namespace TechStore.Datos
             DataTable tablaCategorias = new DataTable();
 
             const string consulta =
-                @"SELECT IdCategoria, Nombre, Descripcion
-        FROM Categorias
-        WHERE Nombre LIKE @Nombre
-        ORDER BY Nombre;";
+                @"SELECT IdCategoria, 
+                    Nombre, 
+                    Descripcion
+                FROM Categorias
+                WHERE Nombre LIKE @Nombre
+                ORDER BY Nombre;";
 
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))

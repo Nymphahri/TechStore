@@ -38,8 +38,7 @@ namespace TechStore.Datos
         {
             DataTable tablaProductos = new DataTable();
 
-            const string consulta =
-                ConsultaProductosConCategoria + " ORDER BY p.Nombre;";
+            const string consulta = ConsultaProductosConCategoria + " ORDER BY p.Nombre;";
 
             using (SqlConnection conexion = conexionSql.CrearConexion())
             using (SqlCommand comando = new SqlCommand(consulta, conexion))
@@ -55,7 +54,12 @@ namespace TechStore.Datos
         public void GuardarProducto(Producto producto)
         {
             const string consulta =
-                @"INSERT INTO Productos (Nombre, Precio, Stock, FechaRegistro, IdCategoria)
+                @"INSERT INTO Productos (
+                    Nombre, 
+                    Precio, 
+                    Stock, 
+                    FechaRegistro, 
+                    IdCategoria)
                 VALUES (@Nombre, @Precio, @Stock, @FechaRegistro, @IdCategoria);";
 
             using (SqlConnection conexion = conexionSql.CrearConexion())
@@ -97,7 +101,7 @@ namespace TechStore.Datos
             return tablaProductos;
         }
 
-        public void ActualizarProducto(Producto producto)
+        public int ActualizarProducto(Producto producto)
         {
             const string consulta =
                 @"UPDATE Productos
@@ -121,11 +125,11 @@ namespace TechStore.Datos
                 comando.Parameters.Add("@IdCategoria", SqlDbType.Int).Value = producto.IdCategoria;
 
                 conexion.Open();
-                comando.ExecuteNonQuery();
+                return comando.ExecuteNonQuery();
             }
         }
 
-        public void EliminarProducto(int idProducto)
+        public int EliminarProducto(int idProducto)
         {
             const string consulta =
                 @"DELETE FROM Productos
@@ -137,7 +141,7 @@ namespace TechStore.Datos
                 comando.Parameters.Add("@IdProducto", SqlDbType.Int).Value = idProducto;
 
                 conexion.Open();
-                comando.ExecuteNonQuery();
+                return comando.ExecuteNonQuery();
             }
         }
 

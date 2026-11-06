@@ -23,7 +23,7 @@ escogida desde un ComboBox.
 - **Valor del inventario:** se calcula en la aplicación como `Precio × Stock`. No se guarda en la base de datos.
 - **Fecha de registro:** se asigna sola con `DateTime.Now` al registrar un producto.
 - **Validaciones:** campos obligatorios, precio mayor que cero, stock igual o mayor que cero, datos numéricos válidos y 
-categoría obligatoria. Los errores se muestran junto al control con un `ErrorProvider`.
+categoría obligatoria y precio con un máximo de dos decimales. Los errores se muestran con `ErrorProvider` y `MessageBox`; el cursor vuelve al campo que debe corregirse.
 - **Mensajes (MessageBox):** confirmación de eliminaciones, operaciones exitosas, errores y búsquedas sin resultados.
 - **Extras que agregué:** inicio de sesión, botón para probar la conexión con SQL Server, y un panel principal con el total de productos, 
 la cantidad con stock bajo (5 unidades o menos) y el valor total del inventario.
@@ -58,8 +58,8 @@ TechStore
 └── Presentacion   FrmLogin, FrmPrincipal, FrmCategorias, FrmProductos, AyudanteInterfaz
 ```
 
-- **Presentacion:** formularios, controles, entrada de datos y presentación de la información.
-- **Logica:** validaciones y reglas del sistema (por ejemplo, que el precio sea mayor que cero).
+- **Presentacion:** lee los controles, convierte el texto a números con `TryParse`, solicita las operaciones a la lógica y muestra resultados o errores.
+- **Logica:** valida las reglas antes de guardar o modificar, interpreta los errores de categorías duplicadas o relaciones no permitidas y comprueba si se modificó o eliminó un registro.
 - **Datos:** todas las consultas SQL. Los formularios nunca escriben SQL.
 - **Entidades:** las clases `Categoria` y `Producto`, con campos privados y propiedades `get`/`set`.
 
@@ -84,7 +84,7 @@ Además hay restricciones `Precio > 0` y `Stock >= 0`. El script incluye datos d
 
 1. Clonar o descargar el repositorio y abrir `TechStore.slnx` en Visual Studio.
 2. Abrir SSMS, conectarse a su servidor y abrir el archivo `Datos/BaseDatos/TechStoreDB.sql`.
-3. Ejecutar el script completo. Crea la base `TechStoreDB`, las dos tablas, las restricciones y los datos de prueba.
+3. En una instalación nueva, ejecutar el script completo. Crea la base `TechStoreDB`, las dos tablas, las restricciones y los datos de prueba. Si las tablas ya existen, no volver a ejecutar el script completo: no está preparado para repetirse sobre una base instalada.
 4. Revisar la cadena de conexión (ver la siguiente sección).
 5. En Visual Studio, esperar a que se restauren los paquetes NuGet y presionar **F5**.
 6. En la pantalla de inicio de sesión se puede usar **Probar conexión** para confirmar que la aplicación llega a SQL Server.
@@ -94,11 +94,10 @@ Además hay restricciones `Precio > 0` y `Stock >= 0`. El script incluye datos d
 La cadena de conexión está en `Datos/ConexionSql.cs`:
 
 ```csharp
-Server=.\SQLEXPRESS;Database=TechStoreDB;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;
+Server=GRACY\SQLEXPRESS;Database=TechStoreDB;Integrated Security=True;Encrypt=False;
 ```
 
-Usa autenticación de Windows y la instancia local `SQLEXPRESS`. Si su instancia se llama distinto, hay que cambiar el valor de `Server` 
-(por ejemplo `.` o `NOMBRE-PC\SQLEXPRESS`).
+Esta es la configuración actual del equipo de desarrollo y usa autenticación de Windows. El valor de `Server` debe coincidir con el servidor donde se creó `TechStoreDB`; puede consultarse en la conexión de SSMS.
 
 ### Credenciales de acceso
 
@@ -115,9 +114,18 @@ Son credenciales de demostración que están escritas en `FrmLogin.cs`. Después
 | Nombre de categoría | Obligatorio, único y no puede ser solo un número |
 | Descripción de categoría | Obligatoria |
 | Nombre de producto | Obligatorio |
-| Precio | Número mayor que 0 (máximo 99 999 999,99) |
+| Precio | Número mayor que 0, con máximo dos decimales y hasta 99 999 999,99 |
 | Stock | Número entero, igual o mayor que 0 |
 | Categoría del producto | Hay que seleccionar una |
+
+## Comprobación de operaciones
+
+Al modificar o eliminar, Datos devuelve el número de filas afectadas por la consulta.
+Si el resultado es cero, Lógica informa que el registro ya no existe y Presentación muestra el aviso.
+La aplicación no anuncia una operación exitosa cuando no encontró el registro.
+
+Antes de exponer, probar el registro, búsqueda, modificación y eliminación de categorías y productos,
+los campos vacíos, los valores numéricos inválidos y las confirmaciones de eliminación.
 
 ## Limitaciones conocidas
 
@@ -127,14 +135,4 @@ Son credenciales de demostración que están escritas en `FrmLogin.cs`. Después
 
 ## Uso de inteligencia artificial
 
-Usé **Claude** (Anthropic) como apoyo para aprender, comprender, analizar y revisar, no para entregar el proyecto hecho. En concreto:
-
-| Propósito | Parte del proyecto |
-|---|---|
-| Explicarme conceptos (clases, propiedades, encapsulamiento, capas, `TryParse`, `ErrorProvider`) | Todo el proyecto |
-| Orientarme en el diseño de la base de datos y en la conexión con SQL Server | Script SQL, `ConexionSql`, clases de `Datos` |
-| Revisar mi código y ayudarme a entender errores | Capas de `Logica` y `Presentacion` |
-| Revisar el proyecto contra el enunciado | Revisión final |
-| Revisar la redacción de la documentación | Este README |
-
-El código lo escribí yo y puedo explicar cómo funciona cada parte.
+Usé Codex (OpenAI) como apoyo para analizar las validaciones, comprender cómo se comunican las capas y explicar el recorrido de un producto desde el formulario hasta la base de datos.

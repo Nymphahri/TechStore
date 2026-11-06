@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Microsoft.Data.SqlClient;
+using System.Data;
 using TechStore.Datos;
 using TechStore.Entidades;
 
@@ -7,12 +8,15 @@ namespace TechStore.Logica
     // Clase que contiene la lógica de negocio para la gestión de productos.
     public class ProductoLogica
     {
+        // SQL Server rechaza la relación cuando la categoría ya no existe.
+        private const int ErrorRelacionConCategoria = 547;
+
         private readonly ProductoDatos productoDatos = new ProductoDatos();
 
         public const int LimiteStockBajo = 5;
 
-        // Agrega a la tabla la columna calculada del valor del inventario (Precio × Stock).
-        // Esta columna se calcula en la aplicación y no se guarda en la base de datos.
+        // Agrega a la tabla la columna calculada del valor del inventario Precio × Stock.
+        // Esta columna se calcula en la aplicación de forma temporal y no se guarda en la base de datos.
         private void AgregarColumnaValorInventario(DataTable tabla)
         {
             tabla.Columns.Add("ValorInventario", typeof(decimal), "Precio * Stock");
@@ -64,6 +68,14 @@ namespace TechStore.Logica
                 return false;
             }
 
+            // Al convertir el precio a centavos, no debe quedar una fracción.
+            if ((producto.Precio * 100) % 1 != 0)
+            {
+                campoConError = "Precio";
+                mensajeError = "El precio debe tener como máximo dos decimales.";
+                return false;
+            }
+
             if (producto.Stock < 0)
             {
                 campoConError = "Stock";
@@ -93,20 +105,95 @@ namespace TechStore.Logica
             );
         }
 
-        public void GuardarProducto(Producto producto)
+        public bool GuardarProducto(Producto producto, out string campoConError, out string mensajeError)
         {
+            if (ValidarProducto(producto, out campoConError, out mensajeError) == false)
+            {
+                return false;
+            }
+
             producto.FechaRegistro = DateTime.Now;
-            productoDatos.GuardarProducto(producto);
+            try
+            {
+                productoDatos.GuardarProducto(producto);
+                return true;
+            }
+
+            catch (SqlException errorBaseDatos)
+            {
+                // Las reglas de precio y stock ya se comprobaron antes de guardar.
+                if (errorBaseDatos.Number == ErrorRelacionConCategoria)
+                {
+                    campoConError = "Categoria";
+                    mensajeError = "La categoría seleccionada ya no está disponible. " +
+                        "Cierre y vuelva a abrir Productos para actualizar las categorías.";
+                    return false;
+                }
+
+                // Los demás errores conservan el manejo general del formulario.
+                throw;
+            }
         }
 
-        public void ActualizarProducto(Producto producto)
+        public bool ActualizarProducto(Producto producto, out string campoConError, out string mensajeError)
         {
-            productoDatos.ActualizarProducto(producto);
+            if (producto.IdProducto <= 0)
+            {
+                campoConError = "Seleccion";
+                mensajeError = "Seleccione un producto antes de modificar.";
+                return false;
+            }
+
+            if (ValidarProducto(producto, out campoConError, out mensajeError) == false)
+            {
+                return false;
+            }
+
+            try
+            {
+                int filasAfectadas = productoDatos.ActualizarProducto(producto);
+                if (filasAfectadas == 0)
+                {
+                    campoConError = "Seleccion";
+                    mensajeError = "El producto ya no existe. Actualice la lista antes de continuar.";
+                    return false;
+                }
+                return true;
+            }
+
+            catch (SqlException errorBaseDatos)
+            {
+                // Las reglas de precio y stock ya se comprobaron antes de guardar.
+                if (errorBaseDatos.Number == ErrorRelacionConCategoria)
+                {
+                    campoConError = "Categoria";
+                    mensajeError = "La categoría seleccionada ya no está disponible. " +
+                        "Cierre y vuelva a abrir Productos para actualizar las categorías.";
+                    return false;
+                }
+
+                // Los demás errores conservan el manejo general del formulario.
+                throw;
+            }
         }
 
-        public void EliminarProducto(int idProducto)
+        public bool EliminarProducto(int idProducto, out string mensajeError)
         {
-            productoDatos.EliminarProducto(idProducto);
+            mensajeError = string.Empty;
+            if (idProducto <= 0)
+            {
+                mensajeError = "Seleccione un producto antes de eliminar.";
+                return false;
+            }
+
+            int filasAfectadas = productoDatos.EliminarProducto(idProducto);
+            if (filasAfectadas == 0)
+            {
+                mensajeError = "El producto ya no existe. Actualice la lista antes de continuar.";
+                return false;
+            }
+
+            return true;
         }
     }
 }

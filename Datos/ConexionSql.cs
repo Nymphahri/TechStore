@@ -7,7 +7,7 @@ namespace TechStore.Datos
     {
         // Cadena de conexión a la base de datos
         private readonly string cadenaConexion =
-            @"Server=(localdb)\MSSQLLocalDB;Database=TechStoreDB;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+             @"Server=GRACY\SQLEXPRESS;Database=TechStoreDB;Integrated Security=True;Encrypt=False;";
 
         public SqlConnection CrearConexion()
         {

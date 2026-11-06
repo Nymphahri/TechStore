@@ -61,6 +61,7 @@ namespace TechStore.Presentacion
             {
                 MostrarCategoriasEnGrid(categoriaLogica.ObtenerCategorias());
             }
+
             catch (SqlException)
             {
                 MessageBox.Show(
@@ -105,65 +106,38 @@ namespace TechStore.Presentacion
         }
 
         /* --------------------------------------------------
-         * Captura los datos del formulario y valida la categoría.
+         * Captura los datos del formulario en un objeto Categoria.
          * -------------------------------------------------- */
-        private bool ObtenerCategoriaDelFormulario(out Categoria categoria)
+        private Categoria ObtenerCategoriaDelFormulario()
         {
             errorProviderCategorias.Clear();
 
-            categoria = new Categoria
+            Categoria categoria = new Categoria
             {
                 Nombre = txtNombre.Text.Trim(),
                 Descripcion = txtDescripcion.Text.Trim()
             };
 
-            bool formularioValido = true;
+            return categoria;
+        }
 
-            // Nombre obligatorio
-            if (string.IsNullOrWhiteSpace(categoria.Nombre))
+        // El formulario muestra el error y señala el campo indicado por la lógica.
+        private void MostrarErrorCategoria(string campoConError, string mensajeError)
+        {
+            MessageBox.Show(mensajeError, "Datos incorrectos",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            switch (campoConError)
             {
-                errorProviderCategorias.SetError(txtNombre,
-                    "El nombre de la categoría es obligatorio.");
-
-                formularioValido = false;
+                case "Nombre":
+                    errorProviderCategorias.SetError(txtNombre, mensajeError);
+                    txtNombre.Focus();
+                    break;
+                case "Descripcion":
+                    errorProviderCategorias.SetError(txtDescripcion, mensajeError);
+                    txtDescripcion.Focus();
+                    break;
             }
-
-            // Descripción obligatoria
-            if (string.IsNullOrWhiteSpace(categoria.Descripcion))
-            {
-                errorProviderCategorias.SetError(txtDescripcion,
-                    "La descripción de la categoría es obligatoria.");
-
-                formularioValido = false;
-            }
-
-            // Si falta algún campo, ya quedaron todos marcados.
-            if (formularioValido == false)
-            {
-                return false;
-            }
-
-            // Los campos tienen contenido: la lógica revisa las reglas
-            // (por ejemplo, que el nombre no sea solo un número).
-            bool categoriaEsValida = categoriaLogica.ValidarCategoria(categoria, out string campoConError, out string mensajeError);
-
-            if (categoriaEsValida == false)
-            {
-                switch (campoConError)
-                {
-                    case "Nombre":
-                        errorProviderCategorias.SetError(txtNombre, mensajeError);
-                        break;
-
-                    case "Descripcion":
-                        errorProviderCategorias.SetError(txtDescripcion, mensajeError);
-                        break;
-                }
-
-                return false;
-            }
-
-            return true;
         }
 
         /* --------------------------------------------------
@@ -172,16 +146,18 @@ namespace TechStore.Presentacion
          * -------------------------------------------------- */
         private void btnGuardarCategoria_Click(object sender, EventArgs e)
         {
-            bool categoriaValida = ObtenerCategoriaDelFormulario(out Categoria categoria);
-
-            if (categoriaValida == false)
-            {
-                return;
-            }
+            Categoria categoria = ObtenerCategoriaDelFormulario();
 
             try
             {
-                categoriaLogica.GuardarCategoria(categoria);
+                bool operacionValida = categoriaLogica.GuardarCategoria(
+                    categoria, out string campoConError, out string mensajeError);
+
+                if (operacionValida == false)
+                {
+                    MostrarErrorCategoria(campoConError, mensajeError);
+                    return;
+                }
 
                 MessageBox.Show(
                     "La categoría se registró correctamente.",
@@ -191,23 +167,14 @@ namespace TechStore.Presentacion
 
                 ActualizarVistaCategorias();
             }
-            catch (SqlException errorBaseDatos)
+
+            catch (SqlException)
             {
-                // Error en la base de datos: nombre repetido.
-                if (errorBaseDatos.Number == 2627)
-                {
-                    errorProviderCategorias.SetError(
-                        txtNombre,
-                        "Ya existe una categoría con ese nombre.");
-                }
-                else
-                {
-                    MessageBox.Show(
-                        "No fue posible guardar la categoría.",
-                        "Error en la base de datos",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
+                MessageBox.Show(
+                    "No fue posible guardar la categoría.",
+                    "Error de base de datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -222,18 +189,20 @@ namespace TechStore.Presentacion
                 return;
             }
 
-            bool categoriaValida = ObtenerCategoriaDelFormulario(out Categoria categoria);
-
-            if (categoriaValida == false)
-            {
-                return;
-            }
+            Categoria categoria = ObtenerCategoriaDelFormulario();
 
             categoria.IdCategoria = idCategoriaSeleccionada;
 
             try
             {
-                categoriaLogica.ActualizarCategoria(categoria);
+                bool operacionValida = categoriaLogica.ActualizarCategoria(
+                    categoria, out string campoConError, out string mensajeError);
+
+                if (operacionValida == false)
+                {
+                    MostrarErrorCategoria(campoConError, mensajeError);
+                    return;
+                }
 
                 MessageBox.Show(
                     "La categoría se ha modificado correctamente.",
@@ -243,23 +212,14 @@ namespace TechStore.Presentacion
 
                 ActualizarVistaCategorias();
             }
-            catch (SqlException errorBaseDatos)
+
+            catch (SqlException)
             {
-                // 2627 = se violó la restricción UNIQUE (nombre repetido).
-                if (errorBaseDatos.Number == 2627)
-                {
-                    errorProviderCategorias.SetError(
-                        txtNombre,
-                        "Ya existe una categoría con ese nombre.");
-                }
-                else
-                {
-                    MessageBox.Show(
-                        "No fue posible modificar la categoría.",
-                        "Error de base de datos",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
+                MessageBox.Show(
+                    "No fue posible modificar la categoría.",
+                    "Error de base de datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -287,7 +247,15 @@ namespace TechStore.Presentacion
 
             try
             {
-                categoriaLogica.EliminarCategoria(idCategoriaSeleccionada);
+                bool operacionValida = categoriaLogica.EliminarCategoria(
+                    idCategoriaSeleccionada, out string mensajeError);
+
+                if (operacionValida == false)
+                {
+                    MessageBox.Show(mensajeError, "Operación no permitida",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 MessageBox.Show(
                     "La categoría se eliminó correctamente.",
@@ -297,24 +265,14 @@ namespace TechStore.Presentacion
 
                 ActualizarVistaCategorias();
             }
-            catch (SqlException errorBaseDatos)
+
+            catch (SqlException)
             {
-                if (errorBaseDatos.Number == 547)
-                {
-                    MessageBox.Show(
-                        "No es posible eliminar esta categoría porque tiene productos asociados.",
-                        "La operación no puede ser permitida",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    MessageBox.Show(
-                        "No fue posible eliminar la categoría.",
-                        "Error de base de datos",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
+                MessageBox.Show(
+                    "No fue posible eliminar la categoría.",
+                    "Error de base de datos",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -389,6 +347,7 @@ namespace TechStore.Presentacion
                         MessageBoxIcon.Information);
                 }
             }
+
             catch (SqlException)
             {
                 MessageBox.Show(
