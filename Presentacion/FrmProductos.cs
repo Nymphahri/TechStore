@@ -223,12 +223,37 @@ namespace TechStore.Presentacion
         /* --------------------------------------------------
          * Guardar producto
          * -------------------------------------------------- */
+        private void InformarErroresProducto()
+        {
+            List<string> mensajes = new List<string>();
+            Control? primerCampoConError = null;
+            Control[] campos = { txtNombreProducto, txtPrecioProducto, txtStock, cboCategorias };
+
+            foreach (Control campo in campos)
+            {
+                string mensaje = errorProviderProductos.GetError(campo);
+                if (!string.IsNullOrEmpty(mensaje))
+                {
+                    mensajes.Add(mensaje);
+                    if (primerCampoConError == null)
+                    {
+                        primerCampoConError = campo;
+                    }
+                }
+            }
+
+            MessageBox.Show(this, string.Join(Environment.NewLine, mensajes),
+                "Revise los datos del producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            primerCampoConError?.Focus();
+        }
+
         private void btnGuardarProducto_Click(object sender, EventArgs e)
         {
             bool productoValido = ObtenerProductoDelFormulario(out Producto producto);
 
             if (productoValido == false)
             {
+                InformarErroresProducto();
                 return;
             }
 
@@ -283,6 +308,7 @@ namespace TechStore.Presentacion
 
             if (productoValido == false)
             {
+                InformarErroresProducto();
                 return;
             }
 
